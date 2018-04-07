@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+@import "materialize/components/color-variables";
+$primary-color: color("blue-grey", "darken-1") !default;
+$secondary-color: color("red", "darken-2") !default;
+@import "materialize";
+
+.nav-wrapper {
+  padding: 0 2rem;
+}

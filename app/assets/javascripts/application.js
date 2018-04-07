@@ -11,8 +11,14 @@
 // about supported directives.
 //
 //= require jquery3
-//= require popper
 //= require rails-ujs
 //= require turbolinks
-//= require bootstrap-sprockets
+//= require materialize
+//= require materialize-form
 //= require_tree .
+
+document.addEventListener("turbolinks:load", function() {
+  $(".dropdown-trigger").dropdown();
+  $("#ride_day").datepicker();
+  $("#ride_time").timepicker();
+});
