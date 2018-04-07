@@ -1,11 +1,31 @@
-/ navigation styled for Bootstrap 4.0
-.container
-  nav.navbar.navbar-dark.bg-inverse
-    ul.nav.navbar-nav.clearfix
-      li.nav-item
-        button.navbar-toggler.hidden-sm-up.nav-link aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label=("Toggle navigation") data-target="#exCollapsingNavbar2" data-toggle="collapse" type="button"
-          | &#9776;
-    #exCollapsingNavbar2.collapse.navbar-toggleable-xs
-      = link_to "Rails bootstrap", root_path, class: 'navbar-brand'
-      ul.nav.navbar-nav
-        = render 'layouts/navigation_links'
+/ / navigation styled for Bootstrap 4.0
+/ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+/   ul.nav.navbar-nav.clearfix
+/     li.nav-item
+/       button.navbar-toggler.hidden-sm-up.nav-link aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label=("Toggle navigation") data-target="#exCollapsingNavbar2" data-toggle="collapse" type="button"
+/         | &#9776;
+/   #exCollapsingNavbar2.collapse.navbar-toggleable-xs
+/     = link_to "Rails bootstrap", root_path, class: 'navbar-brand'
+/     ul.nav.navbar-nav
+/       = render 'layouts/navigation_links'
+header.navbar.navbar-expand.navbar-dark.flex-column.flex-md-row.bg-dark
+  = link_to 'MTB Buds', root_path, class: 'navbar-brand'
+  button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
+    span.navbar-toggler-icon
+
+  #navbarSupportedContent.collapse.navbar-collapse
+    / ul.navbar-nav.bd-navbar-nav.flex-row
+    /   li.nav-item.active
+    /     = link_to 'Home', root_path, class: 'nav-link'
+      / li.nav-item
+      /   a.nav-link href="#"  Link
+    ul.navbar-nav.flex-row.ml-md-auto.d-none.d-md-flex
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+          | Dropdown
+        .dropdown-menu.dropdown-menu-right aria-labelledby="navbarDropdown"
+          a.dropdown-item href="#"  Action
+          - if current_user.admin?
+            = link_to 'Admin', admin_root_path, class: 'dropdown-item'
+          .dropdown-divider
+          = link_to 'Sign Out', destroy_user_session_path, method: :destroy, class: 'dropdown-item'
