@@ -1,0 +1,24 @@
+.row
+  .col.sm-12.l8.offset-l2
+    .card
+      = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
+        .card-content
+          h3.card-title Sign in
+          p We'll send password reset instructions.
+          = devise_error_messages!
+          .row
+            - if devise_mapping.registerable?
+              = link_to 'Sign up', new_registration_path(resource_name), class: 'right'
+            = f.input :email, :autofocus => true, wrapper_html: { class: 'l12 s12'}
+
+            - if devise_mapping.recoverable?
+              = link_to "Forgot password?", new_password_path(resource_name), class: 'right'
+
+            = f.password_field :password, wrapper_html: { class: 'l12 s12'}
+
+          .card-action
+            = f.submit 'Sign in', class: 'btn'
+            - if devise_mapping.rememberable?
+              div.checkbox style="width:150px"
+                label= f.check_box :remember_me
+                  | Remember me

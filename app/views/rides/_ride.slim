@@ -1,0 +1,13 @@
+.row
+  .col.sm-12.l8.offset-l2
+    .card
+      .card-content
+        h1.card-title= link_to ride.trail_id, ride
+
+        .row
+          .col.l6.s12
+            p= ride.day
+          .col.l6.s12
+            p= ride.time
+            / td = link_to 'Edit', edit_ride_path(ride)
+            / td = link_to 'Destroy', ride, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,0 +1,14 @@
+.row
+  .col.sm-12.l8.offset-l2
+    .card
+       = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
+          .card-content
+            h3.card-title Sign up
+            = devise_error_messages!
+            .row
+              = f.input :name, autofocus: true, wrapper_html: { class: 'l12 s12' }
+              = f.input :email, wrapper_html: { class: 'l12 s12' }
+              = f.input :password, wrapper_html: { class: 'l12 s12' }
+              = f.input :password_confirmation, wrapper_html: { class: 'l12 s12' }
+          .card-action
+            = f.submit 'Sign up', class: 'btn'

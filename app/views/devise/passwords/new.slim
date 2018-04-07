@@ -1,0 +1,12 @@
+.row
+  .col.sm-12.l8.offset-l2
+    .card
+      .card-content
+        h3.card-title Forgot your password?
+        p We'll send password reset instructions.
+
+        = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f|
+          = devise_error_messages!
+          = f.label :email, wrapper_html: { class: 'l12 s12'}
+          = f.email_field :email, autofocus:  true, class: 'form-control', wrapper_html: { class: 'l12 s12'}
+          = f.submit 'Reset Password', class: 'btn'

@@ -1,0 +1,32 @@
+.row
+  .col.sm-12.l8.offset-l2
+    .card
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        .card-content
+          h3.card-title Edit #{resource_name.to_s.humanize}
+          = devise_error_messages!
+
+          = f.input :name, :autofocus => true, wrapper_html: { class: 'l12 s12' }
+          = f.email_field :email, wrapper_html: { class: 'l12 s12' }
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            div Currently waiting confirmation for: = resource.unconfirmed_email
+          .section
+            fieldset
+              p Leave these fields blank if you don't want to change your password.
+              = f.input :password, :autocomplete => 'off', wrapper_html: { class: 'l12 s12' }
+              = f.input :password_confirmation, wrapper_html: { class: 'l12 s12' }
+
+          .section
+            fieldset
+              p You must enter your current password to make changes.
+              = f.input :current_password, wrapper_html: { class: 'l12 s12' }
+
+        .card-action
+          = f.submit 'Update', class: 'btn'
+.row
+  .col.sm-12.l8.offset-l2
+    .card
+      .card-content
+        h3.card-title Cancel Account
+        p Unhappy? We'll be sad to see you go.
+        = button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn'

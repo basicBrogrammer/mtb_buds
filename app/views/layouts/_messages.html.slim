@@ -3,4 +3,4 @@
     - css_class = 'green lighten-2'
   - if message_type == 'alert'
     - css_class = 'red lighten-1'
-  = javascript_tag "Materialize.toast('#{message}', 4000, '#{css_class}')"
+  = javascript_tag "M.toast({ html: '#{message}', classes: '#{css_class}' })"
