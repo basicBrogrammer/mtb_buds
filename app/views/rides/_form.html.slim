@@ -10,8 +10,19 @@
     = form.input :time, wrapper_html: { class: 'l6 s12'}
 
   / This is going to be busy
-  .row
-    = form.input :trail_id, wrapper_html: { class: 'l12 s12'}
+  div data-controller='choose-trail' data-choose-trail-url='/location_autocomplete'
+    .row
+      = form.input :location, collection: [], required: true, label: false, wrapper_html: { class: 'm12 s12'},
+        input_html: {  data: { target: 'choose-trail.select', placeholder: 'City, State'}}
+      = form.input :trail_id, as: :hidden, data: { target: 'choose-trail.trail_id' }
+      = form.input :latitude, as: :hidden, data: { target: 'choose-trail.latitude' }
+      = form.input :longitude, as: :hidden, data: { target: 'choose-trail.longitude' }
+    .row
+      .col.l12.s12
+        div data-target='choose-trail.trails'
+
+
+
 
 
   .row

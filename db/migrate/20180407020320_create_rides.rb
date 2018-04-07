@@ -4,6 +4,7 @@ class CreateRides < ActiveRecord::Migration[5.1]
       t.string :trail_id, null: false
       t.string :longitude, null: false
       t.string :latitude, null: false
+      t.string :location
       t.date :day, null: false
       t.time :time, null: false
       t.string :difficulty

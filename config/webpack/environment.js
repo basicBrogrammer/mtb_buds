@@ -1,28 +1,18 @@
 // config/webpack/environment.js
 const { environment } = require("@rails/webpacker");
-const webpack = require("webpack");
 
-// Get a pre-configured plugin
-// const manifestPlugin = environment.plugins.get("Manifest");
-// manifestPlugin.opts.writeToFileEmit = false;
-//
-// // Add an additional plugin of your choosing : ProvidePlugin
-// environment.plugins.prepend(
-//   "Provide",
-//   new webpack.ProvidePlugin({
-//     $: "jquery"
-//   })
-// );
-//
-// // Insert before a given plugin
-// environment.plugins.insert(
-//   "CommonChunkVendor",
-//   new webpack.optimize.CommonsChunkPlugin({
-//     name: "vendor", // Vendor code
-//     minChunks: module =>
-//       module.context && module.context.indexOf("node_modules") !== -1
-//   }),
-//   { before: "manifest" }
-// );
+const webpack = require("webpack");
+environment.plugins.prepend(
+  "Provide",
+  new webpack.ProvidePlugin({
+    $: "jquery",
+    jQuery: "jquery"
+  })
+);
+const config = environment.toWebpackConfig();
+
+config.resolve.alias = {
+  jquery: "jquery/src/jquery"
+};
 
 module.exports = environment;

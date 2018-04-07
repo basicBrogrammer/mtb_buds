@@ -125,6 +125,8 @@ GEM
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    google_places (1.1.0)
+      httparty (>= 0.13.1)
     guard (2.14.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -147,6 +149,8 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     high_voltage (3.0.0)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
     hub (1.12.4)
     i18n (1.0.0)
       concurrent-ruby (~> 1.0)
@@ -193,6 +197,7 @@ GEM
     momentjs-rails (2.20.1)
       railties (>= 3.1)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     multipart-post (2.0.0)
     nenv (0.3.0)
     net-scp (1.2.1)
@@ -401,6 +406,7 @@ DEPENDENCIES
   faraday
   figaro
   foreman
+  google_places
   guard-bundler
   guard-rails
   guard-rspec

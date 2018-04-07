@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   root to: 'rides#index'
   devise_for :users
   resources :users, except: [:new, :edit]
+  resources :location_autocomplete, only: :index
 end
