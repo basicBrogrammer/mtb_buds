@@ -14,6 +14,7 @@ gem 'devise_invitable'
 gem 'faraday'
 gem "figaro"
 gem 'high_voltage'
+gem 'geocoder'
 gem 'jbuilder', '~> 2.5'
 gem 'materialize-form'
 gem 'materialize-sass', '~> 1.0.0.beta'

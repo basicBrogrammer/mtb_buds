@@ -3,6 +3,7 @@
   * testing
     * [ ] no edit/update
     * [ ] user specific values
+    * [ ] TrailsController
   * [ ] pick trail
   * [ ] pagination/infinite load
 

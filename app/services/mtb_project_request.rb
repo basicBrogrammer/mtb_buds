@@ -6,7 +6,7 @@ class MtbProjectRequest
   # https://www.mtbproject.com/data/get-trails-by-id
   #   ?ids=4670265,3671983,7015764,7003838,157369
   attr_reader :endpoint, :params
-  def initialize(endpoint:, params: {})
+  def initialize(endpoint: 'get-trails', params: {})
     if VALID_END_POINTS.include? endpoint
       @params = params
       @endpoint = endpoint
@@ -21,7 +21,7 @@ class MtbProjectRequest
   end
 
   def get_json
-    Rails.cache.fetch(cache_key, expires_in: 7.days) do
+    Rails.cache.fetch(cache_key, expires_in: expires_in) do
       client.get do |req|                           # GET http://sushi.com/search?page=2&limit=100
         req.headers['Content-Type'] = 'application/json'
         req.url endpoint
@@ -31,7 +31,14 @@ class MtbProjectRequest
   end
 
   def get_params
-    params.merge(key: ENV['mtb_project_key'])
+    params.merge(
+      {
+        key: ENV['mtb_project_key'],
+        maxDistance: 50,
+        maxResults: 250,
+        sort: 'distance'
+      }
+    )
   end
 
   def client
@@ -42,5 +49,9 @@ class MtbProjectRequest
 
   def cache_key
     "[GET]mtb/#{endpoint}: #{params.to_query}"
+  end
+
+  def expires_in
+    ENV.fetch('mtb_expires_in', 30.days.to_s)
   end
 end

@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = [
     "select",
     "url",
-    "trail_id",
+    "trailId",
     "longitude",
     "latitude",
     "trails"
@@ -22,7 +22,7 @@ export default class extends Controller {
     );
 
     $(this.selectTarget).on("select2:select", e => {
-      const location = e.target.value;
+      this._onSelect(e.target.value);
     });
   }
 
@@ -47,8 +47,24 @@ export default class extends Controller {
     });
   }
 
+  selectTrail(e) {
+    this.trailIdTarget.value = e.target.dataset.trailId;
+  }
+
+  _onSelect(location) {
+    return fetch(this.trailsUrl(location), { credentials: "same-origin" })
+      .then(response => response.text())
+      .then(html => {
+        this.trailsTarget.innerHTML = html;
+      });
+  }
+
   get placeholder() {
     return $(this.selectTarget).data("placeholder");
+  }
+
+  trailsUrl(location) {
+    return `/trails?layout=false&location=${location}`;
   }
 
   get url() {
