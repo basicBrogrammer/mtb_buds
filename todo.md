@@ -6,6 +6,7 @@
     * [ ] TrailsController
   * [ ] pick trail
   * [ ] pagination/infinite load
+  * [ ] correct timezone
 
 * [ ] mtb api
 

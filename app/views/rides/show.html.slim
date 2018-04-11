@@ -1,15 +1,4 @@
-.row
-  .col.sm-12.l8.offset-l2
-    .card
-      .card-content
-        h1.card-title= @ride.trail_id
-
-        .row
-          .col.l6.s12
-            p= @ride.day
-          .col.l6.s12
-            p= @ride.time
-
+= render @ride
     - if current_user&.id = @ride.user_id
       => link_to 'Edit', edit_ride_path(@ride)
       '|

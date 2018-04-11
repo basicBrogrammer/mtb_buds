@@ -27,13 +27,12 @@ feature 'User profile page', :devise do
   #   Given I am signed in
   #   When I visit another user's profile
   #   Then I see an 'access denied' message
-  scenario "user cannot see another user's profile" do
+  scenario "user cannot see another user's profile", :js do
     me = FactoryBot.create(:user)
     other = FactoryBot.create(:user, email: 'other@example.com')
     login_as(me, :scope => :user)
-    Capybara.current_session.driver.header 'Referer', root_path
+    # Capybara.current_session.driver.header 'Referer', root_path
     visit user_path(other)
     expect(page).to have_content 'Access denied.'
   end
-
 end

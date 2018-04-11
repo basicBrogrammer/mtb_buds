@@ -1,13 +1,33 @@
 .row
-  .col.sm-12.l8.offset-l2
-    .card
-      .card-content
-        h1.card-title= link_to ride.trail_id, ride
-
-        .row
-          .col.l6.s12
-            p= ride.day
-          .col.l6.s12
-            p= ride.time
-            / td = link_to 'Edit', edit_ride_path(ride)
-            / td = link_to 'Destroy', ride, data: { confirm: 'Are you sure?' }, method: :delete
+  .col.s12.l10.offset-l1
+    / TODO: mobile? ? '' : horizontal
+    .card.horizontal.z-depth-3
+      / TODO: image key helper
+      - if ride.trail['imgMedium'].present?
+        .card-image= image_tag ride.trail['imgMedium']
+      .card-stacked
+        .card-content
+          h3.card-title=link_to ride.trail['name'], ride_path(ride)
+          / TODO: replace spans with icons
+          .row
+            .col.s12.l6
+              p
+                span.red-text When:
+                |  #{ride.day.strftime('%a %b %d')}, #{ride.time.strftime("%l:%M %p")}
+          .row
+            .col.s12.l6
+              p
+                span.red-text Where:
+                |  #{ride.location}
+              p
+                span.red-text Length:
+                |  #{ride.trail['length']} mi
+            .col.s12.l6
+              p
+                span.red-text Stars:
+                |  #{ride.stars}
+              p
+                span.red-text Difficulty:
+                |  #{ride.difficulty}
+        / td = link_to 'Edit', edit_ride_path(ride)
+        / td = link_to 'Destroy', ride, data: { confirm: 'Are you sure?' }, method: :delete

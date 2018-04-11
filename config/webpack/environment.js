@@ -9,10 +9,10 @@ environment.plugins.prepend(
     jQuery: "jquery"
   })
 );
-const config = environment.toWebpackConfig();
+// const config = environment.toWebpackConfig();
 
-config.resolve.alias = {
-  jquery: "jquery/src/jquery"
-};
+// config.resolve.alias = {
+//   jquery: "jquery/src/jquery"
+// };
 
 module.exports = environment;

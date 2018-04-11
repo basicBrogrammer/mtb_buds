@@ -15,3 +15,6 @@ $secondary-color: color("red", "darken-2") !default;
   height: 100%;
   object-fit: cover;
 }
+h3.card-title {
+  margin-top: 0;
+}

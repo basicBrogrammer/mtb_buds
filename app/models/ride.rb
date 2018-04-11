@@ -4,15 +4,17 @@ class Ride < ApplicationRecord
   # TODO: create a service object to background this
   before_create :save_mtb_projec_data
   # TODO: Geocode
+  
+  def trail
+    @trail ||= MtbProjectRequest.new(
+      endpoint: 'get-trails-by-id',
+      params: { ids: self.trail_id }
+    ).call&.first
+  end
 
   private
 
   def save_mtb_projec_data
-    trail = MtbProjectRequest.new(
-      endpoint: 'get-trails-by-id',
-      params: { ids: self.trail_id }
-    ).call&.first
-
     self.assign_attributes(
       longitude: trail['longitude'],
       latitude: trail['latitude'],

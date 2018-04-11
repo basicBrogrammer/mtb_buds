@@ -15,11 +15,11 @@ feature 'User edit', :devise do
   #   Given I am signed in
   #   When I change my email address
   #   Then I see an account updated message
-  scenario 'user changes email address' do
+  scenario 'user changes email address', :js do
     user = FactoryBot.create(:user)
     login_as(user, :scope => :user)
     visit edit_user_registration_path(user)
-    fill_in 'Email', :with => 'newemail@example.com'
+    fill_in 'user_email', :with => 'newemail@example.com'
     fill_in 'Current password', :with => user.password
     click_button 'Update'
     txts = [I18n.t( 'devise.registrations.updated'), I18n.t( 'devise.registrations.update_needs_confirmation')]
@@ -36,7 +36,6 @@ feature 'User edit', :devise do
     login_as(me, :scope => :user)
     visit edit_user_registration_path(other)
     expect(page).to have_content 'Edit User'
-    expect(page).to have_field('Email', with: me.email)
+    expect(page).to have_field('user_email', with: me.email)
   end
-
 end

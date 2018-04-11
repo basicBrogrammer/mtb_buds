@@ -9,7 +9,13 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, except: [:new, :edit]
 
+  # order matters ??
+  namespace :rides do
+    resources :infinite_load, only: :index
+  end
   resources :rides
   resources :location_autocomplete, only: :index
   resources :trails, only: :index
+
+  get "/pages/*id" => 'pages#show', as: :page, format: false
 end
