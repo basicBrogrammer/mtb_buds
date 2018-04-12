@@ -29,5 +29,8 @@
               p
                 span.red-text Difficulty:
                 |  #{ride.difficulty}
+        - unless action_name == 'show'
+          .card-action
+            = link_to 'Interested', ride_path(ride)
         / td = link_to 'Edit', edit_ride_path(ride)
         / td = link_to 'Destroy', ride, data: { confirm: 'Are you sure?' }, method: :delete

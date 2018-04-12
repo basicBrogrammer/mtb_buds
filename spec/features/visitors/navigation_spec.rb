@@ -14,5 +14,4 @@ feature 'Navigation links', :devise do
     expect(page).to have_content 'Sign in'
     expect(page).to have_content 'Sign up'
   end
-
 end

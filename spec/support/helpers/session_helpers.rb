@@ -1,5 +1,12 @@
 module Features
   module SessionHelpers
+    include Warden::Test::Helpers
+
+    def self.included(base)
+      base.before(:each) { Warden.test_mode! }
+      base.after(:each) { Warden.test_reset! }
+    end
+
     def sign_up_with(email, password, confirmation)
       visit new_user_registration_path
       fill_in 'Email', with: email

@@ -31,6 +31,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 
 group :development do
+  gem "letter_opener"
   gem 'better_errors'
   gem 'capistrano', '~> 3.0.1'
   gem 'capistrano-bundler'

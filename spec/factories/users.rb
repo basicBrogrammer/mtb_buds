@@ -2,7 +2,9 @@ FactoryBot.define do
   factory :user do
     confirmed_at Time.now
     name "Test User"
-    email "test@example.com"
+    sequence :email do |n|
+      "person#{n}@example.com"
+    end
     password "please1234"
 
     trait :admin do
