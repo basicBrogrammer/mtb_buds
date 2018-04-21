@@ -9,7 +9,7 @@ feature 'Rides new page', :devise, :js do
       # verify user signed in
       within 'nav' do
         expect(page).to have_link 'Brraapp!'
-        expect(page).to have_link 'Dropdown'
+        expect(page).to have_selector '.material-icons', text: 'account_circle'
       end
     end
 

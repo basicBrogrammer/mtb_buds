@@ -8,6 +8,7 @@
 
           = f.input :name, :autofocus => true, wrapper_html: { class: 'l12 s12' }
           = f.email_field :email, wrapper_html: { class: 'l12 s12' }
+          = f.input :avatar, wrapper_html: { class: 'l12 s12' }
           - if devise_mapping.confirmable? && resource.pending_reconfirmation?
             div Currently waiting confirmation for: = resource.unconfirmed_email
           .section

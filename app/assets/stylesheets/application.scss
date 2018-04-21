@@ -3,6 +3,7 @@ $primary-color: color("blue-grey", "darken-1") !default;
 $secondary-color: color("red", "darken-2") !default;
 @import "materialize";
 @import "select2_materialize";
+@import "navbar";
 
 .primary-color {
   background: $primary-color;
@@ -18,10 +19,6 @@ $secondary-color: color("red", "darken-2") !default;
 
 .secondary-color-text {
   color: $secondary-color;
-}
-
-.nav-wrapper {
-  padding: 0 2rem;
 }
 
 .card.horizontal .card-image img {

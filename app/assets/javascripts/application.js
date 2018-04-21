@@ -18,7 +18,7 @@
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function() {
-  $(".dropdown-trigger").dropdown();
+  $(".dropdown-trigger").dropdown({ alignment: "right" });
   $("#ride_day").datepicker();
   $("#ride_time").timepicker();
   M.updateTextFields(); // reinitialize form label

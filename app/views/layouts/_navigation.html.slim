@@ -3,20 +3,20 @@ nav
     = link_to 'MTB Buds', root_path, class: 'brand-logo'
     - if current_user.present?
       ul.right.hide-on-med-and-down
-        / li
-        /   a href="sass.html"  Sass
         li = link_to "Brraapp!", new_ride_path, class: 'btn btn-info'
 
         /! Dropdown Trigger
         li
           a.dropdown-trigger data-target="dropdown1" href="#!"
-            | Dropdown
-            i.material-icons.right arrow_drop_down
+            - if current_user.avatar.attached?
+              = image_tag url_for(current_user.avatar), class: 'navbar-avatar', size: "40x40"
+            - else
+              i.large.material-icons.right account_circle
+
           ul#dropdown1.dropdown-content
             - if current_user.admin?
               li= link_to 'Admin', admin_root_path, class: 'dropdown-item'
-            li
-              a href="#!"  two
+            li= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item'
             li.divider
             li= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
     - else

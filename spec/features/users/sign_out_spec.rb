@@ -14,9 +14,9 @@ feature 'Sign out', :devise, :js do
 
     expect(page).to have_content I18n.t 'devise.sessions.signed_in'
     expect(page).to_not have_selector '#toast-container', wait: 10
-    
+
     within 'nav' do
-      click_link 'Dropdown'
+      click_link 'account_circle'
 
       within '#dropdown1' do
         click_link 'Sign Out'

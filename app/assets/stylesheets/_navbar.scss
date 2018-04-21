@@ -1,0 +1,8 @@
+.nav-wrapper {
+  padding: 0 2rem;
+}
+
+.navbar-avatar {
+  @extend .circle;
+  margin-top: 25%;
+}
