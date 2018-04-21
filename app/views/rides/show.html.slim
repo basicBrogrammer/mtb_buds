@@ -1,5 +1,12 @@
-= render @ride
-    - if current_user&.id = @ride.user_id
+.row
+  .col.s12.l10.offset-l1
+    - if current_user&.id == @ride.user_id
       => link_to 'Edit', edit_ride_path(@ride)
       '|
+      / td = link_to 'Destroy', ride, data: { confirm: 'Are you sure?' }, method: :delete
+    - if current_user&.id == @ride.user_id
+      => link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' }, method: :delete
+      '|
     =< link_to 'Back', rides_path
+    
+= render @ride

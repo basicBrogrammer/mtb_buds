@@ -3,8 +3,18 @@
     .card
       .card-content
         h1.card-title Editing ride
+        == render 'form' do
+          .row
+            - ride_image_presence = @ride.trail['imgMedium'].present?
+            - if ride_image_presence
+              .col.l4.s12
+                = image_tag @ride.trail['imgMedium'], class: 'img-responsive'
+            .col.s12 class="#{ride_image_presence ? 'l8' : 'l12'}"
+              h4.primary-color-text= @ride.trail['name']
+              p
+                span.red-text When:
+                |  #{@ride.pretty_day}, #{@ride.pretty_time}
 
-        == render 'form'
 
     => link_to 'Show', @ride
     '|

@@ -94,3 +94,4 @@ dump.rdb
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+spec/test_statuses.txt

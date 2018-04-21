@@ -1,28 +1,16 @@
 = simple_form_for(@ride, html: { class: 'form-horizontal' }) do |form|
   - if @ride.errors.any?
     fieldset#error_explanation
-      h2.card-title = "#{pluralize(@ride.errors.count, "error")} prohibited this ride from being saved:"
+      h3.card-title = "#{pluralize(@ride.errors.count, "error")} prohibited this ride from being saved:"
       ul
         - @ride.errors.full_messages.each do |message|
           li = message
   .row
     = form.input :day, as: :date, wrapper_html: { class: 'l6 s12'}
-    = form.input :time, wrapper_html: { class: 'l6 s12'}
+    = form.input :time, as: :time, wrapper_html: { class: 'l6 s12'}, input_html: { value: form.object.pretty_time }
+    / = f.input_field :start_time, :as => :string, :value => time_format(f.object.start_time)
 
-  / This is going to be busy
-  div data-controller='choose-trail' data-choose-trail-url='/location_autocomplete'
-    .row
-      = form.input :location, collection: [], required: true, label: false, wrapper_html: { class: 'm12 s12'},
-        input_html: { data: { target: 'choose-trail.select', placeholder: 'City, State'}}
-      = form.input :trail_id, as: :hidden,
-        input_html: { data: { target: 'choose-trail.trailId' } }
-    .row
-      .col.l12.s12
-        div data-target='choose-trail.trails'
-
-
-
-
+  = yield form
 
   .row
     = form.button :submit, 'Save', class: 'btn'

@@ -3,7 +3,20 @@
     .card
       .card-content
         h1.card-title New ride
-
-        == render 'form'
+        == render 'form' do |form|
+          / This is going to be busy
+          div data-controller='choose-trail' data-choose-trail-url='/location_autocomplete'
+            .row
+              = form.input :location, collection: [], required: true, label: false, wrapper_html: { class: 'm12 s12'},
+                input_html: { data: { target: 'choose-trail.select', placeholder: 'City, State'}}
+              = form.input :trail_id, as: :hidden,
+                input_html: { data: { target: 'choose-trail.trailId' } }
+            .row
+              .col.l12.s12
+                div data-target='choose-trail.trails'
+                .hide.preloader-wrapper{style='width: 100%; padding-top: 1rem'
+                  data-target='choose-trail.preloader'}
+                  .progress
+                    .indeterminate
 
     = link_to 'Back', rides_path

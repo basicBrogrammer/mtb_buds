@@ -4,8 +4,9 @@
     * [ ] no edit/update
     * [ ] user specific values
     * [ ] TrailsController
+    * [ ] pagination/infinite load
   * [ ] pick trail
-  * [ ] pagination/infinite load
+  * [x] pagination/infinite load
   * [ ] correct timezone
 
 * [ ] mtb api
@@ -13,8 +14,8 @@
   * [ ] test validation
   * [ ] error request
 
-* [ ] gravatar
+* [ ] user profile picture
 * [ ] MV materialize to webpack
-* [ ] flash messages
+* [x] flash messages
 * [ ] admin testing
 * [ ] footer

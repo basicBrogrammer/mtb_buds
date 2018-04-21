@@ -4,6 +4,22 @@ $secondary-color: color("red", "darken-2") !default;
 @import "materialize";
 @import "select2_materialize";
 
+.primary-color {
+  background: $primary-color;
+}
+
+.primary-color-text {
+  color: $primary-color;
+}
+
+.secondary-color {
+  background: $secondary-color;
+}
+
+.secondary-color-text {
+  color: $secondary-color;
+}
+
 .nav-wrapper {
   padding: 0 2rem;
 }
@@ -17,4 +33,9 @@ $secondary-color: color("red", "darken-2") !default;
 }
 h3.card-title {
   margin-top: 0;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
 }

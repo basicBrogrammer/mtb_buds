@@ -1,5 +1,6 @@
 class RidesController < ApplicationController
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: :index
 
   def index
@@ -21,7 +22,7 @@ class RidesController < ApplicationController
 
     respond_to do |format|
       if @ride.save
-        format.html { redirect_to @ride, notice: 'Ride was successfully created.' }
+        format.html { redirect_to @ride, notice: I18n.t('rides.created') }
         format.json { render :show, status: :created, location: @ride }
       else
         format.html { render :new }
@@ -34,7 +35,7 @@ class RidesController < ApplicationController
   def update
     respond_to do |format|
       if @ride.update(ride_params)
-        format.html { redirect_to @ride, notice: 'Ride was successfully updated.' }
+        format.html { redirect_to @ride, notice: I18n.t('rides.updated') }
         format.json { render :show, status: :ok, location: @ride }
       else
         format.html { render :edit }
@@ -62,5 +63,11 @@ class RidesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
       params.fetch(:ride).permit(:trail_id, :day, :time)
+    end
+
+    def correct_user
+      if @ride.user != current_user
+        redirect_to root_path, alert: I18n.t('unauthorized')
+      end
     end
 end

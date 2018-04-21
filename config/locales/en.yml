@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  unauthorized: 'You are unauthorized to be on that page.'
+  rides:
+    updated: 'Ride was successfully updated.'
+    created: 'Ride was successfully created.'

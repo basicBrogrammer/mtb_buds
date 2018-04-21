@@ -7,6 +7,7 @@ export default class extends Controller {
     "trailId",
     "longitude",
     "latitude",
+    "preloader",
     "trails"
   ];
 
@@ -52,10 +53,14 @@ export default class extends Controller {
   }
 
   _onSelect(location) {
+    $(this.trailsTarget).addClass("hide");
+    $(this.preloaderTarget).removeClass("hide");
     return fetch(this.trailsUrl(location), { credentials: "same-origin" })
       .then(response => response.text())
       .then(html => {
         this.trailsTarget.innerHTML = html;
+        $(this.trailsTarget).removeClass("hide");
+        $(this.preloaderTarget).addClass("hide");
       });
   }
 

@@ -4,12 +4,20 @@ class Ride < ApplicationRecord
   # TODO: create a service object to background this
   before_create :save_mtb_projec_data
   # TODO: Geocode
-  
+
   def trail
     @trail ||= MtbProjectRequest.new(
       endpoint: 'get-trails-by-id',
       params: { ids: self.trail_id }
     ).call&.first
+  end
+
+  def pretty_day
+    day.strftime('%a %b %d')
+  end
+
+  def pretty_time
+    time&.strftime("%l:%M %p")
   end
 
   private
