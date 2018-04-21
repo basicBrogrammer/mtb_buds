@@ -46,7 +46,7 @@ feature 'Participation', :devise, :js do
         within '.collection-item', text: user.name do
           expect(page).to have_content 'pending'
           expect(page).to have_button 'Accept'
-          expect(page).to have_link 'Reject'
+          expect(page).to have_button 'Reject'
         end
       end
     end

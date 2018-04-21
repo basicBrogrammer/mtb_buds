@@ -12,4 +12,5 @@
             - if participation.status == 'pending'
               = button_to 'Accept', ride_participation_path(@ride, participation),
                 method: :put, class: 'btn'
-              = link_to 'Reject', '#', class: 'btn btn-small red lighten-1'
+              = button_to 'Reject', ride_participation_path(@ride, participation),
+                method: :delete, class: 'btn'

@@ -13,3 +13,5 @@ en:
   participant:
     accepted: 'You add the participant to your ride.'
     acceptance_failed: 'Failed to add participant to ride.'
+    rejected: 'You have rejected the participant to your ride.'
+    rejection_failed: 'Failed to reject participant from ride.'

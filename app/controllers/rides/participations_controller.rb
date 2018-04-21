@@ -23,6 +23,13 @@ module Rides
     end
 
     def destroy
+      participation = Participation.find_by(participation_params)
+
+      if participation.rejected!
+        redirect_to ride_path(participation_params[:ride_id]), notice: I18n.t('participant.rejected')
+      else
+        redirect_to ride_path(participation_params[:ride_id]), alert: I18n.t('participant.rejection_failed')
+      end
     end
 
     private

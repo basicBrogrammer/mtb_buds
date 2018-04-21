@@ -32,7 +32,7 @@ feature 'Participation show page', :devise, :js do
         within '.collection-item', text: pending_participation.user.name do
           expect(page).to have_content 'pending'
           expect(page).to have_button 'Accept'
-          expect(page).to have_link 'Reject'
+          expect(page).to have_button 'Reject'
         end
       end
     end
