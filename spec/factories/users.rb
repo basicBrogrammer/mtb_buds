@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
     confirmed_at Time.now
-    name "Test User"
+    name { Faker::StarWars.unique.character }
     sequence :email do |n|
       "person#{n}@example.com"
     end

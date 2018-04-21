@@ -7,6 +7,11 @@ class RidesController < ApplicationController
   end
 
   def show
+    if current_user == @ride.user
+      @participations = @ride.participations.includes(:user)
+    else
+      @participations = @ride.participations.accepted.includes(:user)
+    end
   end
 
   def new

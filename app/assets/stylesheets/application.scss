@@ -4,6 +4,7 @@ $secondary-color: color("red", "darken-2") !default;
 @import "materialize";
 @import "select2_materialize";
 @import "navbar";
+@import "rides";
 
 .primary-color {
   background: $primary-color;
@@ -19,6 +20,10 @@ $secondary-color: color("red", "darken-2") !default;
 
 .secondary-color-text {
   color: $secondary-color;
+}
+
+.main-page-grid {
+  @extend .col, .s12, .l10, .offset-l1;
 }
 
 .card.horizontal .card-image img {

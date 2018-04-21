@@ -1,5 +1,5 @@
 .row
-  .col.s12.l10.offset-l1
+  .main-page-grid
     - if current_user&.id == @ride.user_id
       => link_to 'Edit', edit_ride_path(@ride)
       '|
@@ -8,5 +8,20 @@
       => link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' }, method: :delete
       '|
     =< link_to 'Back', rides_path
-    
+
 = render @ride
+
+.row
+  .main-page-grid
+    ul.collection.participants
+      - @participations.each do |participation|
+        li.collection-item.avatar
+          = prof_pic(participation.user, css: 'circle')
+          span.title= participation.user.name
+          .secondary-content
+            span.badge{class="#{participation.status}"
+              data-badge-caption="" }
+              = participation.status
+            - if participation.status == 'pending'
+              = link_to 'Accept', '#', class: 'btn btn-small green lighten-1'
+              = link_to 'Reject', '#', class: 'btn btn-small red lighten-1'

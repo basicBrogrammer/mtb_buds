@@ -33,6 +33,7 @@ gem 'webpacker'
 group :development do
   gem "letter_opener"
   gem 'better_errors'
+  # gem 'bullet'
   gem 'capistrano', '~> 3.0.1'
   gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.1.0'
@@ -56,6 +57,7 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker'
   gem 'capybara', '~> 2.13'
   gem 'factory_bot_rails'
   gem 'faker'

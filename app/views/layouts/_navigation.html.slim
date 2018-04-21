@@ -8,10 +8,7 @@ nav
         /! Dropdown Trigger
         li
           a.dropdown-trigger data-target="dropdown1" href="#!"
-            - if current_user.avatar.attached?
-              = image_tag url_for(current_user.avatar), class: 'navbar-avatar', size: "40x40"
-            - else
-              i.large.material-icons.right account_circle
+            = prof_pic(current_user, css: 'navbar-avatar')
 
           ul#dropdown1.dropdown-content
             - if current_user.admin?
