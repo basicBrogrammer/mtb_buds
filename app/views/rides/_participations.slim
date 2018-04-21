@@ -10,7 +10,8 @@
               data-badge-caption="" }
               = participation.status
             - if participation.status == 'pending'
-              = button_to 'Accept', ride_participation_path(@ride, participation),
-                method: :put, class: 'btn'
-              = button_to 'Reject', ride_participation_path(@ride, participation),
-                method: :delete, class: 'btn'
+              .valign-wrapper
+                = button_to 'Accept', ride_participation_path(@ride, participation),
+                  method: :put, class: 'btn btn-small green lighten-1'
+                = button_to 'Reject', ride_participation_path(@ride, participation),
+                  method: :delete, class: 'btn btn-small red lighten-1'

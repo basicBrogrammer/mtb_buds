@@ -17,4 +17,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def accepted_participant?(ride)
+    participations.accepted.find_by(ride_id: ride.id).present?
+  end
 end

@@ -89,5 +89,58 @@ feature 'Participation show page', :devise, :js do
         expect(page).to_not have_content other_participation.user.name
       end
     end
+
+  end
+
+  context 'ride time visibility' do
+    scenario 'ride time will not be visible to a user that has not requested to join' do
+      expect(user.participating_rides).to be_empty
+      sign_in_as(user)
+      visit ride_path(ride)
+
+      expect(page).to have_content ride.trail['name']
+      within 'p', text: 'When:' do
+        expect(page).to have_content ride.pretty_day
+        expect(page).to_not have_content ride.pretty_time
+      end
+    end
+
+    scenario 'ride time will not be visible to a pending participant' do
+      create(:participation, :pending, ride: ride, user: user)
+
+      sign_in_as(user)
+      visit ride_path(ride)
+
+      expect(page).to have_content ride.trail['name']
+      within 'p', text: 'When:' do
+        expect(page).to have_content ride.pretty_day
+        expect(page).to_not have_content ride.pretty_time
+      end
+    end
+    scenario 'ride time will not be visible to a rejected participant' do
+      create(:participation, :rejected, ride: ride, user: user)
+
+      sign_in_as(user)
+      visit ride_path(ride)
+
+      expect(page).to have_content ride.trail['name']
+      within 'p', text: 'When:' do
+        expect(page).to have_content ride.pretty_day
+        expect(page).to_not have_content ride.pretty_time
+      end
+    end
+
+    scenario 'ride time will be visible to a accepted participant' do
+      create(:participation, :accepted, ride: ride, user: user)
+
+      sign_in_as(user)
+      visit ride_path(ride)
+
+      expect(page).to have_content ride.trail['name']
+      within 'p', text: 'When:' do
+        expect(page).to have_content ride.pretty_day
+        expect(page).to have_content ride.pretty_time
+      end
+    end
   end
 end
