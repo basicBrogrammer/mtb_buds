@@ -64,6 +64,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
 
   # config.cache_store = :redis_cache_store
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
@@ -84,14 +85,14 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.sendgrid.net",
     port: 587,
-    domain: Rails.application.secrets.domain_name,
+    # domain: Rails.application.secrets.domain_name,
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: Rails.application.secrets.email_provider_username,
-    password: Rails.application.secrets.email_provider_password
+    user_name: ENV['email_provider_username'],
+    password: ENV['email_provider_password']
   }
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }
+  config.action_mailer.default_url_options = { :host => ENV['domain_name'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
