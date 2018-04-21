@@ -1,6 +1,6 @@
 .row
   .main-page-grid
-    ul.collection.participants
+    ul.collection.participants.z-depth-3
       - participations.each do |participation|
         li.collection-item.avatar
           = prof_pic(participation.user, css: 'circle')
@@ -10,5 +10,6 @@
               data-badge-caption="" }
               = participation.status
             - if participation.status == 'pending'
-              = link_to 'Accept', '#', class: 'btn btn-small green lighten-1'
+              = button_to 'Accept', ride_participation_path(@ride, participation),
+                method: :put, class: 'btn'
               = link_to 'Reject', '#', class: 'btn btn-small red lighten-1'

@@ -13,7 +13,13 @@ module Rides
     end
 
     def update
+      participation = Participation.find_by(participation_params)
 
+      if participation.accepted!
+        redirect_to ride_path(participation_params[:ride_id]), notice: I18n.t('participant.accepted')
+      else
+        redirect_to ride_path(participation_params[:ride_id]), alert: I18n.t('participant.acceptance_failed')
+      end
     end
 
     def destroy
@@ -22,7 +28,7 @@ module Rides
     private
 
     def participation_params
-      params.permit(:ride_id, :user_id)
+      params.permit(:ride_id, :user_id, :id)
     end
   end
 end

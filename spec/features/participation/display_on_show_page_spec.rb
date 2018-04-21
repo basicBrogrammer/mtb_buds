@@ -31,7 +31,7 @@ feature 'Participation show page', :devise, :js do
       within '.participants' do
         within '.collection-item', text: pending_participation.user.name do
           expect(page).to have_content 'pending'
-          expect(page).to have_link 'Accept'
+          expect(page).to have_button 'Accept'
           expect(page).to have_link 'Reject'
         end
       end
@@ -66,8 +66,8 @@ feature 'Participation show page', :devise, :js do
       within '.participants' do
         within '.collection-item', text: accepted_participation.user.name do
           expect(page).to have_content 'accepted'
-          expect(page).to_not have_link 'Accept'
-          expect(page).to_not have_link 'Reject'
+          expect(page).to_not have_button 'Accept'
+          expect(page).to_not have_button 'Reject'
         end
       end
     end

@@ -37,12 +37,13 @@ feature 'Rides edit page', :devise, :js do
 
     scenario 'should be able to change the day and time but not the trail' do
       old_day = ride.day
+      new_day = old_day + 2.days
       old_time = ride.time
 
       # fill out day
       find('#ride_day').click
 
-      find("button[data-pika-day='#{old_day.day + 2}']").click
+      find("button[data-pika-day='#{new_day.day}']").click
       find('.datepicker-done').click
 
       # fill out time
@@ -60,7 +61,7 @@ feature 'Rides edit page', :devise, :js do
       expect(page).to have_current_path ride_path(ride)
 
       ride.reload
-      expect(ride.day).to eq old_day + 2.days
+      expect(ride.day).to eq new_day
       expect(ride.time.hour).to eq 13
       expect(ride.time.hour).to_not eq old_time.hour
       expect(ride.time.min).to eq 20
