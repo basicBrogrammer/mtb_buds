@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_21_050132) do
+ActiveRecord::Schema.define(version: 2018_04_21_064058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 2018_04_21_050132) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.bigint "ride_id"
+    t.bigint "user_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ride_id"], name: "index_participations_on_ride_id"
+    t.index ["user_id", "ride_id"], name: "index_participations_on_user_id_and_ride_id", unique: true
+    t.index ["user_id"], name: "index_participations_on_user_id"
   end
 
   create_table "rides", force: :cascade do |t|
@@ -86,4 +97,6 @@ ActiveRecord::Schema.define(version: 2018_04_21_050132) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "participations", "rides"
+  add_foreign_key "participations", "users"
 end

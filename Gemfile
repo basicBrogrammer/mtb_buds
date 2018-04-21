@@ -9,7 +9,6 @@ gem 'rails', '~> 5.2.0'
 
 gem 'administrate'
 gem "aws-sdk-s3", require: false
-gem 'bourbon'
 gem 'devise'
 gem 'devise_invitable'
 gem 'faraday'

@@ -95,3 +95,4 @@ dump.rdb
 yarn-debug.log*
 .yarn-integrity
 spec/test_statuses.txt
+storage

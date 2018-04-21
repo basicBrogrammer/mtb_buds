@@ -1,5 +1,8 @@
 class Ride < ApplicationRecord
   belongs_to :user
+  has_many :participations
+  has_many :participants, through: :participations, source: :user
+
   validates_presence_of :day, :time, :trail_id
   # TODO: create a service object to background this
   before_create :save_mtb_projec_data
