@@ -9,6 +9,7 @@
 * [x] flash messages
 * [ ] admin testing
 * [ ] footer
+* [ ] friendly_id :rides
 
 * testing
   * [ ] TrailsController

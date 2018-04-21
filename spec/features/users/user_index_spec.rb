@@ -10,7 +10,7 @@ feature 'User index page', :devise do
   #   Then I see my own email address
   scenario 'user sees own email address' do
     user = FactoryBot.create(:user, :admin)
-    login_as(user, scope: :user)
+    sign_in_as(user)
     visit users_path
     expect(page).to have_content user.email
   end

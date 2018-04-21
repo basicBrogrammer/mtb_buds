@@ -10,18 +10,10 @@
     =< link_to 'Back', rides_path
 
 = render @ride
+  - if join_able?
+    .card-action
+      = button_to 'Join', ride_participations_path(@ride),
+        params: { user_id: current_user.id }, class: 'btn'
 
-.row
-  .main-page-grid
-    ul.collection.participants
-      - @participations.each do |participation|
-        li.collection-item.avatar
-          = prof_pic(participation.user, css: 'circle')
-          span.title= participation.user.name
-          .secondary-content
-            span.badge{class="#{participation.status}"
-              data-badge-caption="" }
-              = participation.status
-            - if participation.status == 'pending'
-              = link_to 'Accept', '#', class: 'btn btn-small green lighten-1'
-              = link_to 'Reject', '#', class: 'btn btn-small red lighten-1'
+- if @participations.any?
+  = render 'participations', participations: @participations

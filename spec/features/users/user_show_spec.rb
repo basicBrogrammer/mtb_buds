@@ -10,7 +10,7 @@ feature 'User profile page', :devise do
   #   Then I see my own email address
   scenario 'user sees own profile' do
     user = FactoryBot.create(:user)
-    login_as(user, :scope => :user)
+    sign_in_as(user)
     visit user_path(user)
     expect(page).to have_content 'User'
     expect(page).to have_content user.email
@@ -23,7 +23,7 @@ feature 'User profile page', :devise do
   scenario "user cannot see another user's profile", :js do
     me = FactoryBot.create(:user)
     other = FactoryBot.create(:user, email: 'other@example.com')
-    login_as(me, :scope => :user)
+    sign_in_as(me)
     # Capybara.current_session.driver.header 'Referer', root_path
     visit user_path(other)
     expect(page).to have_content 'Access denied.'

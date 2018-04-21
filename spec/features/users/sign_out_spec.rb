@@ -10,13 +10,13 @@ feature 'Sign out', :devise, :js do
   #   Then I see a signed out message
   scenario 'user signs out successfully' do
     user = FactoryBot.create(:user)
-    signin(user.email, user.password)
+    fill_out_sign_in_form(user.email, user.password)
 
     expect(page).to have_content I18n.t 'devise.sessions.signed_in'
     expect(page).to_not have_selector '#toast-container', wait: 10
 
     within 'nav' do
-      click_link 'account_circle'
+      find('.navbar-avatar').click
 
       within '#dropdown1' do
         click_link 'Sign Out'

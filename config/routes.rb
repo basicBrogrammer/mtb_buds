@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   namespace :rides do
     resources :infinite_load, only: :index
   end
-  resources :rides
+  resources :rides do
+    scope module: 'rides' do
+      resources :participations, only: [:create, :update, :destroy]
+    end
+  end
   resources :location_autocomplete, only: :index
   resources :trails, only: :index
 

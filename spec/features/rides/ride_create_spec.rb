@@ -3,13 +3,13 @@ feature 'Rides new page', :devise, :js do
 
   context 'user' do
     before do
-      login_as(user, scope: :user)
+      sign_in_as(user)
       visit root_path
 
       # verify user signed in
       within 'nav' do
         expect(page).to have_link 'Brraapp!'
-        expect(page).to have_selector '.material-icons', text: 'account_circle'
+        expect(page).to have_selector '.navbar-avatar'
       end
     end
 

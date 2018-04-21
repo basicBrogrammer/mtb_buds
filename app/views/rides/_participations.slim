@@ -1,0 +1,14 @@
+.row
+  .main-page-grid
+    ul.collection.participants
+      - participations.each do |participation|
+        li.collection-item.avatar
+          = prof_pic(participation.user, css: 'circle')
+          span.title= participation.user.name
+          .secondary-content
+            span.badge{class="#{participation.status}"
+              data-badge-caption="" }
+              = participation.status
+            - if participation.status == 'pending'
+              = link_to 'Accept', '#', class: 'btn btn-small green lighten-1'
+              = link_to 'Reject', '#', class: 'btn btn-small red lighten-1'

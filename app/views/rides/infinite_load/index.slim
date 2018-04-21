@@ -1,2 +1,4 @@
 - @rides.each do |ride|
   = render 'rides/ride', ride: ride
+    .card-action
+      = link_to 'Interested', ride_path(ride)

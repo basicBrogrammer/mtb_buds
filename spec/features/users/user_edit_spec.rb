@@ -9,7 +9,7 @@ feature 'User edit', :devise do
   #   Then I see an account updated message
   scenario 'user changes email address', :js do
     user = FactoryBot.create(:user)
-    login_as(user, :scope => :user)
+    sign_in_as(user)
     visit edit_user_registration_path(user)
     fill_in 'user_email', :with => 'newemail@example.com'
     fill_in 'Current password', :with => user.password
@@ -25,7 +25,7 @@ feature 'User edit', :devise do
   scenario "user cannot cannot edit another user's profile", :me do
     me = FactoryBot.create(:user)
     other = FactoryBot.create(:user, email: 'other@example.com')
-    login_as(me, :scope => :user)
+    sign_in_as(me)
     visit edit_user_registration_path(other)
     expect(page).to have_content 'Edit User'
     expect(page).to have_field('user_email', with: me.email)

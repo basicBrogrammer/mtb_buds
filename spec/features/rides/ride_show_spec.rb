@@ -9,13 +9,13 @@ feature 'Rides show page', :devise, :js do
 
   context 'user' do
     before do
-      login_as(user, scope: :user)
+      sign_in_as(user)
       visit ride_path(ride)
 
       # verify user signed in
       within 'nav' do
         expect(page).to have_link 'Brraapp!'
-        expect(page).to have_selector '.material-icons', text: 'account_circle'
+        expect(page).to have_selector '.navbar-avatar'
       end
     end
 
@@ -64,13 +64,13 @@ feature 'Rides show page', :devise, :js do
 
   context 'owners' do
     before do
-      login_as(owner, scope: :user)
+      sign_in_as(owner)
       visit ride_path(ride)
 
       # verify user signed in
       within 'nav' do
         expect(page).to have_link 'Brraapp!'
-        expect(page).to have_selector '.material-icons', text: 'account_circle'
+        expect(page).to have_selector '.navbar-avatar'
       end
     end
 

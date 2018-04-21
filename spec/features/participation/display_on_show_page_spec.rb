@@ -11,7 +11,7 @@ feature 'Participation show page', :devise, :js do
 
   context 'owner' do
     before do
-      login_as(owner, scope: :user)
+      sign_in_as(owner)
       visit ride_path(ride)
 
       expect(page).to have_content ride.trail['name']
@@ -56,7 +56,7 @@ feature 'Participation show page', :devise, :js do
 
   context 'user' do
     before do
-      login_as(user, scope: :user)
+      sign_in_as(user)
       visit ride_path(ride)
 
       expect(page).to have_content ride.trail['name']

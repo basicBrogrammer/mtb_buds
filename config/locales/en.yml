@@ -35,3 +35,6 @@ en:
   rides:
     updated: 'Ride was successfully updated.'
     created: 'Ride was successfully created.'
+  participation:
+    requested: 'Your ride request has been sent.'
+    failed: 'Something went wrong. Please try again.'
