@@ -1,19 +1,32 @@
-.row
+.row.section
   .main-page-grid
-    - if current_user&.id == @ride.user_id
-      => link_to 'Edit', edit_ride_path(@ride)
-      '|
-      / td = link_to 'Destroy', ride, data: { confirm: 'Are you sure?' }, method: :delete
-    - if current_user&.id == @ride.user_id
-      => link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' }, method: :delete
-      '|
-    =< link_to 'Back', rides_path
+    = link_to 'Back', rides_path, class: 'btn'
 
 = render @ride
-  - if join_able?
-    .card-action
-      = button_to 'Join', ride_participations_path(@ride),
-        params: { user_id: current_user.id }, class: 'btn'
+  - if join_able? || current_user.owner?(@ride)
+    .card-action.valign-wrap
+      .left
+        = button_to 'Join', ride_participations_path(@ride),
+          params: { user_id: current_user.id }, class: 'btn'
+      .right
+        - if current_user.owner?(@ride)
+          = link_to 'Edit', edit_ride_path(@ride), class: 'btn green lighten-1'
+          = link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' },
+            method: :delete, class: 'btn red lighten-1'
 
 - if @participations.any?
-  = render 'participations', participations: @participations
+  .row
+    .main-page-grid
+      div{ data-controller='participants'
+        data-participants-remote-url="/rides/#{@ride.id}/participants"}
+        ul.collapsible data-target='participants.collapseTrigger'
+          li
+            .collapsible-header
+              i.medium.material-icons arrow_drop_down
+              | Riders
+            .collapsible-body
+              div{ data-target='participants.body' }
+              .preloader-wrapper{style='width: 100%; padding-top: 1rem'
+                data-target='participants.preloader'}
+                .progress
+                  .indeterminate

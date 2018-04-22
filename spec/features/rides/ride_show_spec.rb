@@ -26,7 +26,7 @@ feature 'Rides show page', :devise, :js do
 
       within 'p', text: 'When' do
         expect(page).to have_content ride.pretty_day
-        expect(page).to have_content ride.pretty_time
+        expect(page).to_not have_content ride.pretty_time
       end
 
       within 'p', text: 'Length' do

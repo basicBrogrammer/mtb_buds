@@ -7,21 +7,16 @@ feature 'Participation accepting', :devise, :js do
   let!(:participation) { create(:participation, :pending, ride: ride, user: user) }
 
   context 'owner' do
-    before do
-      sign_in_as(owner)
-      visit ride_path(ride)
-
-      expect(page).to have_content ride.trail['name']
-    end
-
     scenario 'can accept a participant and the participant will see their self on the participant list' do
       sign_in_as(user)
       visit ride_path(ride)
       expect(page).to_not have_content user.name
+      expect(page).to_not have_content 'Riders'
 
       sign_out
       sign_in_as owner
       visit ride_path(ride)
+      open_riders_collapse
 
       within '.collection-item', text: user.name do
         expect(page).to have_content 'pending'
@@ -30,11 +25,15 @@ feature 'Participation accepting', :devise, :js do
 
       expect(page).to have_current_path ride_path(ride)
       expect(page).to have_content I18n.t('participant.accepted')
-      expect(page).to_not have_button 'Accept'
+      open_riders_collapse
+      within '.participants' do
+        expect(page).to_not have_button 'Accept'
+      end
 
       sign_out
       sign_in_as user
       visit ride_path(ride)
+      open_riders_collapse
 
       within '.participants' do
         within '.collection-item', text: user.name do

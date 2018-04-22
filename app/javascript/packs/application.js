@@ -21,5 +21,15 @@ const application = Application.start();
 const context = require.context("controllers", true, /.js$/);
 application.load(definitionsFromContext(context));
 
-const GoogleAnalytics = require("./google_analytics");
-GoogleAnalytics.load();
+import GoogleAnalytics from "./google_analytics";
+new GoogleAnalytics.load();
+
+require("materialize-css");
+
+document.addEventListener("turbolinks:load", function() {
+  $(".dropdown-trigger").dropdown({ alignment: "right" });
+  $("#ride_day").datepicker();
+  $("#ride_time").timepicker();
+  M.updateTextFields(); // reinitialize form label
+  Waves.displayEffect(); // reinitialize wave effect on button
+});

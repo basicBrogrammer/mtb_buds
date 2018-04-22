@@ -7,21 +7,15 @@ feature 'Participation rejecting', :devise, :js do
   let!(:participation) { create(:participation, :pending, ride: ride, user: user) }
 
   context 'owner' do
-    before do
-      sign_in_as(owner)
-      visit ride_path(ride)
-
-      expect(page).to have_content ride.trail['name']
-    end
-
     scenario 'can accept a participant and the participant will not see their self on the participant list' do
       sign_in_as(user)
       visit ride_path(ride)
       expect(page).to_not have_content user.name
+      expect(page).to_not have_content 'Riders'
 
-      sign_out
       sign_in_as owner
       visit ride_path(ride)
+      open_riders_collapse
 
       within '.collection-item', text: user.name do
         expect(page).to have_content 'pending'
@@ -31,6 +25,7 @@ feature 'Participation rejecting', :devise, :js do
       expect(page).to have_current_path ride_path(ride)
       expect(page).to have_content I18n.t('participant.rejected')
 
+      open_riders_collapse
       within '.collection-item', text: user.name do
         expect(page).to_not have_content 'pending'
         expect(page).to have_content 'rejected'
@@ -38,7 +33,6 @@ feature 'Participation rejecting', :devise, :js do
         expect(page).to_not have_button 'Accept'
       end
 
-      sign_out
       sign_in_as user
       visit ride_path(ride)
 
@@ -55,6 +49,7 @@ feature 'Participation rejecting', :devise, :js do
     end
 
     scenario 'will not see a link to reject' do
+      expect(page).to_not have_selector '.collapsible-header'
       expect(page).to_not have_button 'Accept'
     end
   end

@@ -18,6 +18,7 @@ feature 'Participation show page', :devise, :js do
     end
 
     scenario 'will see accepted participations' do
+      open_riders_collapse
       within '.participants' do
         within '.collection-item', text: accepted_participation.user.name do
           expect(page).to have_content 'accepted'
@@ -28,6 +29,7 @@ feature 'Participation show page', :devise, :js do
     end
 
     scenario 'will see pending participations' do
+      open_riders_collapse
       within '.participants' do
         within '.collection-item', text: pending_participation.user.name do
           expect(page).to have_content 'pending'
@@ -38,6 +40,7 @@ feature 'Participation show page', :devise, :js do
     end
 
     scenario 'will see rejected participations' do
+      open_riders_collapse
       within '.participants' do
         within '.collection-item', text: rejected_participation.user.name do
           expect(page).to have_content 'rejected'
@@ -48,6 +51,7 @@ feature 'Participation show page', :devise, :js do
     end
 
     scenario 'will not see other rides participations' do
+      open_riders_collapse
       within '.participants' do
         expect(page).to_not have_content other_participation.user.name
       end
@@ -63,6 +67,7 @@ feature 'Participation show page', :devise, :js do
     end
 
     scenario 'will see accepted participations' do
+      open_riders_collapse
       within '.participants' do
         within '.collection-item', text: accepted_participation.user.name do
           expect(page).to have_content 'accepted'
@@ -73,18 +78,21 @@ feature 'Participation show page', :devise, :js do
     end
 
     scenario 'will not see pending participations' do
+      open_riders_collapse
       within '.participants' do
         expect(page).to_not have_content pending_participation.user.name
       end
     end
 
     scenario 'will not see rejected participations' do
+      open_riders_collapse
       within '.participants' do
         expect(page).to_not have_content rejected_participation.user.name
       end
     end
 
     scenario 'will not see other rides participations' do
+      open_riders_collapse
       within '.participants' do
         expect(page).to_not have_content other_participation.user.name
       end
@@ -117,6 +125,7 @@ feature 'Participation show page', :devise, :js do
         expect(page).to_not have_content ride.pretty_time
       end
     end
+
     scenario 'ride time will not be visible to a rejected participant' do
       create(:participation, :rejected, ride: ride, user: user)
 

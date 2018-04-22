@@ -10,17 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery3
 //= require rails-ujs
-//= require turbolinks
-//= require materialize
 //= require materialize-form
+//= require turbolinks
 //= require_tree .
-
-document.addEventListener("turbolinks:load", function() {
-  $(".dropdown-trigger").dropdown({ alignment: "right" });
-  $("#ride_day").datepicker();
-  $("#ride_time").timepicker();
-  M.updateTextFields(); // reinitialize form label
-  Waves.displayEffect(); // reinitialize wave effect on button
-});

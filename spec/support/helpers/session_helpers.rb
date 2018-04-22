@@ -5,7 +5,6 @@ module Features
     def self.included(base)
       base.before(:each) { Warden.test_mode! }
       base.after(:each) { Warden.test_reset! }
-      base.after(:all) { Faker::StarWars.unique.clear }
     end
 
     def sign_up_with(email, password, confirmation, name: Faker::StarWars.unique.character )
@@ -29,6 +28,7 @@ module Features
     end
 
     def sign_in_as(user)
+      sign_out
       login_as(user, scope: :user)
     end
   end

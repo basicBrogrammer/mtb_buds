@@ -19,15 +19,12 @@ feature 'Participation', :devise, :js do
   end
 
   context 'user' do
-    before do
-    end
-
     scenario 'can click a join link and the owner will be able to see a pending participant' do
       sign_in_as(owner)
       visit ride_path(ride)
       expect(page).to_not have_content user.name
+      expect(page).to_not have_content 'Riders'
 
-      sign_out
       sign_in_as user
       visit ride_path(ride)
 
@@ -38,10 +35,10 @@ feature 'Participation', :devise, :js do
       expect(page).to have_content I18n.t('participation.requested')
       expect(page).to_not have_button 'Join'
 
-      sign_out
       sign_in_as owner
       visit ride_path(ride)
 
+      open_riders_collapse
       within '.participants' do
         within '.collection-item', text: user.name do
           expect(page).to have_content 'pending'

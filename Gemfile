@@ -7,20 +7,20 @@ end
 ruby '2.5.0'
 gem 'rails', '~> 5.2.0'
 
-gem 'administrate'
 gem "aws-sdk-s3", require: false
+gem "figaro"
+gem 'administrate'
 gem 'devise'
 gem 'devise_invitable'
 gem 'faraday'
-gem "figaro"
-gem 'high_voltage'
 gem 'geocoder'
+gem 'google_places'
+gem 'high_voltage'
 gem 'jbuilder', '~> 2.5'
 gem 'materialize-form'
 gem 'materialize-sass', '~> 1.0.0.beta'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
-gem 'google_places'
 gem 'redis-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
