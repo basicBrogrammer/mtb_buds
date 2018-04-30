@@ -66,6 +66,29 @@ feature 'Rides new page', :devise, :js do
       end
     end
 
+    scenario 'can filter rides' do
+      within 'nav' do
+        click_link 'Brraapp!'
+      end
+
+      select2_search('fort collin', choice: 'Fort Collins, CO, USA', from: '.ride_location')
+      filter_input = find('#filter-trail')
+
+      expect(all('.trail').count).to eq 250
+
+      filter_input.send_keys('blue sky')
+
+      expect(all('.trail').count).to eq 2
+      all('.trail').each do |trail_card|
+        expect(trail_card.text.downcase).to include 'blue sky'
+      end
+
+      filter_input.set('')
+      filter_input.send_keys(:backspace)
+
+      expect(all('.trail').count).to eq 250
+    end
+
     scenario 'validations' do
       visit new_ride_path
       click_button 'Save'

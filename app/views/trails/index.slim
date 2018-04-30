@@ -1,27 +1,28 @@
-/ TODO: add filtering
-- @trails.each do |trail|
-  / TODO: mobile should be vertical
-  .row
-    .col.s12.l12
-      .card.trail.horizontal
-        .card-image = image_tag trail['imgMedium']
-        .card-stacked
-          .card-content
-            h3.card-title= trail['name']
-            / TODO: replace spans with icons
-            p
-              span.red-text Location:
-              ' #{trail['location']}
-            p
-              span.red-text Stars:
-              ' #{trail['stars']}
-            p
-              span.red-text Difficulty:
-              ' #{trail['difficulty']}
-          .card-action
-             button.btn{ style='width:100%' data-action="choose-trail#selectTrail"
-              data-trail-id=trail['id'] }
-              | Select
+div{ data-controller='on-screen-filter' }
+  = text_field_tag 'filter-trail', nil, placeholder: 'Filter trails...', data: { action: 'keyup->on-screen-filter#filter' }
+  - @trails.each do |trail|
+    / TODO: mobile should be vertical
+    .row.trail
+      .col.s12.l12
+        .card.horizontal
+          .card-image = image_tag trail['imgMedium']
+          .card-stacked
+            .card-content
+              h3.card-title= trail['name']
+              / TODO: replace spans with icons
+              p
+                span.red-text Location:
+                ' #{trail['location']}
+              p
+                span.red-text Stars:
+                ' #{trail['stars']}
+              p
+                span.red-text Difficulty:
+                ' #{trail['difficulty']}
+            .card-action
+               button.btn{ style='width:100%' data-action="choose-trail#selectTrail"
+                data-trail-id=trail['id'] }
+                | Select
 
 / "id": 31804,
 /"name": "Centennial Cone",
