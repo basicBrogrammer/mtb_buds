@@ -23,8 +23,8 @@
         ul.collapsible data-target='participants.collapseTrigger'
           li
             .collapsible-header
-              i.medium.material-icons arrow_drop_down
-              | Riders
+              /i.medium.material-icons arrow_drop_down
+              | Riders: #{@participations.count}
             .collapsible-body
               div{ data-target='participants.body' }
               .preloader-wrapper{style='width: 100%; padding-top: 1rem'

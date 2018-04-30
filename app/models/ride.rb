@@ -1,4 +1,5 @@
 class Ride < ApplicationRecord
+  default_scope { where('day >= ?', Date.today) }  
   belongs_to :user
   has_many :participations
   has_many :participants, through: :participations, source: :user
