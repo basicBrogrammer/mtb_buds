@@ -3,6 +3,7 @@ nav
     = link_to 'MTB Buds', root_path, class: 'brand-logo'
     - if current_user.present?
       ul.right.hide-on-med-and-down
+        li = link_to "My Rides", my_rides_path
         li = link_to "Brraapp!", new_ride_path, class: 'btn btn-info'
 
         /! Dropdown Trigger

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root to: 'rides#index'
 
   devise_for :users
+
+  resources :my_rides, only: :index
+
   resources :users, except: [:new, :edit]
 
   # order matters ??

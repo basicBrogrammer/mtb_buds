@@ -1,0 +1,21 @@
+.row
+  .main-page-grid
+    h3.secondary-color-text My rides
+    .divider
+    .section
+    - if @my_rides.present?
+      - @my_rides.each do |ride|
+        = render 'rides/ride', ride: ride
+    - else
+      p You haven't created any future rides yet.
+
+.row
+  .main-page-grid
+    h3.secondary-color-text My participating rides
+    .divider
+    .section
+    - if @my_participating_rides.present?
+      - @my_participating_rides.each do |ride|
+        = render 'rides/ride', ride: ride
+    - else
+      p You arent't participating in any upcoming rides.
