@@ -21,10 +21,8 @@ feature 'Rides new page', :devise, :js do
       expect(page).to have_current_path new_ride_path
 
       # fill out day
-      find('#ride_day').click
-
-      find("button[data-pika-day='#{Time.zone.now.end_of_week.day - 1}']").click
-      find('.datepicker-done').click
+      expected_day = Date.today + 2.days
+      select_date '#ride_day', date: expected_day
 
       # fill out time
       find('#ride_time').click
@@ -39,7 +37,7 @@ feature 'Rides new page', :devise, :js do
       # expect(page).to have_selector '.preloader-wrapper'
       # expect(page).to_not have_selector '.preloader-wrapper'
 
-      within '.card.trail', match: :first do
+      within '.trail .card', match: :first do
         click_button 'Select'
       end
 
