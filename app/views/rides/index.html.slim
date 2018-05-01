@@ -1,9 +1,20 @@
 - content_for :head do
   meta name="turbolinks-cache-control" content="no-cache"
+.row
+  .main-page-grid
+    div data-controller='rides-filter' data-rides-filter-url='/location_autocomplete'
+      = form_tag rides_path, method: :get, data: { target: 'rides-filter.form' } do 
+        .input-field.location-filter
+          = select_tag :location, 
+            options_for_select([search_params[:location]], search_params[:location]), 
+            data: { target: 'rides-filter.select', 
+            placeholder: 'Filter rides by location...' }
+
 
 div{
   data-controller="infinite-scroll"
-  data-infinite-scroll-url="/rides/infinite_load" }
+  data-infinite-scroll-url="/rides/infinite_load"
+  data-infinite-scroll-search-params=search_params.to_json }
 
   .rides data-target='infinite-scroll.items'
   .row data-target='infinite-scroll.spinner'

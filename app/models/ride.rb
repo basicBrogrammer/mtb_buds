@@ -1,5 +1,7 @@
 class Ride < ApplicationRecord
   default_scope { where('day >= ?', Date.today) }  
+  geocoded_by :location
+
   belongs_to :user
   has_many :participations
   has_many :participants, through: :participations, source: :user
@@ -22,6 +24,10 @@ class Ride < ApplicationRecord
 
   def pretty_time
     time&.strftime("%l:%M %p")
+  end
+
+  def name
+    trail['name']
   end
 
   private

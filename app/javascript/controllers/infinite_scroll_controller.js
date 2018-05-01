@@ -2,6 +2,7 @@ import { Controller } from "stimulus";
 
 export default class extends Controller {
   static targets = ["items", "spinner"];
+
   initialize() {
     this.loading = true; // flag to wait for this.load() to finish before firing again
     this.page = 1;
@@ -53,15 +54,11 @@ export default class extends Controller {
   }
 
   get params() {
-    const searchParams = JSON.parse(this.data.get("search_params"));
+    const searchParams = JSON.parse(this.data.get("search-params"));
     return Object.assign({ page: this.page }, searchParams);
   }
 
   get fullUrl() {
     return `${this.url}?${$.param(this.params)}`;
-  }
-
-  get csrfToken() {
-    return $('meta[name="csrf-token"]').attr("content");
   }
 }

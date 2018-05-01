@@ -81,4 +81,9 @@ class RidesController < ApplicationController
         Participation.where(ride_id: @ride.id, user_id: current_user.id).none?
     end
     helper_method :join_able?
+
+    def search_params
+      params.permit(:location)
+    end
+    helper_method :search_params
 end

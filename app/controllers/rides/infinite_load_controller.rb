@@ -7,7 +7,18 @@ module Rides
 
     def index
       store_location_for(:user, rides_path)
-      @rides = Ride.all
+      if search_params[:location]
+        @rides = Ride.near(search_params[:location])
+      else
+        @rides = Ride.all
+      end
     end
+
+    private 
+
+    def search_params
+      params.permit(:location)
+    end
+    helper_method :search_params
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_21_064058) do
+ActiveRecord::Schema.define(version: 2018_05_01_051419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2018_04_21_064058) do
 
   create_table "rides", force: :cascade do |t|
     t.string "trail_id", null: false
-    t.string "longitude", null: false
-    t.string "latitude", null: false
+    t.float "longitude", null: false
+    t.float "latitude", null: false
     t.string "location"
     t.date "day", null: false
     t.time "time", null: false
