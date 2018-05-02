@@ -1,9 +1,14 @@
-.row
-  .col.sm-12.l8.offset-l2
+.row.section
+  .main-page-grid
+    = link_to 'Back', ride_path(@ride), class: 'btn'
+
     .card
       .card-content
         h1.card-title Editing ride
-        == render 'form' do
+        == render 'form' do |form|
+          .row
+            = form.button :submit, 'Save', class: 'btn'
+
           .row
             - ride_image_presence = @ride.trail['imgMedium'].present?
             - if ride_image_presence
@@ -15,7 +20,3 @@
                 span.red-text When:
                 |  #{@ride.pretty_day}, #{@ride.pretty_time}
 
-
-    => link_to 'Show', @ride
-    '|
-    =< link_to 'Back', rides_path

@@ -3,13 +3,13 @@ ul.collection.participants
     li.collection-item.avatar
       = prof_pic(participation.user, css: 'circle')
       span.title= participation.user.name
-      .secondary-content
-        span.badge{class="#{participation.status}"
+      p
+        span.left.badge{class="#{participation.status}"
           data-badge-caption="" }
           = participation.status
+      .secondary-content
         - if participation.status == 'pending'
-          .valign-wrapper
-            = button_to 'Accept', ride_participation_path(@ride, participation),
-              method: :put, class: 'btn btn-small green lighten-1'
-            = button_to 'Reject', ride_participation_path(@ride, participation),
-              method: :delete, class: 'btn btn-small red lighten-1'
+          = button_to 'Accept', ride_participation_path(@ride, participation),
+            method: :put, class: 'btn btn-small green lighten-1'
+          = button_to 'Reject', ride_participation_path(@ride, participation),
+            method: :delete, class: 'btn btn-small red lighten-1'

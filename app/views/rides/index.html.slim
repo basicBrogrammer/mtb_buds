@@ -1,5 +1,6 @@
 - content_for :head do
   meta name="turbolinks-cache-control" content="no-cache"
+
 .row
   .main-page-grid
     div data-controller='rides-filter' data-rides-filter-url='/location_autocomplete'
@@ -18,7 +19,7 @@ div{
 
   .rides data-target='infinite-scroll.items'
   .row data-target='infinite-scroll.spinner'
-    .col.s12.l8.offset-l2
+    .main-page-grid
       .preloader-wrapper style='width: 100%; padding-top: 1rem'
         .progress
           .indeterminate

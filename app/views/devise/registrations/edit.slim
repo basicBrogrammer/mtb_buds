@@ -1,5 +1,10 @@
+- if mobile?
+  .row
+    .col.s12.l8.offset-l2
+      = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn', style: 'width: 100%'
+
 .row
-  .col.sm-12.l8.offset-l2
+  .col.s12.l8.offset-l2
     .card
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         .card-content
@@ -25,7 +30,7 @@
         .card-action
           = f.submit 'Update', class: 'btn'
 .row
-  .col.sm-12.l8.offset-l2
+  .col.s12.l8.offset-l2
     .card
       .card-content
         h3.card-title Cancel Account

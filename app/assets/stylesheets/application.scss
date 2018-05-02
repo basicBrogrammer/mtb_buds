@@ -4,6 +4,7 @@ $secondary-color: color("red", "darken-2") !default;
 @import "materialize";
 @import "select2_materialize";
 @import "navbar";
+@import "mobile_nav";
 @import "rides";
 
 .primary-color {

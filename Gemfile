@@ -8,6 +8,7 @@ ruby '2.5.0'
 gem 'rails', '~> 5.2.0'
 
 gem "aws-sdk-s3", require: false
+gem 'browser'
 gem "figaro"
 gem 'administrate'
 gem 'devise'

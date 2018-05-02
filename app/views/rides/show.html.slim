@@ -6,14 +6,12 @@
   - if join_able? || current_user.owner?(@ride)
     .card-action.valign-wrap
       - if join_able?
-        .left
-          = button_to 'Join', ride_participations_path(@ride),
-            params: { user_id: current_user.id }, class: 'btn'
-      .right
-        - if current_user.owner?(@ride)
-          = link_to 'Edit', edit_ride_path(@ride), class: 'btn green lighten-1'
-          = link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' },
-            method: :delete, class: 'btn red lighten-1'
+        = button_to 'Join', ride_participations_path(@ride),
+          params: { user_id: current_user.id }, class: 'btn'
+      - if current_user.owner?(@ride)
+        = link_to 'Edit', edit_ride_path(@ride), class: 'btn green lighten-1'
+        = link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' },
+          method: :delete, class: 'btn red lighten-1'
 
 - if @participations.any?
   .row

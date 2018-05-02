@@ -1,7 +1,7 @@
 .row
   .main-page-grid
     / TODO: mobile? ? '' : horizontal
-    .card.horizontal.z-depth-3
+    .card.z-depth-3 class="#{mobile? ? '' : 'horizontal'}"
       / TODO: image key helper
       - if ride.trail['imgMedium'].present?
         .card-image= image_tag ride.trail['imgMedium']

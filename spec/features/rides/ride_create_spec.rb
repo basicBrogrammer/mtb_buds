@@ -89,9 +89,17 @@ feature 'Rides new page', :devise, :js do
 
     scenario 'validations' do
       visit new_ride_path
-      click_button 'Save'
+      select2_search('Bou', choice: 'Boulder, CO, USA', from: '.ride_location')
+
+      # expect(page).to have_selector '.preloader-wrapper'
+      # expect(page).to_not have_selector '.preloader-wrapper'
+
+      within '.trail .card', match: :first do
+        click_button 'Select'
+      end
+
       within '#error_explanation' do
-        %w[Day Time Trail].each do |attribute|
+        %w[Day Time].each do |attribute|
           expect(page).to have_content "#{attribute} can't be blank"
         end
       end
@@ -101,10 +109,6 @@ feature 'Rides new page', :devise, :js do
       end
 
       within '.ride_time' do
-        expect(page).to have_content "can't be blank"
-      end
-
-      within '.ride_trail_id' do
         expect(page).to have_content "can't be blank"
       end
     end

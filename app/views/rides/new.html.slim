@@ -1,5 +1,6 @@
-.row
-  .col.sm-12.l8.offset-l2
+.row.section
+  .main-page-grid
+    = link_to 'Back', :back, class: 'btn'
     .card
       .card-content
         h1.card-title New ride
@@ -11,6 +12,7 @@
                 input_html: { data: { target: 'choose-trail.select', placeholder: 'City, State'}}
               = form.input :trail_id, as: :hidden,
                 input_html: { data: { target: 'choose-trail.trailId' } }
+
             .row
               .col.l12.s12
                 div data-target='choose-trail.trails'
@@ -19,4 +21,3 @@
                   .progress
                     .indeterminate
 
-    = link_to 'Back', rides_path
