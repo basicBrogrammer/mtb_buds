@@ -438,6 +438,7 @@ DEPENDENCIES
   high_voltage
   hub
   jbuilder (~> 2.5)
+  kaminari
   launchy
   letter_opener
   listen (>= 3.0.5, < 3.2)

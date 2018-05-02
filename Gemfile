@@ -8,9 +8,9 @@ ruby '2.5.0'
 gem 'rails', '~> 5.2.0'
 
 gem "aws-sdk-s3", require: false
-gem 'browser'
 gem "figaro"
 gem 'administrate'
+gem 'browser'
 gem 'devise'
 gem 'devise_invitable'
 gem 'faraday'
@@ -18,6 +18,7 @@ gem 'geocoder'
 gem 'google_places'
 gem 'high_voltage'
 gem 'jbuilder', '~> 2.5'
+gem 'kaminari'
 gem 'materialize-form'
 gem 'materialize-sass', '~> 1.0.0.beta'
 gem 'pg', '~> 0.18'

@@ -1,4 +1,5 @@
 import { Controller } from "stimulus";
+import { initialResponseHandler, catchHandler } from "../packs/fetch_handling";
 
 export default class extends Controller {
   static targets = ["items", "spinner"];
@@ -24,17 +25,22 @@ export default class extends Controller {
     $(this.spinnerTarget).removeClass("hide");
 
     fetch(this.fullUrl, { credentials: "same-origin" })
-      .then(response => response.text())
+      .then(response => {
+        return initialResponseHandler(response);
+      })
       .then(html => {
         $(this.spinnerTarget).addClass("hide");
         this.loading = false;
         $(this.itemsTarget).append(html);
         this.page++;
 
-        const numberOfCars = html.match(/card-title/g);
-        if (!numberOfCars || numberOfCars.length < 25) {
+        const numberOfCards = html.match(/card-title/g);
+        if (!numberOfCards || numberOfCards.length < 25) {
           this.hasMore = false;
         }
+      }).catch(e => { 
+        $(this.spinnerTarget).addClass("hide");
+        catchHandler(e, this.itemsTarget);
       });
   }
 
