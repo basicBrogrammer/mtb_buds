@@ -2,8 +2,8 @@ class User < ApplicationRecord
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
-  has_many :rides
-  has_many :participations
+  has_many :rides, dependent: :destroy
+  has_many :participations, dependent: :destroy
   has_many :participating_rides, through: :participations, source: :ride
   validates_presence_of :name
 
