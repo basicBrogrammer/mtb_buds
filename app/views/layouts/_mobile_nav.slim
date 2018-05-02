@@ -4,22 +4,18 @@ nav.mobile-bottom-nav
       .mobile-bottom-nav__item-content
         = link_to root_path, class: nav_active?(root_path) do 
           i.material-icons home
-          | one
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
         = link_to new_ride_path, class: nav_active?(new_ride_path) do 
           i.material-icons add_circle
-          | two
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
         = link_to my_rides_path, class: nav_active?(my_rides_path) do 
           i.material-icons directions_bike
-          | three
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
         = link_to edit_user_registration_path, class: nav_active?(edit_user_registration_path) do 
           i.material-icons apps
-          | four
   - else 
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
