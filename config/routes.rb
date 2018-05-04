@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     scope module: 'rides' do
       resources :participations, only: [:create, :update, :destroy]
       resources :participants, only: :index
+      resources :comments, only: :index
     end
   end
   resources :location_autocomplete, only: :index

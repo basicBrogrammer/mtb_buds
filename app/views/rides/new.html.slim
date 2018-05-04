@@ -16,8 +16,4 @@
             .row
               .col.l12.s12
                 div data-target='choose-trail.trails'
-                .hide.preloader-wrapper{style='width: 100%; padding-top: 1rem'
-                  data-target='choose-trail.preloader'}
-                  .progress
-                    .indeterminate
-
+                = render 'shared/preloader', data_target: 'choose-trail.preloader', css: 'hide'

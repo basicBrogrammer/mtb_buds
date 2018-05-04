@@ -5,6 +5,7 @@ class Ride < ApplicationRecord
   belongs_to :user
   has_many :participations, dependent: :destroy
   has_many :participants, through: :participations, source: :user
+  has_many :comments
 
   validates_presence_of :day, :time, :trail_id
   # TODO: create a service object to background this
@@ -28,6 +29,10 @@ class Ride < ApplicationRecord
 
   def name
     trail['name']
+  end
+
+  def owner?(user)
+    user&.id == user_id
   end
 
   private

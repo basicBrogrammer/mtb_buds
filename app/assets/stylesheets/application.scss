@@ -6,6 +6,7 @@ $secondary-color: color("red", "darken-2") !default;
 @import "navbar";
 @import "mobile_nav";
 @import "rides";
+@import "comments";
 
 .primary-color {
   background: $primary-color;

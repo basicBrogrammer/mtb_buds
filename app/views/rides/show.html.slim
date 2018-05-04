@@ -3,12 +3,12 @@
     = link_to 'Back', rides_path, class: 'btn'
 
 = render @ride
-  - if join_able? || current_user.owner?(@ride)
+  - if join_able? || @ride.owner?(current_user)
     .card-action.valign-wrap
       - if join_able?
         = button_to 'Join', ride_participations_path(@ride),
           params: { user_id: current_user.id }, class: 'btn'
-      - if current_user.owner?(@ride)
+      - if @ride.owner?(current_user)
         = link_to 'Edit', edit_ride_path(@ride), class: 'btn green lighten-1'
         = link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' },
           method: :delete, class: 'btn red lighten-1'
@@ -25,7 +25,12 @@
               | Riders: #{@participations.count}
             .collapsible-body
               div{ data-target='participants.body' }
-              .preloader-wrapper{style='width: 100%; padding-top: 1rem'
-                data-target='participants.preloader'}
-                .progress
-                  .indeterminate
+              = render 'shared/preloader', data_target: 'participants.preloader'
+
+- if @ride.owner?(current_user) || @participations.pluck(:user_id).include?(current_user.id)
+  .row
+    .main-page-grid
+      div{ data-controller='remote-load'
+        data-remote-load-url="/rides/#{@ride.id}/comments"}
+          div{ data-target='remote-load.body' }
+          = render 'shared/preloader', data_target: 'remote-load.preloader'

@@ -1,0 +1,27 @@
+.comments {
+  @extend .collection;
+  border: none;
+  margin: none;
+
+  &__item {
+    @extend .collection-item, .avatar;
+    border-bottom: none !important;
+  }
+
+  &__body {
+    @extend .white;
+    padding: 0.5em;
+    border: 0.1em white solid;
+    border-radius: 1em;
+  }
+
+  &__new {
+    @extend .white;
+    border: 0.05em $primary-color solid;
+    border-radius: 1em;
+  }
+
+  &__send {
+    margin-top: 0.4em;
+  }
+}
