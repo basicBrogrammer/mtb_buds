@@ -22,6 +22,9 @@
   }
 
   &__send {
+    @extend .btn-flat;
     margin-top: 0.4em;
+    padding: 0;
+    color: $secondary-color;
   }
 }

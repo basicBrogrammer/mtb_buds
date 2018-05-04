@@ -5,7 +5,8 @@ module Rides
     layout false
     def index
       store_location_for(:user, rides_path)
-      @comments = Comment.where(ride_id: params[:ride_id]) 
+      @ride = Ride.find(params[:ride_id])
+      @comments = @ride.comments
     end
   end
 end
