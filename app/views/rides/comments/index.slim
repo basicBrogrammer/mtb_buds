@@ -1,10 +1,7 @@
 .card.card--comments.grey.lighten-4
-  .card-content
-    ul.comments
-      - @comments.each do |comment|
-        li.comments__item.grey.lighten-4
-          = prof_pic(comment.user, css: 'circle')
-          p.comments__body= comment.body
+  .card-content data-target='remote-load.scroll'
+    ul.comments id="comment-box-#{@ride.id}"
+      = render @comments
 
   .card-action
     .row.comments__new data-controller='comment'

@@ -1,3 +1,10 @@
+.card--comments { 
+  .card-content { 
+    max-height: 40rem;
+    overflow-y: auto;
+
+  }
+}
 .comments {
   @extend .collection;
   border: none;

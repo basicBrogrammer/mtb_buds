@@ -17,7 +17,7 @@ export default class extends Controller {
       return fetch(this.remoteUrl, { credentials: "same-origin" })
         .then(response => response.text())
         .then(html => {
-          console.log("loading...");
+          //console.log("loading...");
           this.needsToLoad = false;
           this.bodyTarget.innerHTML = html;
           $(this.bodyTarget).removeClass("hide");

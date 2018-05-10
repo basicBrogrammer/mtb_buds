@@ -8,12 +8,15 @@ App.comment = App.cable.subscriptions.create("CommentChannel", {
   },
 
   received: function(data) {
-    console.log(data['message'])
     // Called when there's incoming data on the websocket for this channel
+    const commentBox = $("#comment-box-" + data['ride_id'])
+    commentBox.append(data['message']);
+    // TODO: handle scroll 
+    const scrollDiv = $("[data-target='remote-load.scroll'")[0]
+    scrollDiv.scrollTop = scrollDiv.scrollHeight
   },
 
   speak: function(comment) {
-    console.log(comment)
     return this.perform('speak', {
       message: comment
     });

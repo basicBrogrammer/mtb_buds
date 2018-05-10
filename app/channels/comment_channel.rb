@@ -16,9 +16,5 @@ class CommentChannel < ApplicationCable::Channel
     comment_params.delete('utf8')
  
     Comment.create(comment_params)
-    #ActionCable.server.broadcast(
-      #"comments-#{current_user.id}",
-      #message: message_params
-    #)
   end
 end

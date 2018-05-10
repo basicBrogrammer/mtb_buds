@@ -2,7 +2,7 @@ import { Controller } from "stimulus";
 
 export default class extends Controller { 
   connect() {
-    console.log('on screen connected...');
+    //console.log('on screen connected...');
   }
   filter(e) {
     e.preventDefault();

@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["select"];
 
   connect() {
-    console.log("connectting");
+    //console.log("connecting");
     this.select2mount();
 
     document.addEventListener(
