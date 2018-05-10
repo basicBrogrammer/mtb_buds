@@ -5,7 +5,7 @@ class Ride < ApplicationRecord
   belongs_to :user
   has_many :participations, dependent: :destroy
   has_many :participants, through: :participations, source: :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates_presence_of :day, :time, :trail_id
   # TODO: create a service object to background this
