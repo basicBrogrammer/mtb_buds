@@ -1,12 +1,17 @@
-* [ ] user profile picture
+* [ ] notifications
+  * [ ] navbar styling
+  * [ ] notification page
+  * [ ] mark as read
+  * [ ] after create background job
+  * [ ] action cable
+  * [ ] settings
+  * [ ] mobile navbar styling
+
 * [ ] rm user#index
 * [ ] change password view needs styling
 * [ ] resend confirmation
-* [ ] redis_cache_store
-* [ ] brappp filter trail cards
 * [ ] better stimulus errors
 * [ ] MV materialize to webpack
-* [x] flash messages
 * [ ] admin testing
 * [ ] footer
 * [ ] friendly_id :rides
@@ -15,11 +20,16 @@
   * [ ] TrailsController
   * [ ] pagination/infinite load
   * [ ] avatar
-* [x] pick trail
-* [x] pagination/infinite load
 * [ ] correct timezone
 
 * [ ] mtb api
 
   * [ ] test validation
   * [ ] error request
+
+* [x] redis_cache_store
+* [x] user profile picture
+* [x] brappp filter trail cards
+* [x] pick trail
+* [x] pagination/infinite load
+* [x] flash messages

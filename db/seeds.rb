@@ -10,6 +10,7 @@ require 'factory_bot_rails'
 
 user = FactoryBot.create(:user, email: 'user@example.com')
 user2 = FactoryBot.create(:user, email: 'user2@example.com')
+user3 = FactoryBot.create(:user, email: 'user3@example.com')
 
 [7031010, 850844, 368627, 7001490, 46286, 7019010, 68428,
  7025613, 1362740, 520343, 7002791, 255931, 601365, 53819,
@@ -22,3 +23,8 @@ user2 = FactoryBot.create(:user, email: 'user2@example.com')
      FactoryBot.create(:ride, trail_id: trail_id, user: user)
    end
  end
+
+ user2.rides.each do |ride|
+   FactoryBot.create(:participation, :accepted, user: user, ride: ride)
+ end
+

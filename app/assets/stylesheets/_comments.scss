@@ -22,6 +22,11 @@
     border-radius: 1em;
   }
 
+  &__user {
+    color: $secondary-color;
+    font-weight: bold;
+  }
+
   &__new {
     @extend .white;
     border: 0.05em $primary-color solid;

@@ -6,5 +6,8 @@ export default class extends Controller {
     const values = $(event.target).serializeArray();
     App.comment.speak(values);
     $(event.target).trigger('reset');
+
+    const commentCard = $('.card--comments')[0]
+    commentCard.scrollIntoView()
   }
 }
