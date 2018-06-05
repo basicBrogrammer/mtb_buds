@@ -1,0 +1,9 @@
+- if @notifications&.any?
+  - @notifications.each do |notification|
+    = render 'notifications/notification', notification: notification
+
+- else 
+  .row
+    .main-page-grid.center-align
+      h4 Currently, there are no notifications listed.
+      h5 Check back later! 

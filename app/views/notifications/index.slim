@@ -1,0 +1,11 @@
+- content_for :head do
+  meta name="turbolinks-cache-control" content="no-cache"
+
+div{
+  data-controller="infinite-scroll"
+  data-infinite-scroll-url="/notifications/infinite_load" }
+
+  .notifications data-target='infinite-scroll.items'
+  .row data-target='infinite-scroll.spinner'
+    .main-page-grid
+      = render 'shared/preloader'

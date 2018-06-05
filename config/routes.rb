@@ -7,11 +7,9 @@ Rails.application.routes.draw do
   root to: 'rides#index'
 
   devise_for :users
-
-  resources :my_rides, only: :index
-
   resources :users, except: [:new, :edit]
 
+  resources :my_rides, only: :index
   # order matters ??
   namespace :rides do
     resources :infinite_load, only: :index
@@ -23,6 +21,12 @@ Rails.application.routes.draw do
       resources :comments, only: [:index, :create]
     end
   end
+
+  resources :notifications, only: :index
+  namespace :notifications do
+    resources :infinite_load, only: :index
+  end
+
   resources :location_autocomplete, only: :index
   resources :trails, only: :index
 

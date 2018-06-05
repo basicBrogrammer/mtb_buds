@@ -1,5 +1,8 @@
 .nav-wrapper {
   padding: 0 2rem;
+  li.active a{
+    border-bottom: 2px inset $secondary-color;
+  }
 }
 
 .navbar-avatar {

@@ -14,7 +14,7 @@ nav.mobile-bottom-nav
           i.material-icons directions_bike
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
-        = link_to edit_user_registration_path, class: nav_active?(edit_user_registration_path) do 
+        = link_to '#', class: 'sidenav-trigger', data: { target: 'mobile-settings' }  do 
           i.material-icons apps
   - else 
     .mobile-bottom-nav__item
@@ -23,3 +23,15 @@ nav.mobile-bottom-nav
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
         = link_to 'Sign up', new_user_registration_path
+
+ul.sidenav#mobile-settings
+  li= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item'
+  li.divider
+  li= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+
+javascript: 
+  $(document).on('turbolinks:load', function(){
+    console.log('hey there')
+    $('.sidenav').sidenav();
+  });
+     
