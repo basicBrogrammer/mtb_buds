@@ -1,9 +1,17 @@
-- if @notifications&.any?
-  - @notifications.each do |notification|
-    = render 'notifications/notification', notification: notification
-
-- else 
   .row
-    .main-page-grid.center-align
-      h4 Currently, there are no notifications listed.
-      h5 Check back later! 
+    .main-page-grid
+      - if @notifications&.any?
+        ul.collection
+          li.collection-item
+            span.title Notifications
+
+          - @notifications.each do |notification|
+            = link_to ride_path(notification.ride), class: 'collection-item avatar black-text' do
+              = prof_pic(notification.actor, css: 'circle')
+              span.title= notification.title.html_safe
+              p.secondary-color-text= notification.ride&.name
+              blockquote= notification.comment.body
+
+      - else 
+        h4 Currently, there are no notifications listed.
+        h5 Check back later! 

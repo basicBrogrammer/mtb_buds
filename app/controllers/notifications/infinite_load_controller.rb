@@ -5,7 +5,10 @@ module Notifications
     layout false
 
     def index
-      # @notifications = current_user.notifications
+      store_location_for(:user, notifications_path)
+      # TODO: pagination for infinite load
+      @notifications = current_user.notifications.includes(:actor, :target)
+      # TODO: Mark notifications as read
     end
   end
 end
