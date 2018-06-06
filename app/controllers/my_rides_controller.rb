@@ -1,7 +1,7 @@
 class MyRidesController < ApplicationController
   def index
-    @my_rides = current_user.rides
-    @my_participating_rides = Ride.where(id: ids_for_participating_rides)
+    @my_rides = current_user.rides.active
+    @my_participating_rides = Ride.active.where(id: ids_for_participating_rides)
   end
 
   private

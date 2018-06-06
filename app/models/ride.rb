@@ -1,5 +1,5 @@
 class Ride < ApplicationRecord
-  default_scope { where('day >= ?', Date.today) }  
+  scope :active, -> { where('day >= ?', Date.today) }
   geocoded_by :location
 
   belongs_to :user

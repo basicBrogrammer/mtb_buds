@@ -10,6 +10,6 @@ feature 'About page' do
   #   Then I see "About the Website"
   scenario 'Visit the about page' do
     visit 'pages/about'
-    expect(page).to have_content 'About the Website'
+    expect(page).to have_content 'about pages'
   end
 end

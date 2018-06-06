@@ -19,7 +19,11 @@ feature 'My rides page', :devise, :js do
       visit root_path
 
       within 'nav' do 
-        click_link 'My Rides'
+        find('.navbar-avatar').click
+
+        within '#prof-drop' do
+          click_link 'My Rides'
+        end
       end
 
       expect(page).to have_current_path my_rides_path

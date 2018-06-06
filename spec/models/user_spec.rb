@@ -11,9 +11,12 @@ describe User do
     let!(:ride) { create(:ride, user: subject) }
     let!(:old_ride) { create(:ride, user: subject, day: 3.days.before) }
 
-    it 'has a default scope of rides today or later' do
-      expect(subject.rides.all).to contain_exactly ride
-      expect(subject.rides.unscoped.all).to contain_exactly ride, old_ride
+    it 'will show all past and future rides' do
+      expect(subject.rides.all).to contain_exactly ride, old_ride
+    end
+
+    it '#active will show only present and future rides' do
+      expect(subject.rides.active.all).to contain_exactly ride
     end
   end
 
@@ -27,8 +30,8 @@ describe User do
     end
 
     it 'has a default scope of rides today or later' do
-      expect(subject.participating_rides.all).to contain_exactly ride
-      expect(subject.participating_rides.unscoped.all).to contain_exactly ride, old_ride
+      expect(subject.participating_rides.all).to contain_exactly ride, old_ride
+      expect(subject.participating_rides.active.all).to contain_exactly ride
     end
   end
 end

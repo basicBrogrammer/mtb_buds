@@ -18,7 +18,7 @@ feature 'Sign out', :devise, :js do
     within 'nav' do
       find('.navbar-avatar').click
 
-      within '#dropdown1' do
+      within '#prof-drop' do
         click_link 'Sign Out'
       end
     end

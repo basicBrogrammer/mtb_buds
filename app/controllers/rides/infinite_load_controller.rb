@@ -8,9 +8,9 @@ module Rides
     def index
       store_location_for(:user, rides_path)
       if search_params[:location]
-        @rides = Ride.near(search_params[:location]).page(params[:page])
+        @rides = Ride.active.near(search_params[:location]).page(params[:page])
       else
-        @rides = Ride.all.page(params[:page])
+        @rides = Ride.active.all.page(params[:page])
       end
     end
 
