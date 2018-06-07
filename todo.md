@@ -1,12 +1,22 @@
 * [ ] notifications
-  * [ ] navbar styling
-  * [ ] notification page
-    * [ ] test Comment.after_create_commit
-  * [ ] mark as read
-  * [ ] after create background job
-  * [ ] action cable
+  * [/] notification page
+    * [x] comment notifications
+    * [ ] participation notifications
+  * [ ] Jobs
+    * [x] CreateCommentNotificationJob
+    * [ ] CreatePartitipationNotificationJob
+    * [ ] mark as read job
   * [ ] settings
+  * [ ] navbar styling
   * [ ] mobile navbar styling
+  * [ ] resque
+
+
+
+
+
+
+
 
 * [ ] rm user#index
 * [ ] change password view needs styling
