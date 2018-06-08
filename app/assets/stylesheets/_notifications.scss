@@ -1,0 +1,5 @@
+.notification {
+  &--comment, &--participation {
+    @extend .collection-item, .avatar, .black-text;
+  }
+}

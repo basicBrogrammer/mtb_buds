@@ -12,6 +12,8 @@ module NotificationDecoration
     case self.target_type
     when 'Comment'
       "<b>#{self.actor.name}</b> commented on your ride."
+    when 'Participation'
+      "<b>#{self.actor.name}</b> wants to join your ride."
     else
       'Brrraaaapppp!!!'
     end

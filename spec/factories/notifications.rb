@@ -5,5 +5,8 @@ FactoryBot.define do
     trait :comment_target do 
       target { create(:comment, user: actor) }
     end
+    trait :participation_target do 
+      target { create(:participation, user: actor) }
+    end
   end
 end

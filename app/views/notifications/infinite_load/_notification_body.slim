@@ -1,0 +1,14 @@
+- if notification.target_type == 'Comment'
+  = link_to ride_path(notification.ride), 
+    class: 'notification--comment' do
+    = prof_pic(notification.actor, css: 'circle')
+    span.title= notification.title.html_safe
+    p.secondary-color-text= notification.ride&.name
+    blockquote= notification.comment.body
+
+- if notification.target_type == 'Participation'
+  = link_to ride_path(notification.ride), 
+    class: 'notification--participation' do
+    = prof_pic(notification.actor, css: 'circle')
+    span.title= notification.title.html_safe
+    p.secondary-color-text= notification.ride&.name

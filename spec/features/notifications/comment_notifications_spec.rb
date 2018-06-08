@@ -14,6 +14,11 @@ feature 'Comment Notifications', :devise, :js do
     scenario 'I will see my comment notifications' do
       expect(page).to have_content notification_title(my_comment_notification)
       expect(page).to have_content my_comment_notification.comment.body
+      expect(all('.notification--participation').count).to eq 0
+      expect(all('.notification--comment').count).to eq 1
+
+      find('.notification--comment').click
+      expect(page).to have_current_path ride_path(ride)
     end
 
     scenario "I will not see other people's comment notifications" do

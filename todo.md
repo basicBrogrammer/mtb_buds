@@ -4,7 +4,8 @@
     * [ ] participation notifications
   * [ ] Jobs
     * [x] CreateCommentNotificationJob
-    * [ ] CreatePartitipationNotificationJob
+    * [x] CreatePartitipationNotificationJob
+    * [ ] AcceptedPartitipationNotificationJob
     * [ ] mark as read job
   * [ ] settings
   * [ ] navbar styling
