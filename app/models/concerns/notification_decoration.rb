@@ -13,7 +13,11 @@ module NotificationDecoration
     when 'Comment'
       "<b>#{self.actor.name}</b> commented on your ride."
     when 'Participation'
-      "<b>#{self.actor.name}</b> wants to join your ride."
+      if self.target.pending?
+        "<b>#{self.actor.name}</b> wants to join your ride."
+      elsif self.target.accepted?
+        "<b>#{self.actor.name}</b> added you to their ride."
+      end
     else
       'Brrraaaapppp!!!'
     end

@@ -1,11 +1,12 @@
 * [ ] notifications
   * [/] notification page
     * [x] comment notifications
-    * [ ] participation notifications
-  * [ ] Jobs
+    * [x] participation notifications
+    * [x] accepted participation notifications
+  * [/] Jobs
     * [x] CreateCommentNotificationJob
     * [x] CreatePartitipationNotificationJob
-    * [ ] AcceptedPartitipationNotificationJob
+    * [x] AcceptedPartitipationNotificationJob
     * [ ] mark as read job
   * [ ] settings
   * [ ] navbar styling
