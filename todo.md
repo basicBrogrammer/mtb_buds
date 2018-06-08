@@ -7,10 +7,12 @@
     * [x] CreateCommentNotificationJob
     * [x] CreatePartitipationNotificationJob
     * [x] AcceptedPartitipationNotificationJob
-    * [ ] mark as read job
+    * [x] mark as read job
   * [ ] settings
   * [ ] navbar styling
   * [ ] mobile navbar styling
+  * [ ] paginate
+    * [ ] order unread
   * [ ] resque
 
 

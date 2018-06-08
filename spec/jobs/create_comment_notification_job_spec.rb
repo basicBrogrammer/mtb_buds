@@ -17,8 +17,9 @@ RSpec.describe CreateCommentNotificationJob, type: :job do
 
         comment = create(:comment, ride: ride, user: other_participant)
 
-        expect(owner.notifications.count).to eq 1
-        note = owner.notifications.first
+        comment_notifications = owner.notifications.where(target_type: 'Comment')
+        expect(comment_notifications.count).to eq 1
+        note = comment_notifications.first
         expect(note.actor).to eq comment.user
         expect(note.target).to eq comment
       end
