@@ -1,38 +1,24 @@
-- if mobile?
-  .row
-    .col.s12.l8.offset-l2
-      = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn', style: 'width: 100%'
-
 .row
-  .col.s12.l8.offset-l2
-    .card
-      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        .card-content
-          h3.card-title Edit #{resource_name.to_s.humanize}
-          = devise_error_messages!
+  .main-page-grid data-controller='collapsible'
+    ul.collapsible data-target='collapsible.collapseTrigger' 
+      li
+        .collapsible-header
+          i.material-icons notifications
+          | Notification Settings
+        .collapsible-body
+          = render 'notification_settings'
 
-          = f.input :name, :autofocus => true, wrapper_html: { class: 'l12 s12' }
-          = f.email_field :email, wrapper_html: { class: 'l12 s12' }
-          = f.input :avatar, wrapper_html: { class: 'l12 s12' }
-          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-            div Currently waiting confirmation for: = resource.unconfirmed_email
-          .section
-            fieldset
-              p Leave these fields blank if you don't want to change your password.
-              = f.input :password, :autocomplete => 'off', wrapper_html: { class: 'l12 s12' }
-              = f.input :password_confirmation, wrapper_html: { class: 'l12 s12' }
-
-          .section
-            fieldset
-              p You must enter your current password to make changes.
-              = f.input :current_password, wrapper_html: { class: 'l12 s12' }
-
-        .card-action
-          = f.submit 'Update', class: 'btn'
-.row
-  .col.s12.l8.offset-l2
-    .card
-      .card-content
-        h3.card-title Cancel Account
-        p Unhappy? We'll be sad to see you go.
-        = button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn'
+      li
+        .collapsible-header
+          i.material-icons person
+          | User Settings
+        .collapsible-body
+          = render 'user_settings'
+      li
+        .collapsible-header
+          i.material-icons delete_sweep
+          | Delete Account
+        .collapsible-body
+          h3.card-title Cancel Account
+          p Unhappy? We'll be sad to see you go.
+          = button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn'

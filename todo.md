@@ -1,9 +1,9 @@
 * [ ] notifications
-  * [/] notification page
+  * [x] notification page
     * [x] comment notifications
     * [x] participation notifications
     * [x] accepted participation notifications
-  * [/] Jobs
+  * [x] Jobs
     * [x] CreateCommentNotificationJob
     * [x] CreatePartitipationNotificationJob
     * [x] AcceptedPartitipationNotificationJob
@@ -21,6 +21,7 @@
 
 
 
+#================================================================
 
 * [ ] rm user#index
 * [ ] change password view needs styling

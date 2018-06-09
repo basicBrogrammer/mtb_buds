@@ -1,0 +1,6 @@
+= simple_form_for [ current_user, current_user.setting ] do |f|
+  .row
+    = f.input :comment_notifications, wrapper_html: { class: 'm6 s12' }
+    = f.input :participation_notifications, wrapper_html: { class: 'm6 s12' }
+  .row
+    = f.submit 'Update', class: 'btn'
