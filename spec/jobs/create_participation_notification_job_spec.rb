@@ -6,12 +6,21 @@ RSpec.describe CreateParticipationNotificationJob, type: :job do
   let!(:participation) { create(:participation, :pending, ride: ride) }
   let!(:other_participation) { create(:participation, :accepted, ride: ride) }
 
-  it 'will notify the owner of a ride when someone wants to join' do
+  it 'will notify the owner when someone wants to join' do
     expect(owner.notifications.count).to eq 0
 
     CreateParticipationNotificationJob.new.perform(participation)
 
     expect(owner.notifications.count).to eq 1
+  end
+
+  it 'will not notify the owner when someone wants to join their participation notifications are off' do
+    owner.setting.update(participation_notifications: false)
+    expect(owner.notifications.count).to eq 0
+
+    CreateParticipationNotificationJob.new.perform(participation)
+
+    expect(owner.notifications.count).to eq 0
   end
 
   it 'will not notify partipants of a ride when someone wants to join' do

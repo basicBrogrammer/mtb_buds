@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one :setting, dependent: :destroy
   has_one_attached :avatar
+  delegate :comment_notifications?, :participation_notifications?, to: :setting
 
   def set_default_role
     self.role ||= :user

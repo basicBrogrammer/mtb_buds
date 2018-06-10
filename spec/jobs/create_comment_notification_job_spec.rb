@@ -33,6 +33,18 @@ RSpec.describe CreateCommentNotificationJob, type: :job do
         expect(owner.notifications.count).to eq 0
       end
     end
+
+    it 'will not create a notification if the user has comment notifications off' do
+      owner.setting.update(comment_notifications: false)
+      perform_enqueued_jobs  do
+        expect(owner.notifications.count).to eq 0
+
+        create(:comment, ride: ride, user: other_participant)
+
+        comment_notifications = owner.notifications.where(target_type: 'Comment')
+        expect(comment_notifications.count).to eq 0
+      end
+    end
   end
 
   context 'accepted participants' do 
@@ -66,6 +78,17 @@ RSpec.describe CreateCommentNotificationJob, type: :job do
         expect(accepted_participant.notifications.count).to eq 0
 
         create(:comment, ride: ride, user: accepted_participant)
+
+        expect(accepted_participant.notifications.count).to eq 0
+      end
+    end
+
+    it 'will not create a notification if the user has comment notifications off' do
+      accepted_participant.setting.update(comment_notifications: false)
+
+      perform_enqueued_jobs  do
+        expect(accepted_participant.notifications.count).to eq 0
+        comment = create(:comment, ride: ride, user: other_participant)
 
         expect(accepted_participant.notifications.count).to eq 0
       end

@@ -3,10 +3,12 @@ class CreateParticipationNotificationJob < ApplicationJob
 
   def perform(participation)
     ride = participation.ride
-    Notification.create(
-      actor: participation.user, 
-      target: participation, 
-      user: ride.user
-    )
+    if ride.user.participation_notifications?
+      Notification.create(
+        actor: participation.user, 
+        target: participation, 
+        user: ride.user
+      )
+    end
   end
 end

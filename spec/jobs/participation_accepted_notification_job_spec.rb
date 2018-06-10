@@ -15,6 +15,15 @@ RSpec.describe ParticipationAcceptedNotificationJob, type: :job do
       notification = accepted_participation.user.notifications.first
       expect(accepted_participation.ride.user).to eq notification.actor
     end
+    it 'will not notify the accepted partipant of a ride if the users notifications are off' do
+      accepted_participation.user.setting.update(participation_notifications: false)
+
+      expect(Notification.count).to eq 0 
+      ParticipationAcceptedNotificationJob.new.perform(accepted_participation)
+      expect(Notification.count).to eq 0
+
+      expect(accepted_participation.user.notifications.count).to eq 0
+    end
     it 'will not notify the owner of a ride' do
       call_job accepted_participation
       expect(owner.notifications.count).to eq 0

@@ -4,7 +4,7 @@ class CreateCommentNotificationJob < ApplicationJob
   def perform(comment)
     ride = comment.ride
     # Do something later
-    if ride.user != comment.user
+    if ride.user.comment_notifications? && ride.user != comment.user
       Notification.create(
         actor: comment.user, 
         target: comment,
@@ -14,7 +14,7 @@ class CreateCommentNotificationJob < ApplicationJob
 
     ride.participations.accepted.each do |participation|
       participant = participation.user
-      if participant != comment.user
+      if participant.comment_notifications? && participant != comment.user
         Notification.create(
           actor: comment.user, 
           target: comment,
