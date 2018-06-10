@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, except: [:new, :edit] do
-    resources :settings, only: [:update]
+    resources :settings, only: :update, controller: 'users/settings'
   end
 
   resources :my_rides, only: :index

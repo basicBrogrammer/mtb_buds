@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ["collapseTrigger"];
 
   connect() {
-    debugger
     $(this.collapseTriggerTarget).collapsible();
   }
 }

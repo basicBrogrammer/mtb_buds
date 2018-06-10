@@ -4,6 +4,7 @@
 en:
   hello: "Hello world"
   unauthorized: 'You are unauthorized to be on that page.'
+  failed: 'Something went wrong. Please try again.'
   rides:
     updated: 'Ride was successfully updated.'
     created: 'Ride was successfully created.'
@@ -15,3 +16,5 @@ en:
     acceptance_failed: 'Failed to add participant to ride.'
     rejected: 'You have rejected the participant to your ride.'
     rejection_failed: 'Failed to reject participant from ride.'
+  settings: 
+    updated: 'Your settings were successfully updated.'
