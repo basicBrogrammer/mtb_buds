@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :rides, dependent: :destroy
   has_many :participations, dependent: :destroy
   has_many :participating_rides, through: :participations, source: :ride
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, -> { order(read_at: :desc) }, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_one :setting, dependent: :destroy
   has_one_attached :avatar

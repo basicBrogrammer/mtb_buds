@@ -1,17 +1,29 @@
 nav.mobile-bottom-nav
   - if user_signed_in?
-    .mobile-bottom-nav__item.mobile-bottom-nav__item
+    .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
         = link_to root_path, class: nav_active?(root_path) do 
           i.material-icons home
+
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
         = link_to new_ride_path, class: nav_active?(new_ride_path) do 
           i.material-icons add_circle
+
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
         = link_to my_rides_path, class: nav_active?(my_rides_path) do 
           i.material-icons directions_bike
+
+    .mobile-bottom-nav__item
+      .mobile-bottom-nav__item-content
+        = link_to notifications_path, 
+          class: nav_active?(notifications_path),
+          style: 'position:relative;' do 
+          i.material-icons notifications
+          - unless Notification.unread_count(current_user).zero?
+              span.new-notification
+
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
         = link_to '#', class: 'sidenav-trigger', data: { target: 'mobile-settings' }  do 

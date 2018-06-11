@@ -11,7 +11,10 @@ nav
         li class=nav_active?(notifications_path)
           = link_to notifications_path do 
             | Notifications
-            i.material-icons.left notifications
+            - if Notification.unread_count(current_user).zero?
+               i.material-icons.left notifications
+            - else 
+               i.material-icons.left.secondary-color-text notifications_active
 
 
       ul.right

@@ -8,9 +8,9 @@
     * [x] CreatePartitipationNotificationJob
     * [x] AcceptedPartitipationNotificationJob
     * [x] mark as read job
-  * [ ] settings
-  * [ ] navbar styling
-  * [ ] mobile navbar styling
+  * [x] settings
+  * [x] navbar styling
+  * [x] mobile navbar styling
   * [ ] paginate
     * [ ] order unread
   * [ ] resque

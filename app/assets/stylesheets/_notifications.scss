@@ -3,3 +3,16 @@
     @extend .collection-item, .avatar, .black-text;
   }
 }
+
+.new-notification { 
+  background-color: $secondary-color;
+  border-radius: 2px;
+  color: white;
+ 
+  padding: 0.3rem;
+  font-size: 10px;
+  
+  position: absolute; /* Position the badge within the relatively positioned button */
+  top: 30%;
+  right: 37%;
+}
