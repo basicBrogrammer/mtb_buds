@@ -5,7 +5,13 @@ div{
   data-controller="infinite-scroll"
   data-infinite-scroll-url="/notifications/infinite_load" }
 
-  .notifications data-target='infinite-scroll.items'
-  .row data-target='infinite-scroll.spinner'
+  .row
     .main-page-grid
-      = render 'shared/preloader'
+      ul.collection
+        li.collection-item
+          span.title Notifications
+
+        .notifications data-target='infinite-scroll.items'
+        .row data-target='infinite-scroll.spinner'
+          .main-page-grid
+            = render 'shared/preloader'

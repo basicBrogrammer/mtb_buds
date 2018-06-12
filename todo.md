@@ -11,8 +11,8 @@
   * [x] settings
   * [x] navbar styling
   * [x] mobile navbar styling
-  * [ ] paginate
-    * [ ] order unread
+  * [x] paginate
+    * [x] order unread
   * [ ] resque
 
 

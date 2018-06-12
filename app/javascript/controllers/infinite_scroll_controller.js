@@ -34,7 +34,7 @@ export default class extends Controller {
         $(this.itemsTarget).append(html);
         this.page++;
 
-        const numberOfCards = html.match(/card-title/g);
+        const numberOfCards = html.match(/infinite-item/g);
         if (!numberOfCards || numberOfCards.length < 25) {
           this.hasMore = false;
         }

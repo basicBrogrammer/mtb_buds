@@ -1,6 +1,12 @@
 .notification {
   &--comment, &--participation {
     @extend .collection-item, .avatar, .black-text;
+    border-bottom: 1px solid #e0e0e0 !important;
+
+    &.unread {
+      border-left: 2px solid $secondary-color;
+      margin-top: 2px;
+    }
   }
 }
 

@@ -28,3 +28,14 @@ user3 = FactoryBot.create(:user, email: 'user3@example.com')
    FactoryBot.create(:participation, :accepted, user: user, ride: ride)
  end
 
+ 30.times do |i|
+   if i % 3 == 0 
+     u = user3
+   elsif i % 2 == 0 
+     u = user2
+   else
+     u = user
+   end
+   FactoryBot.create(:comment, ride: user.rides.first, user: u)
+ end
+
