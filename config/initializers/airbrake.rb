@@ -14,7 +14,7 @@ Airbrake.configure do |c|
   # https://github.com/airbrake/airbrake-ruby#project_id--project_key
   c.host = 'https://basic-errbit.herokuapp.com'
   c.project_id = 1
-  c.project_key = 'ec22f65b8c6473e637485aa279837136'
+  c.project_key = ENV['airbrake_key']
 
   # Configures the root directory of your project. Expects a String or a
   # Pathname, which represents the path to your project. Providing this option
