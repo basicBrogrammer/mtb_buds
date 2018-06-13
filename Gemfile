@@ -7,6 +7,7 @@ end
 ruby '2.5.0'
 gem 'rails', '~> 5.2.0'
 
+gem 'airbrake', '~> 5.0'
 gem "aws-sdk-s3", require: false
 gem "figaro"
 gem 'administrate'
@@ -31,6 +32,7 @@ gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
+
 
 group :development do
   gem "letter_opener"
