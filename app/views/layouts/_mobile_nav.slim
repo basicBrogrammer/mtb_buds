@@ -24,9 +24,9 @@ nav.mobile-bottom-nav
           - unless Notification.unread_count(current_user).zero?
               span.new-notification
 
-    .mobile-bottom-nav__item
+    .mobile-bottom-nav__item data-controller='materialize-sidenav'
       .mobile-bottom-nav__item-content
-        = link_to '#', class: 'sidenav-trigger', data: { target: 'mobile-settings' }  do 
+        = link_to '#', data: { action: 'materialize-sidenav#open' }  do 
           i.material-icons apps
   - else 
     .mobile-bottom-nav__item
@@ -40,10 +40,3 @@ ul.sidenav#mobile-settings
   li= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item'
   li.divider
   li= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
-
-javascript: 
-  $(document).on('turbolinks:load', function(){
-    console.log('hey there')
-    $('.sidenav').sidenav();
-  });
-     

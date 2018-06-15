@@ -28,6 +28,8 @@ document.addEventListener("turbolinks:load", function() {
   $(".dropdown-trigger").dropdown({ alignment: "right" });
   $("#ride_day").datepicker();
   $("#ride_time").timepicker();
+
   M.updateTextFields(); // reinitialize form label
   Waves.displayEffect(); // reinitialize wave effect on button
 });
+

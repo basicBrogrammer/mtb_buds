@@ -11,7 +11,8 @@ feature 'User edit', :devise do
     user = FactoryBot.create(:user)
     sign_in_as(user)
     visit edit_user_registration_path(user)
-    fill_in 'user_email', :with => 'newemail@example.com'
+    find('.collapsible-header', text: 'User Settings').click
+    fill_in 'user_email', with: 'newemail@example.com'
     fill_in 'Current password', :with => user.password
     click_button 'Update'
     txts = [I18n.t( 'devise.registrations.updated'), I18n.t( 'devise.registrations.update_needs_confirmation')]

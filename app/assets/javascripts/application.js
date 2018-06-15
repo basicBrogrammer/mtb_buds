@@ -11,6 +11,5 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require materialize-form
 //= require turbolinks
 //= require_tree .
