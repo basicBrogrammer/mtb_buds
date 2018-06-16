@@ -20,11 +20,11 @@ class CommentBroadcastJob < ApplicationJob
   end
 
   def broadcast_to_owner(comment, ride)
-      ActionCable.server.broadcast(
-        "comments-#{ride.user_id}",
-        message: render_comment(comment),
-        ride_id: ride.id
-      )
+    ActionCable.server.broadcast(
+      "comments-#{ride.user_id}",
+      message: render_comment(comment),
+      ride_id: ride.id
+    )
   end
 
   def render_comment(comment)

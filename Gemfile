@@ -7,10 +7,10 @@ end
 ruby '2.5.0'
 gem 'rails', '~> 5.2.0'
 
-gem 'airbrake', '~> 5.0'
 gem "aws-sdk-s3", require: false
 gem "figaro"
 gem 'administrate'
+gem 'airbrake', '~> 5.0'
 gem 'browser'
 gem 'devise'
 gem 'devise_invitable'
@@ -25,6 +25,7 @@ gem 'materialize-sass', '~> 1.0.0.beta'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'redis-rails'
+gem 'resque'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'slim-rails'

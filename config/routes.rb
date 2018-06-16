@@ -1,4 +1,6 @@
+# require 'resque/server'
 Rails.application.routes.draw do
+
   namespace :admin do
     resources :users
     root to: "users#index"
@@ -10,6 +12,10 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :edit] do
     resources :settings, only: :update, controller: 'users/settings'
   end
+
+  #authenticate :user do
+    #mount Resque::Server, at: '/jobs'
+  #end
 
   resources :my_rides, only: :index
   # order matters ??
