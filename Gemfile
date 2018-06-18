@@ -65,7 +65,6 @@ group :development, :test do
   gem 'faker'
   gem 'capybara', '~> 2.13'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rspec-rails'
