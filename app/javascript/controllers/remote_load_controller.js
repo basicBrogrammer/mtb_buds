@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import { initialResponseHandler, catchHandler } from "../packs/fetch_handling";
 
 export default class extends Controller {
-  static targets = [ "preloader", "body", 'scroll' ]
+  static targets = [ "preloader", "body"]
 
   connect() {
     this._fetchHtml();
@@ -18,10 +18,6 @@ export default class extends Controller {
         this.bodyTarget.innerHTML = html;
         $(this.bodyTarget).removeClass("hide");
         $(this.preloaderTarget).addClass("hide");
-      }).then(() => {
-        if (this.scrollTarget) {
-          this.scrollTarget.scrollTop = this.scrollTarget.scrollHeight
-        }
       }).catch(e => {
         $(this.preloaderTarget).addClass("hide");
         catchHandler(e, this.bodyTarget);

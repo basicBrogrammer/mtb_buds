@@ -3,8 +3,10 @@ class Ride < ApplicationRecord
   geocoded_by :location
 
   belongs_to :user
+  # TODO: add participations_counter_cache
   has_many :participations, dependent: :destroy
   has_many :participants, through: :participations, source: :user
+  # TODO: add comment_counter_cache
   has_many :comments, dependent: :destroy
 
   validates_presence_of :day, :time, :trail_id

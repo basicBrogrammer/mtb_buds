@@ -2,6 +2,20 @@
   .main-page-grid
     = link_to 'Back', :back, class: 'btn'
 
+- if @participations.any?
+  .row
+    .main-page-grid
+      div{ data-controller='collapsible-remote'
+        data-collapsible-remote-remote-url="/rides/#{@ride.id}/participants"}
+        ul.collapsible data-target='collapsible-remote.collapseTrigger'
+          li
+            .collapsible-header
+              /i.medium.material-icons arrow_drop_down
+              | Riders: #{@participations.count}
+            .collapsible-body
+              div{ data-target='collapsible-remote.body' }
+              = render 'shared/preloader', data_target: 'collapsible-remote.preloader'
+
 = render @ride
   - if join_able? || @ride.owner?(current_user)
     .card-action.valign-wrap
@@ -13,24 +27,15 @@
         = link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' },
           method: :delete, class: 'btn red lighten-1'
 
-- if @participations.any?
-  .row
-    .main-page-grid
-      div{ data-controller='participants'
-        data-participants-remote-url="/rides/#{@ride.id}/participants"}
-        ul.collapsible data-target='participants.collapseTrigger'
-          li
-            .collapsible-header
-              /i.medium.material-icons arrow_drop_down
-              | Riders: #{@participations.count}
-            .collapsible-body
-              div{ data-target='participants.body' }
-              = render 'shared/preloader', data_target: 'participants.preloader'
 
 - if @ride.owner?(current_user) || @participations.pluck(:user_id).include?(current_user.id)
   .row
     .main-page-grid
-      div{ data-controller='remote-load'
-        data-remote-load-url="/rides/#{@ride.id}/comments"}
-          div{ data-target='remote-load.body' }
-          = render 'shared/preloader', data_target: 'remote-load.preloader'
+      - if mobile?
+        .collection 
+          = link_to 'Comments', ride_comments_path(@ride), class: 'collection-item center-align'
+      - else 
+        div{ data-controller='remote-load'
+          data-remote-load-url="/rides/#{@ride.id}/comments"}
+            div{ data-target='remote-load.body' }
+            = render 'shared/preloader', data_target: 'remote-load.preloader'

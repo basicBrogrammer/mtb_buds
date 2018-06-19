@@ -46,7 +46,7 @@ feature 'Rides new page', :devise, :js do
       ride = Ride.first
       expect(page).to have_current_path ride_path(ride)
 
-      within 'p', text: 'When' do
+      within '.ride__time' do
         expect(page).to have_content ride.pretty_day
         expect(page).to have_content ride.pretty_time
       end
@@ -55,13 +55,12 @@ feature 'Rides new page', :devise, :js do
         expect(page).to have_content ride.trail['length']
       end
 
-      within 'p', text: 'Stars' do
+      within '.ride__rating' do
         expect(page).to have_content ride.stars
       end
 
-      within 'p', text: 'Difficulty' do
-        expect(page).to have_content ride.difficulty
-      end
+      diff_image_src = page.evaluate_script("document.getElementsByClassName('card-title__image')[0].src")
+      expect(diff_image_src).to eq "https://cdn.apstatic.com/img/diff/#{ride.difficulty}.svg"
     end
 
     scenario 'can filter rides' do

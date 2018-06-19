@@ -107,7 +107,7 @@ feature 'Participation show page', :devise, :js do
       visit ride_path(ride)
 
       expect(page).to have_content ride.trail['name']
-      within 'p', text: 'When:' do
+      within '.ride__time' do
         expect(page).to have_content ride.pretty_day
         expect(page).to_not have_content ride.pretty_time
       end
@@ -120,7 +120,7 @@ feature 'Participation show page', :devise, :js do
       visit ride_path(ride)
 
       expect(page).to have_content ride.trail['name']
-      within 'p', text: 'When:' do
+      within '.ride__time' do
         expect(page).to have_content ride.pretty_day
         expect(page).to_not have_content ride.pretty_time
       end
@@ -133,7 +133,7 @@ feature 'Participation show page', :devise, :js do
       visit ride_path(ride)
 
       expect(page).to have_content ride.trail['name']
-      within 'p', text: 'When:' do
+      within '.ride__time' do
         expect(page).to have_content ride.pretty_day
         expect(page).to_not have_content ride.pretty_time
       end
@@ -146,7 +146,7 @@ feature 'Participation show page', :devise, :js do
       visit ride_path(ride)
 
       expect(page).to have_content ride.trail['name']
-      within 'p', text: 'When:' do
+      within '.ride__time' do
         expect(page).to have_content ride.pretty_day
         expect(page).to have_content ride.pretty_time
       end

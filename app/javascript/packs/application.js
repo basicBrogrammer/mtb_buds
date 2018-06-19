@@ -32,4 +32,3 @@ document.addEventListener("turbolinks:load", function() {
   M.updateTextFields(); // reinitialize form label
   Waves.displayEffect(); // reinitialize wave effect on button
 });
-

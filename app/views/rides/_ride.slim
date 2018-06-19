@@ -1,34 +1,39 @@
-.row
+.row.margin-zero--btm
   .main-page-grid
     / TODO: mobile? ? '' : horizontal
-    .card.z-depth-3 class="#{mobile? ? '' : 'horizontal'} infinite-item"
+    .card class="#{mobile? ? '' : 'horizontal'} infinite-item"
       / TODO: image key helper
       - if ride.trail['imgMedium'].present?
         .card-image= image_tag ride.trail['imgMedium']
       .card-stacked
         .card-content
-          h3.card-title=link_to ride.trail['name'], ride_path(ride)
-          / TODO: replace spans with icons
+          h3.card-title
+            = image_tag ride_difficulty_img(ride.difficulty), class: 'card-title__image'
+            = link_to ride.trail['name'], ride_path(ride)
           .row
-            .col.s12.l6
-              p
-                span.red-text When:
-                |  #{ride_day_and_time(ride, current_user)}
+            .col.s6.l6
+              p.ride__rating
+                i.red-text.material-icons=ride_star_icons(1, ride.stars)
+                i.red-text.material-icons=ride_star_icons(2, ride.stars)
+                i.red-text.material-icons=ride_star_icons(3, ride.stars)
+                i.red-text.material-icons=ride_star_icons(4, ride.stars)
+                i.red-text.material-icons=ride_star_icons(5, ride.stars)
+                |  #{ride.stars}
+
+            .col.s6.l6
+              i.red-text.material-icons date_range
+              span.ride__time #{ride_day_and_time(ride, current_user)}
+
           .row
             .col.s12.l6
               p
                 span.red-text Where:
                 |  #{ride.location}
+            .col.s12.l6
               p
                 span.red-text Length:
                 |  #{ride.trail['length']} mi
-            .col.s12.l6
-              p
-                span.red-text Stars:
-                |  #{ride.stars}
-              p
-                span.red-text Difficulty:
-                |  #{ride.difficulty}
+
         = yield
         / - unless action_name == 'show'
         /   .card-action

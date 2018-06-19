@@ -6,4 +6,19 @@ module RideHelper
     end
     result
   end
+
+  def ride_difficulty_img(difficulty)
+    "https://cdn.apstatic.com/img/diff/#{difficulty}.svg"
+  end
+
+  def ride_star_icons(index, number_of_stars)
+    if index <= number_of_stars
+      'star'
+    elsif number_of_stars.ceil == index
+      'star_half'
+    else
+      'star_border'
+    end
+
+  end
 end

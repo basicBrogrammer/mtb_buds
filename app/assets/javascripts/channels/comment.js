@@ -11,8 +11,8 @@ App.comment = App.cable.subscriptions.create("CommentChannel", {
     // Called when there's incoming data on the websocket for this channel
     const commentBox = $("#comment-box-" + data['ride_id'])
     commentBox.append(data['message']);
-    // TODO: handle scroll 
-    const scrollDiv = $("[data-target='remote-load.scroll'")[0]
+
+    const scrollDiv = $("[data-target='comment.scroll'")[0]
     scrollDiv.scrollTop = scrollDiv.scrollHeight
   },
 

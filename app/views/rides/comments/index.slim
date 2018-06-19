@@ -1,10 +1,17 @@
-.card.card--comments.grey.lighten-4
-  .card-content data-target='remote-load.scroll'
+- if mobile?
+  ul.collection--comments 
+    li.collection-item.valign-wrapper
+      = link_to ride_path(@ride) do
+        i.material-icons.secondary-color-text arrow_back
+      span.title Comments
+
+.card.card--comments.grey.lighten-4 data-controller='comment'
+  .card-content data-target='comment.scroll'
     ul.comments id="comment-box-#{@ride.id}"
       = render @comments
 
   .card-action
-    .row.comments__new data-controller='comment'
+    .row.comments__new 
       = form_tag ride_comments_path(@ride), data: { action: 'comment#submit' } do
         .col.s11.m11
           = hidden_field_tag 'user_id', current_user.id

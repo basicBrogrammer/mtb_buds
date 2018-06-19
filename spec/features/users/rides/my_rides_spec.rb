@@ -133,7 +133,7 @@ feature 'My rides page', :devise, :js do
       visit my_rides_path
     end
     scenario 'do not display' do
-      within '.main-page-grid', text: 'My participating rides' do
+      within '.main-page-grid', text: 'Participating rides' do
         expect(page).to have_content "You arent't participating in any upcoming rides."
         expect(page).to_not have_content others_participating_ride.trail['name']
       end
