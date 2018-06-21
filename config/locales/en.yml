@@ -2,10 +2,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   unauthorized: 'You are unauthorized to be on that page.'
   failed: 'Something went wrong. Please try again.'
   rides:
+    not_found: "Sorry, that ride couldn't be found"
     updated: 'Ride was successfully updated.'
     created: 'Ride was successfully created.'
   participation:

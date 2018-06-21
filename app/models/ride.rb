@@ -10,9 +10,7 @@ class Ride < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates_presence_of :day, :time, :trail_id
-  # TODO: create a service object to background this
   before_create :save_mtb_projec_data
-  # TODO: Geocode
 
   def trail
     @trail ||= MtbProjectRequest.new(

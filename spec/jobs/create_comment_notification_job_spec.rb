@@ -12,7 +12,7 @@ RSpec.describe CreateCommentNotificationJob, type: :job do
 
   context 'ride owner' do
     it 'will create a notification when a participant comments' do
-      perform_enqueued_jobs  do
+      perform_enqueued_jobs do
         expect(owner.notifications.count).to eq 0
 
         comment = create(:comment, ride: ride, user: other_participant)

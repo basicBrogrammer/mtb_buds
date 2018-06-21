@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  include DestroyNotifications
   belongs_to :ride
   belongs_to :user
 

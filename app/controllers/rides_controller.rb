@@ -2,6 +2,9 @@ class RidesController < ApplicationController
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: :index
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    redirect_to root_path, notice: I18n.t('rides.not_found')
+  end
 
   def index
   end
