@@ -16,7 +16,7 @@
         .col.s11.m11
           = hidden_field_tag 'user_id', current_user.id
           = hidden_field_tag 'ride_id', @ride.id
-          = text_field_tag 'body', nil, placeholder: 'Comment...'
+          = text_field_tag 'body', nil, placeholder: 'Comment...', data: { target: 'comment.input' }
         .col.s1.m1
           = button_tag(type: "submit", class: 'comments__send') do 
             i.material-icons send
