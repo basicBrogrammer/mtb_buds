@@ -7,6 +7,8 @@ html
       = content_for?(:title) ? yield(:title) : 'Mtb Buds'
     meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Mtb Buds'}"
     = yield :head
+
+    = favicon_link_tag 'mtb-buds-favicon.png'
     == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => 'reload'
 
     == javascript_pack_tag 'application'
