@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ride < ApplicationRecord
   scope :active, -> { where('day >= ?', Date.today) }
   geocoded_by :location
@@ -9,13 +11,13 @@ class Ride < ApplicationRecord
   # TODO: add comment_counter_cache
   has_many :comments, dependent: :destroy
 
-  validates_presence_of :day, :time, :trail_id
+  validates :day, :time, :trail_id, presence: true
   before_create :save_mtb_projec_data
 
   def trail
     @trail ||= MtbProjectRequest.new(
       endpoint: 'get-trails-by-id',
-      params: { ids: self.trail_id }
+      params: { ids: trail_id }
     ).call&.first
   end
 
@@ -24,7 +26,7 @@ class Ride < ApplicationRecord
   end
 
   def pretty_time
-    time&.strftime("%l:%M %p")
+    time&.strftime('%l:%M %p')
   end
 
   def name
@@ -38,7 +40,7 @@ class Ride < ApplicationRecord
   private
 
   def save_mtb_projec_data
-    self.assign_attributes(
+    assign_attributes(
       longitude: trail['longitude'],
       latitude: trail['latitude'],
       location: trail['location'],
