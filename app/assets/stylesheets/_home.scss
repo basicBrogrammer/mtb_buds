@@ -1,0 +1,71 @@
+.body--home {
+  padding-bottom: 0;
+}
+
+.home-screen {
+  @include flex-mix-display;
+  @include flex-mix-justify-content(center);
+  @include flex-mix-wrap(nowrap);
+
+  @media #{$small-and-down} {
+    @include flex-mix-direction(column-reverse);
+
+    height: 150vh;
+  }
+
+  @media #{$medium-and-up} {
+    @include flex-mix-direction(row);
+
+    height: 100vh;
+  }
+
+  &__details, &__action {
+    flex: auto;
+    flex-basis: 50%;
+
+    @include flex-mix-display;
+    @include flex-mix-justify-content(center);
+    @include flex-mix-wrap(nowrap);
+  }
+
+  &__action {
+    height: 70%;
+  }
+
+  &__details {
+    @include flex-mix-align-items(center);
+
+    color: white;
+    font-size: 1.3rem;
+    background: url("mtb_home_background.png") top center no-repeat;
+    background-size: cover;
+    background-color: $secondary-color;
+  }
+
+  &__info {
+    @include flex-mix-display;
+    @include flex-mix-direction(column);
+    @include flex-mix-wrap(nowrap);
+    @include flex-mix-justify-content(space-around);
+    @include flex-mix-align-content(center);
+    @include flex-mix-align-items(flex-start);
+
+    &--item {
+      @extend .valign-wrapper;
+    }
+  }
+
+  &__button {
+    @extend .flex-item--stretch;
+
+    a {
+      border-radius: 10rem;
+      width: 70%;
+      margin-left: 15%;
+    }
+  }
+
+  &__details &__info {
+    height: 50%;
+  }
+}

@@ -37,7 +37,7 @@ feature 'Rides index page', :devise, :js do
 
   context 'visitor' do
     before do
-      visit root_path
+      visit rides_path
 
       # verify user is not signed in
       within 'nav' do

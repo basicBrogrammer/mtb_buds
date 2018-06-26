@@ -4,7 +4,7 @@ html
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
     link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /
     title
-      = content_for?(:title) ? yield(:title) : 'MTB Group Rides '
+      = content_for?(:title) ? yield(:title) : 'MTB Group Rides'
     meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Mountain biking community to help fellow riders meet up on the trails.'}"
     = yield :head
 
@@ -16,13 +16,8 @@ html
 
     == csrf_meta_tags
 
-  body
-    - unless mobile?
-      header
-        == render 'layouts/navigation'
+  body.body--home
     main[role="main"]
-      div class="#{mobile? ? '' : 'container' }"
+      div
         == render 'layouts/messages'
         == yield
-      - if mobile?
-        = render 'layouts/mobile_nav'

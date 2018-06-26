@@ -1,37 +1,38 @@
-nav
-  .nav-wrapper
-    = link_to 'MTB Buds', root_path, class: 'brand-logo center'
-    - if user_signed_in?
-      ul.left
-        li class=nav_active?(root_path)
-          = link_to root_path do 
-            | Home
-            i.material-icons.left home
+.navbar-fixed
+  nav
+    .nav-wrapper
+      = link_to 'MTB Group Rides', root_path, class: 'brand-logo center'
+      - if user_signed_in?
+        ul.left
+          li class=nav_active?(root_path)
+            = link_to root_path do 
+              | Home
+              i.material-icons.left home
 
-        li class=nav_active?(notifications_path)
-          = link_to notifications_path do 
-            | Notifications
-            - if Notification.unread_count(current_user).zero?
-               i.material-icons.left notifications
-            - else 
-               i.material-icons.left.secondary-color-text notifications_active
+          li class=nav_active?(notifications_path)
+            = link_to notifications_path do 
+              | Notifications
+              - if Notification.unread_count(current_user).zero?
+                 i.material-icons.left notifications
+              - else 
+                 i.material-icons.left.secondary-color-text notifications_active
 
 
-      ul.right
-        li = link_to "Brraapp!", new_ride_path, class: 'btn btn-info'
-        /! Dropdown Trigger
-        li
-          a.dropdown-trigger data-target="prof-drop" href="#!"
-            = prof_pic(current_user, css: 'navbar-avatar')
+        ul.right
+          li = link_to "Brraapp!", new_ride_path, class: 'btn btn-info'
+          /! Dropdown Trigger
+          li
+            a.dropdown-trigger data-target="prof-drop" href="#!"
+              = prof_pic(current_user, css: 'navbar-avatar')
 
-          ul#prof-drop.dropdown-content
-            li = link_to "My Rides", my_rides_path
-            - if current_user.admin?
-              li= link_to 'Admin', admin_root_path, class: 'dropdown-item'
-            li= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item'
-            li.divider
-            li= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
-    - else
-      ul.right
-        li= link_to 'Sign in', new_user_session_path
-        li= link_to 'Sign up', new_user_registration_path
+            ul#prof-drop.dropdown-content
+              li = link_to "My Rides", my_rides_path
+              - if current_user.admin?
+                li= link_to 'Admin', admin_root_path, class: 'dropdown-item'
+              li= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item'
+              li.divider
+              li= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+      - else
+        ul.right
+          li= link_to 'Sign in', new_user_session_path
+          li= link_to 'Sign up', new_user_registration_path

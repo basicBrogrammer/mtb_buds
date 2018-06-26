@@ -1,16 +1,21 @@
 @import "materialize/components/color-variables";
+
 $primary-color: color("blue-grey", "darken-1") !default;
 $secondary-color: color("red", "darken-2") !default;
+
 @import "materialize";
 @import "select2_materialize";
 
 @import "cards";
+@import "buttons";
+@import "flexbox";
 
 @import "comments";
 @import "mobile_nav";
 @import "navbar";
 @import "notifications";
 @import "rides";
+@import "home";
 
 .primary-color {
   background: $primary-color;
@@ -37,8 +42,8 @@ $secondary-color: color("red", "darken-2") !default;
   height: auto;
 }
 
-.margin-zero{
+.margin-zero {
   &--btm {
-    margin-bottom: 0
+    margin-bottom: 0;
   }
 }

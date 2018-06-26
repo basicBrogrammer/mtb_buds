@@ -3,7 +3,7 @@ feature 'My rides page', :devise, :js do
 
   describe 'navigation' do 
     scenario 'visitors cannot visit' do
-      visit root_path
+      visit rides_path
 
       within 'nav' do 
         expect(page).to_not have_link 'My Rides'

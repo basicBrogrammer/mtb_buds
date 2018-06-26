@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 class CommentBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(comment, ride)
-    # Do something later
     broadcast_to_participants(comment, ride)
     broadcast_to_owner(comment, ride)
   end
 
-  private 
+  private
 
   def broadcast_to_participants(comment, ride)
     ride.participations.accepted.each do |participation|

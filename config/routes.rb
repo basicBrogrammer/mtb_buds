@@ -1,21 +1,28 @@
+# frozen_string_literal: true
+
 # require 'resque/server'
 Rails.application.routes.draw do
-
   namespace :admin do
     resources :users
-    root to: "users#index"
+    root to: 'users#index'
+  end
+
+  unauthenticated do
+    as :user do
+      root to: 'home#index'
+    end
   end
 
   root to: 'rides#index'
 
   devise_for :users
-  resources :users, except: [:new, :edit] do
+  resources :users, except: %i[new edit] do
     resources :settings, only: :update, controller: 'users/settings'
   end
 
-  #authenticate :user do
-    #mount Resque::Server, at: '/jobs'
-  #end
+  # authenticate :user do
+  # mount Resque::Server, at: '/jobs'
+  # end
 
   resources :my_rides, only: :index
   # order matters ??
@@ -24,9 +31,9 @@ Rails.application.routes.draw do
   end
   resources :rides do
     scope module: 'rides' do
-      resources :participations, only: [:create, :update, :destroy]
+      resources :participations, only: %i[create update destroy]
       resources :participants, only: :index
-      resources :comments, only: [:index, :create]
+      resources :comments, only: %i[index create]
     end
   end
 
@@ -38,5 +45,5 @@ Rails.application.routes.draw do
   resources :location_autocomplete, only: :index
   resources :trails, only: :index
 
-  get "/pages/*id" => 'pages#show', as: :page, format: false
+  get '/pages/*id' => 'pages#show', as: :page, format: false
 end

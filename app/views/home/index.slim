@@ -1,0 +1,22 @@
+.home-screen
+  .home-screen__details
+    .home-screen__info
+      .home-screen__info--item
+        i.material-icons.medium map
+        span Find new trails.
+      .home-screen__info--item 
+        i.material-icons.medium directions_bike
+        span See what trails others are riding near you.
+      .home-screen__info--item 
+        i.material-icons.medium people
+        span Join the community.
+
+  .home-screen__action
+    .home-screen__info
+      h3.flex-item--center.center-align Meet, ride, and brraappp with new people!
+      h5.flex-item--center.center-align Join MTB Group Rides today.
+
+      .home-screen__button
+        = link_to 'Sign up', new_user_registration_path, class: 'btn'
+      .home-screen__button
+        = link_to 'Sign in', new_user_session_path, class: 'btn--outline'
