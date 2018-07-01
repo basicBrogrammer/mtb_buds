@@ -1,12 +1,22 @@
 .nav-wrapper {
   padding: 0 2rem;
-  li.active a{
+
+  li.active a {
     border-bottom: 2px inset $secondary-color;
+  }
+
+  .dropdown-trigger {
+    max-height: 4rem;
   }
 }
 
 .navbar-avatar {
   @extend .circle;
+
   background-color: white;
   margin-top: 25%;
 }
+
+//.patreon-widget {
+  //max-width: 175px;
+//}

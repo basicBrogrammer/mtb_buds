@@ -7,27 +7,31 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import "babel-polyfill";
-import { Application } from "stimulus";
-import { definitionsFromContext } from "stimulus/webpack-helpers";
-import "select2";
-import $ from "jquery";
+import 'babel-polyfill';
+import { Application } from 'stimulus';
+import { definitionsFromContext } from 'stimulus/webpack-helpers';
+import 'select2';
+import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
 
 const application = Application.start();
-const context = require.context("controllers", true, /.js$/);
+const context = require.context('controllers', true, /.js$/);
 application.load(definitionsFromContext(context));
 
-import GoogleAnalytics from "./google_analytics";
+import GoogleAnalytics from './google_analytics';
 new GoogleAnalytics.load();
 
-require("materialize-css");
+require('materialize-css');
 
-document.addEventListener("turbolinks:load", function() {
-  $(".dropdown-trigger").dropdown({ alignment: "right" });
-  $("#ride_day").datepicker();
-  $("#ride_time").timepicker();
+document.addEventListener('turbolinks:load', function() {
+  $('.dropdown-trigger').dropdown({
+    alignment: 'right',
+    constrainWidth: false,
+    coverTrigger: false
+  });
+  $('#ride_day').datepicker();
+  $('#ride_time').timepicker();
 
   M.updateTextFields(); // reinitialize form label
   Waves.displayEffect(); // reinitialize wave effect on button
