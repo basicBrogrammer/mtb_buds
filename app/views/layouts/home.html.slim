@@ -15,8 +15,12 @@ html
     == javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
 
     == csrf_meta_tags
+    /! Global site tag (gtag.js) - Google Analytics
+    script async="" src="https://www.googletagmanager.com/gtag/js?id=#{ENV['google_analytics']}"
 
   body.body--home
+    = render 'shared/google_analytics'
+
     main[role="main"]
       div
         == render 'layouts/messages'
