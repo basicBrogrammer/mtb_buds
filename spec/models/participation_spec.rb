@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe Participation, type: :model do
   include ActiveJob::TestHelper
 
-  it 'enqueues the CreateParticipationNotificationJob job' do
+  it 'enqueues the Notifications::ParticipationCreatedJob job' do
     assert_enqueued_jobs 0
 
-    assert_enqueued_with(job: CreateParticipationNotificationJob) do 
+    assert_enqueued_with(job: Notifications::ParticipationCreatedJob) do 
       create(:participation, id: 1)
     end
 

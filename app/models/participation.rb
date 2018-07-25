@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 class Participation < ApplicationRecord
   include DestroyNotifications
-  enum status: [:pending, :accepted, :rejected]
+  enum status: %i[pending accepted rejected]
+
   belongs_to :user
   belongs_to :ride
-  after_create { CreateParticipationNotificationJob.perform_later(self) }
+
+  after_create { Notifications::ParticipationCreatedJob.perform_later(self) }
   after_update { ParticipationAcceptedNotificationJob.perform_later(self) }
 end
