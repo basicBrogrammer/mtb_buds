@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ParticipationAcceptedNotificationJob, type: :job do
+RSpec.describe Notifications::ParticipationAcceptedJob, type: :job do
   let(:owner) { create(:user) }
   let(:ride) { create(:ride, user: owner) }
   let(:other_participant) { create(:participation, :accepted, ride: ride).user }
@@ -18,9 +18,7 @@ RSpec.describe ParticipationAcceptedNotificationJob, type: :job do
     it 'will not notify the accepted partipant of a ride if the users notifications are off' do
       accepted_participation.user.setting.update(participation_notifications: false)
 
-      expect(Notification.count).to eq 0 
-      ParticipationAcceptedNotificationJob.new.perform(accepted_participation)
-      expect(Notification.count).to eq 0
+      call_job(accepted_participation, notification_count: 0)
 
       expect(accepted_participation.user.notifications.count).to eq 0
     end
@@ -36,21 +34,19 @@ RSpec.describe ParticipationAcceptedNotificationJob, type: :job do
 
   context 'pending' do 
     it 'will not create any notifications' do
-      ParticipationAcceptedNotificationJob.new.perform(pending_participation)
-      expect(Notification.count).to eq 0
+      call_job(pending_participation, notification_count: 0)
     end
   end
   context 'rejected' do 
     it 'will not create any notifications' do
-      ParticipationAcceptedNotificationJob.new.perform(pending_participation)
-      expect(Notification.count).to eq 0
+      call_job(rejected_participation, notification_count: 0)
     end
   end
 
-  def call_job(participation)
+  def call_job(participation, notification_count: 1)
     expect(Notification.count).to eq 0 
 
-    ParticipationAcceptedNotificationJob.new.perform(participation)
-    expect(Notification.count).to eq 1
+    Notifications::ParticipationAcceptedJob.new.perform(participation)
+    expect(Notification.count).to eq notification_count
   end
 end

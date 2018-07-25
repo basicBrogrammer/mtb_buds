@@ -13,12 +13,12 @@ RSpec.describe Participation, type: :model do
     assert_enqueued_jobs 1
   end
 
-  it 'enqueues the ParticipationAcceptedNotificationJob job after being updated' do
+  it 'enqueues the Notifications::ParticipationAcceptedJob job after being updated' do
     assert_enqueued_jobs 0
     participation = create(:participation, id: 1)
     assert_enqueued_jobs 1
 
-    assert_enqueued_with(job: ParticipationAcceptedNotificationJob) do 
+    assert_enqueued_with(job: Notifications::ParticipationAcceptedJob) do 
       participation.accepted!
     end
 

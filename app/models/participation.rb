@@ -8,5 +8,5 @@ class Participation < ApplicationRecord
   belongs_to :ride
 
   after_create { Notifications::ParticipationCreatedJob.perform_later(self) }
-  after_update { ParticipationAcceptedNotificationJob.perform_later(self) }
+  after_update { Notifications::ParticipationAcceptedJob.perform_later(self) }
 end
