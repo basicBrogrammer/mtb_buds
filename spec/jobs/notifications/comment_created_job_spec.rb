@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CreateCommentNotificationJob, type: :job do
+RSpec.describe Notifications::CommentCreatedJob, type: :job do
   include ActiveJob::TestHelper
 
   let(:owner) { create(:user) }
@@ -88,7 +88,7 @@ RSpec.describe CreateCommentNotificationJob, type: :job do
 
       perform_enqueued_jobs  do
         expect(accepted_participant.notifications.count).to eq 0
-        comment = create(:comment, ride: ride, user: other_participant)
+        create(:comment, ride: ride, user: other_participant)
 
         expect(accepted_participant.notifications.count).to eq 0
       end

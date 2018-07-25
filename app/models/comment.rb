@@ -5,5 +5,5 @@ class Comment < ApplicationRecord
 
   # TODO: change to perform_later
   after_create_commit { CommentBroadcastJob.perform_now(self, ride) }
-  after_create { CreateCommentNotificationJob.perform_later(self) }
+  after_create { Notifications::CommentCreatedJob.perform_later(self) }
 end
