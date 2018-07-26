@@ -9,3 +9,6 @@ config_file = rails_root + '/config/resque.yml'
 resque_config = YAML::load(ERB.new(IO.read(config_file)).result)
 Resque.redis = Redis.new(url: resque_config[rails_env], thread_safe: true)
 
+require 'resque-scheduler'
+require 'resque/scheduler/server'
+

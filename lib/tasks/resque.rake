@@ -1,3 +1,9 @@
 require 'resque/tasks'
+require 'resque/scheduler/tasks'
 
-task 'resque:setup' => :environment
+namespace :resque do
+  task :setup => :environment do
+    Resque.schedule = YAML.load_file(Rails.root.join('config', 'resque_schedule.yml'))
+    ENV['QUEUES'] = '*'
+  end
+end
