@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe MarkNotificationsAsReadJob, type: :job do
+RSpec.describe Notifications::MarkAsReadJob, type: :job do
   let(:user) { create(:user) }
   let!(:users_unread_notifications) do
     create_list(:notification, 3, :comment_target ,user: user)
   end
   let!(:users_read_notifications) do
-    create_list(:notification, 3, :comment_target ,user: user, read_at: Date.yesterday)
+    create_list(:notification, 3, :comment_target ,user: user, read_at: Time.zone.yesterday.beginning_of_day)
   end
 
   let(:other_user) { create(:user) }
@@ -31,16 +31,16 @@ RSpec.describe MarkNotificationsAsReadJob, type: :job do
 
   it "doesn't touch the user's previously read notifications as read"  do
     users_read_notifications.each do |note|
-      expect(note.read_at).to be < Date.today
-      expect(note.read_at).to be > Date.today - 2.days
+      expect(note.read_at).to be < Time.zone.now.beginning_of_day
+      expect(note.read_at).to be > Time.zone.now.beginning_of_day - 2.days
     end
 
     call_job user.notifications
 
     users_read_notifications.each do |note|
       note.reload
-      expect(note.read_at).to be < Date.today
-      expect(note.read_at).to be > Date.today - 2.days
+      expect(note.read_at).to be < Time.zone.now.beginning_of_day
+      expect(note.read_at).to be > Time.zone.now.beginning_of_day - 2.days
     end
   end
   it "doesn't marks the other user's unread notifications as read"  do
@@ -65,6 +65,6 @@ RSpec.describe MarkNotificationsAsReadJob, type: :job do
 
   def call_job(notifications)
     ids = notifications.pluck(:id)
-    MarkNotificationsAsReadJob.new.perform(ids)
+    Notifications::MarkAsReadJob.new.perform(ids)
   end
 end

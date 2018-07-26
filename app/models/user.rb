@@ -14,7 +14,7 @@ class User < ApplicationRecord
   delegate :comment_notifications?, :participation_notifications?, to: :setting
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :vip
   end
 
   # Include default devise modules. Others available are:
