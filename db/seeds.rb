@@ -39,3 +39,12 @@ user3 = FactoryBot.create(:user, email: 'user3@example.com')
    FactoryBot.create(:comment, ride: user.rides.first, user: u)
  end
 
+# email preview setup
+email_ride = FactoryBot.create(:ride, user: user3)
+FactoryBot.create(:comment, user: user, ride: email_ride)
+FactoryBot.create(:comment, user: user2, ride: email_ride)
+# ParticipationCreatedJob
+FactoryBot.create(:participation, :pending, user: user, ride: email_ride)
+# ParticipationAcceptedJob
+participation = FactoryBot.create(:participation, :pending, user: user3, ride: user.rides.first)
+participation.accepted!

@@ -1,5 +1,5 @@
 feature 'Comment Notifications', :devise, :js do
-  let!(:user) { FactoryBot.create(:user) }
+  let!(:user) { create(:user) }
   let!(:ride) { create(:ride, trail_id: '7019014') }
   let!(:comment) { create(:comment, ride: ride) }
   let!(:my_comment_notification) { create(:notification, user: user, target: comment) }

@@ -1,0 +1,9 @@
+'Hey #{@user.name},
+= "\r\n" * 2
+
+' Here's your Bi-daily Notification check:
+= "\r\n" 
+
+- @notifications_by_type.each do |( type, status ), notifications|
+  | You have #{notifications.count} new #{ link_to type_text(type, status), notifications_url }
+    

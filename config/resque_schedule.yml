@@ -1,9 +1,16 @@
-resque_scheduler_test:
-  every: 30s
-  class: ResqueSchedulerTestJob
-  args: 
-  queue: high
-  description: "This job is testing out scheduler"
+# resque_scheduler_test:
+  # every: 30s
+  # class: ResqueSchedulerTestJob
+  # args:
+  # queue: high
+  # description: "This job is testing out scheduler"
+
+mailers_unread_notifications:
+  cron: "0 12,18 * * *"
+  class: "Mailers::UnreadNotificationsJob"
+  queue: mailers
+  args:
+  description: "This job alerts users of unread messages"
 
 # clear_leaderboards_contributors:
 #   cron: "30 6 * * 1"
