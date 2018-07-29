@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :invitable, :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
   after_create { self.create_setting }
@@ -16,11 +21,6 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :vip
   end
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
 
   def accepted_participant?(ride)
     participations.accepted.find_by(ride_id: ride.id).present?

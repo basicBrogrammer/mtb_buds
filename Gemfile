@@ -31,6 +31,7 @@ gem 'resque'
 gem 'resque-scheduler'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
+gem 'slack-notifier'
 gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

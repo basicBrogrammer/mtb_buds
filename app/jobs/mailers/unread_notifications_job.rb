@@ -8,5 +8,10 @@ module Mailers
         NotificationsMailer.unread(user).deliver_now
       end
     end
+
+    def self.slack_notification
+      notifier = Slack::Notifier.new ENV['slack_hook']
+      notifier.ping("#{self} (#{Rails.env}) performing")
+    end
   end
 end
