@@ -3,9 +3,10 @@
 module Mailers
   class UnreadNotificationsJob
     def self.perform
-      # TODO add slack notification
+      self.slack_notification
+
       User.find_each(batch_size: 500) do |user|
-        NotificationsMailer.unread(user).deliver_now
+        NotificationsMailer.unread(user).deliver_now if user.notifications.unread.any?
       end
     end
 

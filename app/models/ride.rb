@@ -3,6 +3,7 @@
 class Ride < ApplicationRecord
   scope :active, -> { where('day >= ?', Date.today) }
   geocoded_by :location
+  after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
 
   belongs_to :user
   # TODO: add participations_counter_cache

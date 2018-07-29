@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+  geocoded_by :ip_address
+  after_validation :geocode, if: ->(obj){ obj.current_sign_in_ip.present? && obj.current_sign_in_ip? }
 
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
@@ -24,5 +26,10 @@ class User < ApplicationRecord
 
   def accepted_participant?(ride)
     participations.accepted.find_by(ride_id: ride.id).present?
+  end
+
+  def ip_address
+    return '24.9.64.99' if current_sign_in_ip == '127.0.0.1'
+    current_sign_in_ip.to_s # current_sign_in_ip.class == IPAddr
   end
 end
