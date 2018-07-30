@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   geocoded_by :ip_address
-  after_validation :geocode, if: ->(obj){ obj.current_sign_in_ip.present? && obj.current_sign_in_ip? }
+  after_validation :geocode, if: ->(obj) { obj.current_sign_in_ip.present? && obj.current_sign_in_ip? }
 
-  enum role: [:user, :vip, :admin]
-  after_initialize :set_default_role, :if => :new_record?
-  after_create { self.create_setting }
-  validates_presence_of :name
+  enum role: %i[user vip admin]
+  after_initialize :set_default_role, if: :new_record?
+  after_create { create_setting }
+  validates :name, presence: true
 
   has_many :rides, dependent: :destroy
   has_many :participations, dependent: :destroy
@@ -18,7 +20,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one :setting, dependent: :destroy
   has_one_attached :avatar
-  delegate :comment_notifications?, :participation_notifications?, to: :setting
+  delegate :ride_notifications?, :comment_notifications?, 
+    :participation_notifications?, to: :setting
 
   def set_default_role
     self.role ||= :vip

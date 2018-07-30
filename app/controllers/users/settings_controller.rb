@@ -22,7 +22,11 @@ module Users
     private 
 
     def setting_params
-      params.require(:setting).permit(:comment_notifications, :participation_notifications)
+      params.require(:setting).permit(
+        :comment_notifications, 
+        :ride_notifications, 
+        :participation_notifications
+      )
     end
   end
 end
