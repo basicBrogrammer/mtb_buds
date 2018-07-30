@@ -8,9 +8,9 @@
 # Environment variables (ENV['...']) can be set in the file .env file.
 require 'factory_bot_rails'
 
-user = FactoryBot.create(:user, email: 'user@example.com')
-user2 = FactoryBot.create(:user, email: 'user2@example.com')
-user3 = FactoryBot.create(:user, email: 'user3@example.com')
+user = FactoryBot.create(:user, :fort_collins, email: 'user@example.com')
+user2 = FactoryBot.create(:user, :boulder, email: 'user2@example.com')
+user3 = FactoryBot.create(:user, :grand_junction, email: 'user3@example.com')
 
 [7031010, 850844, 368627, 7001490, 46286, 7019010, 68428,
  7025613, 1362740, 520343, 7002791, 255931, 601365, 53819,

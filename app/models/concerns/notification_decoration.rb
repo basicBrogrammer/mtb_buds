@@ -1,11 +1,12 @@
 module NotificationDecoration
   extend ActiveSupport::Concern
-  included do 
-    delegate :ride, to: :target
-  end
 
   def comment
     self.target
+  end
+
+  def ride
+    target_type == 'Ride' ? target : target.ride
   end
 
   def title
@@ -18,6 +19,8 @@ module NotificationDecoration
       elsif self.target.accepted?
         "<b>#{self.actor.name}</b> added you to their ride."
       end
+    when 'Ride'
+      "<b>#{self.actor.name}</b> just posted a ride near you."
     else
       'Brrraaaapppp!!!'
     end

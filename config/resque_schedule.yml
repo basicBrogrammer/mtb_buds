@@ -6,7 +6,7 @@
   # description: "This job is testing out scheduler"
 
 mailers_unread_notifications:
-  cron: "0 12,18 * * *"
+  cron: "0 16,22 * * *"
   class: "Mailers::UnreadNotificationsJob"
   queue: mailers
   args:

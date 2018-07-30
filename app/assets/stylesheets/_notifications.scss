@@ -1,5 +1,5 @@
 .notification {
-  &--comment, &--participation {
+  &--comment, &--participation, &--ride {
     @extend .collection-item, .avatar, .black-text;
     border-bottom: 1px solid #e0e0e0 !important;
 

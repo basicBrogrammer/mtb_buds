@@ -17,15 +17,16 @@
               = render 'shared/preloader', data_target: 'collapsible-remote.preloader'
 
 = render @ride
-  - if join_able? || @ride.owner?(current_user)
-    .card-action.valign-wrap
-      - if join_able?
-        = button_to 'Join', ride_participations_path(@ride),
-          params: { user_id: current_user.id }, class: 'btn'
-      - if @ride.owner?(current_user)
-        = link_to 'Edit', edit_ride_path(@ride), class: 'btn green lighten-1'
-        = link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' },
-          method: :delete, class: 'btn red lighten-1'
+  .card-action.valign-wrap
+    - if join_able?
+      = button_to 'Join', ride_participations_path(@ride),
+        params: { user_id: current_user.id }, class: 'btn'
+    - elsif @ride.owner?(current_user)
+      = link_to 'Edit', edit_ride_path(@ride), class: 'btn green lighten-1'
+      = link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' },
+        method: :delete, class: 'btn red lighten-1'
+    - else 
+      p Your request is pending.
 
 
 - if @ride.owner?(current_user) || @participations.pluck(:user_id).include?(current_user.id)

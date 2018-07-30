@@ -12,7 +12,7 @@ feature 'Navigation links', :devise do
     visit root_path
     expect(page).to_not have_selector('nav')
     expect(page).to have_content 'Find new trails.'
-    expect(page).to have_content 'Meet, ride, and brraappp with new people!'
+    expect(page).to have_content 'Meet some cool people and shred some more gnar!'
     expect(page).to have_content 'Sign in'
     expect(page).to have_content 'Sign up'
   end
