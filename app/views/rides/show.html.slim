@@ -2,19 +2,18 @@
   .main-page-grid
     = link_to 'Back', :back, class: 'btn'
 
-- if @participations.any?
-  .row
-    .main-page-grid
-      div{ data-controller='collapsible-remote'
-        data-collapsible-remote-remote-url="/rides/#{@ride.id}/participants"}
-        ul.collapsible data-target='collapsible-remote.collapseTrigger'
-          li
-            .collapsible-header
-              /i.medium.material-icons arrow_drop_down
-              | Riders: #{@participations.count}
-            .collapsible-body
-              div{ data-target='collapsible-remote.body' }
-              = render 'shared/preloader', data_target: 'collapsible-remote.preloader'
+.row
+  .main-page-grid
+    div{ data-controller='collapsible-remote'
+      data-collapsible-remote-remote-url="/rides/#{@ride.id}/participants"}
+      ul.collapsible data-target='collapsible-remote.collapseTrigger'
+        li
+          .collapsible-header
+            /i.medium.material-icons arrow_drop_down
+            | Riders: #{@participations.count + 1}
+          .collapsible-body
+            div{ data-target='collapsible-remote.body' }
+            = render 'shared/preloader', data_target: 'collapsible-remote.preloader'
 
 = render @ride
   .card-action.valign-wrap
@@ -25,17 +24,17 @@
       = link_to 'Edit', edit_ride_path(@ride), class: 'btn green lighten-1'
       = link_to 'Destroy', @ride, data: { confirm: 'Are you sure?' },
         method: :delete, class: 'btn red lighten-1'
-    - else 
+    - elsif rider_pending?
       p Your request is pending.
 
 
-- if @ride.owner?(current_user) || @participations.pluck(:user_id).include?(current_user.id)
+- if @ride.owner?(current_user) || rider_accepted?
   .row
     .main-page-grid
       - if mobile?
-        .collection 
+        .collection
           = link_to 'Comments', ride_comments_path(@ride), class: 'collection-item center-align'
-      - else 
+      - else
         div{ data-controller='remote-load'
           data-remote-load-url="/rides/#{@ride.id}/comments"}
             div{ data-target='remote-load.body' }

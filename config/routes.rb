@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     root to: 'users#index'
+    # authenticate :user do
+    # mount Resque::Server, at: '/jobs'
+    # end
   end
 
   unauthenticated do
@@ -12,19 +15,16 @@ Rails.application.routes.draw do
       root to: 'home#index'
     end
   end
-
   root to: 'rides#index'
 
   devise_for :users
+
   resources :users, except: %i[new edit] do
     resources :settings, only: :update, controller: 'users/settings'
   end
 
-  # authenticate :user do
-  # mount Resque::Server, at: '/jobs'
-  # end
-
   resources :my_rides, only: :index
+
   # order matters ??
   namespace :rides do
     resources :infinite_load, only: :index

@@ -1,4 +1,12 @@
 ul.collection.participants
+  li.collection-item.avatar
+    = prof_pic(@ride.user, css: 'circle')
+    span.title= @ride.user.name
+    p
+      span.left.badge{class="accepted"
+        data-badge-caption="" }
+        | owner
+
   - participations.each do |participation|
     li.collection-item.avatar
       = prof_pic(participation.user, css: 'circle')

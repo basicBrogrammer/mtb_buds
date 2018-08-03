@@ -19,6 +19,18 @@ module RideHelper
     else
       'star_border'
     end
+  end
 
+  def rider_pending?
+    !rider_accepted?
+  end
+  
+  def rider_accepted?
+    @participations.pluck(:user_id).include? current_user.id
+  end
+
+  def join_able?
+    @ride.user_id != current_user.id &&
+      Participation.where(ride_id: @ride.id, user_id: current_user.id).none?
   end
 end

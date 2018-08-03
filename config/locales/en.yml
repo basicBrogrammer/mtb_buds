@@ -12,9 +12,9 @@ en:
     requested: 'Your ride request has been sent.'
     failed: 'Something went wrong. Please try again.'
   participant:
-    accepted: 'You add the participant to your ride.'
+    accepted: 'You added a participant to your ride.'
     acceptance_failed: 'Failed to add participant to ride.'
     rejected: 'You have rejected the participant to your ride.'
     rejection_failed: 'Failed to reject participant from ride.'
-  settings: 
+  settings:
     updated: 'Your settings were successfully updated.'
