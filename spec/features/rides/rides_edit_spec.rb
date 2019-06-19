@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 feature 'Rides edit page', :devise, :js do
   let(:user) { FactoryBot.create(:user) }
   let(:owner) { FactoryBot.create(:user) }
 
-  let!(:ride) { create(:ride, user: owner, trail_id: '7019014', time: Time.parse('12:00pm')) }
+  let!(:ride) { create(:ride, user: owner, trail_id: '7019014', time: '12:00pm') }
   let(:trail) { ride.trail }
 
   context 'user' do
@@ -62,10 +64,8 @@ feature 'Rides edit page', :devise, :js do
 
       ride.reload
       expect(ride.day).to eq new_day
-      expect(ride.time.hour).to eq 13
-      expect(ride.time.hour).to_not eq old_time.hour
-      expect(ride.time.min).to eq 20
-      expect(ride.time.min).to_not eq old_time.min
+      expect(ride.time).to_not eq old_time
+      expect(ride.time).to eq '01:20 PM'
     end
   end
 

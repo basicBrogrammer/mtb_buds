@@ -1,3 +1,5 @@
 web: bundle exec rails s
-worker: env TERM_CHILD=1 QUEUE=* bundle exec rake resque:work
-cron: bundle exec rake resque:scheduler
+# worker: env TERM_CHILD=1 QUEUE=* bundle exec rake resque:work
+# cron: bundle exec rake resque:scheduler
+frontend: ./bin/webpack-dev-server
+mailcatcher: ruby -rbundler/setup -e "Bundler.clean_exec('mailcatcher', '--foreground')"

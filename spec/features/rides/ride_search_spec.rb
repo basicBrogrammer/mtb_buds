@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Visitors and Users can search rides', :devise, :js do
   let!(:boulder_ride) { create(:ride, :boulder) }
   let!(:moab_ride) { create(:ride, :moab) }

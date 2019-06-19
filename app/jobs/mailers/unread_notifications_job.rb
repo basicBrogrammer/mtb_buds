@@ -7,11 +7,11 @@ module Mailers
       User.find_each(batch_size: 500) do |user|
         if user.notifications.unread.any?
           NotificationsMailer.unread(user).deliver_now
-          new_emails +=1
+          new_emails += 1
         end
       end
 
-      self.slack_notification(new_emails)
+      slack_notification(new_emails)
     end
 
     def self.slack_notification(new_emails)

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class MtbProjectRequest
-  ROOT_URL="https://www.mtbproject.com/data"
-  VALID_END_POINTS = ['get-trails', 'get-trails-by-id']
+  ROOT_URL = 'https://www.mtbproject.com/data'
+  VALID_END_POINTS = ['get-trails', 'get-trails-by-id'].freeze
   # https://www.mtbproject.com/data/get-trails?
   #   ?lat=40.0274&lon=-105.2519&maxDistance=10&maxResult
   # https://www.mtbproject.com/data/get-trails-by-id
@@ -17,12 +19,12 @@ class MtbProjectRequest
 
   def call
     response = get_json
-    JSON.parse(response.body)['trails']
+    JSON.parse(response.body)['trails'].map { |trail| Hashie::Mash.new(trail) }
   end
 
   def get_json
     Rails.cache.fetch(cache_key, expires_in: expires_in) do
-      client.get do |req|                           # GET http://sushi.com/search?page=2&limit=100
+      client.get do |req| # GET http://sushi.com/search?page=2&limit=100
         req.headers['Content-Type'] = 'application/json'
         req.url endpoint
         req.params = get_params
@@ -32,12 +34,10 @@ class MtbProjectRequest
 
   def get_params
     params.merge(
-      {
-        key: ENV['mtb_project_key'],
-        maxDistance: 50,
-        maxResults: 250,
-        sort: 'distance'
-      }
+      key: ENV['mtb_project_key'],
+      maxDistance: 50,
+      maxResults: 250,
+      sort: 'distance'
     )
   end
 

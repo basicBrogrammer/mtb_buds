@@ -17,7 +17,21 @@ Rails.application.routes.draw do
   end
   root to: 'rides#index'
 
-  devise_for :users
+  scope :api do
+    use_doorkeeper
+  end
+
+  namespace :api do
+    devise_scope :user do
+      get '/users/me' => 'users#me'
+      resources :users, only: :create
+    end
+    resource :confirmations
+    resources :rides
+    resources :trails, only: :index
+  end
+
+  devise_for :users, controllers: { confirmations: 'confirmations' }
 
   resources :users, except: %i[new edit] do
     resources :settings, only: :update, controller: 'users/settings'

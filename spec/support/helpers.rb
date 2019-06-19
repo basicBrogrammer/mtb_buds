@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'support/helpers/session_helpers'
 require 'support/helpers/confirm_dialog_helper'
 require 'support/helpers/select2_helpers'

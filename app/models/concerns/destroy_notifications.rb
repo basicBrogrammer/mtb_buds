@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DestroyNotifications
   extend ActiveSupport::Concern
   included do
@@ -7,6 +9,6 @@ module DestroyNotifications
   private
 
   def destory_notifications
-    DestroyNotificationsJob.perform_later(target: self.id, target_type: self.model_name.human)
+    DestroyNotificationsJob.perform_later(target: id, target_type: model_name.human)
   end
 end
