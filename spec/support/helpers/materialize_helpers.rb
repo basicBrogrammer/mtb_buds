@@ -13,7 +13,7 @@ module Features
         find('li', text: date.strftime('%B')).click
       end
 
-      find("button[data-pika-day='#{date.day}']").click
+      find("button[data-day='#{date.day}']").click
       find('.datepicker-done').click
     end
   end

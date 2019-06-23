@@ -45,6 +45,8 @@ gem 'webpacker'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'cli-ui'
+  gem 'dokku-cli'
   # gem 'letter_opener'
   # gem 'bullet'
   # gem 'capistrano', '~> 3.0.1'

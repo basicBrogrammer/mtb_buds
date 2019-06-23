@@ -43,10 +43,7 @@ feature 'Rides edit page', :devise, :js do
       old_time = ride.time
 
       # fill out day
-      find('#ride_day').click
-
-      find("button[data-pika-day='#{new_day.day}']").click
-      find('.datepicker-done').click
+      select_date '#ride_day', date: new_day
 
       # fill out time
       find('#ride_time').click

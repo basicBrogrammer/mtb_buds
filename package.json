@@ -5,7 +5,7 @@
     "@rails/webpacker": "^3.4.3",
     "eslint": "^4.19.1",
     "jquery": "^3.3.1",
-    "materialize-css": "next",
+    "materialize-css": "^1.0.0-rc.2",
     "select2": "^4.0.6-rc.1",
     "stimulus": "^1.0.1"
   },
