@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Rides edit page', :devise, :js do
   let(:user) { FactoryBot.create(:user) }
   let(:owner) { FactoryBot.create(:user) }

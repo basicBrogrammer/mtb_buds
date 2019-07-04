@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TrailsController < ApplicationController
   def index
     @trails ||= MtbProjectRequest.new(
@@ -7,9 +9,7 @@ class TrailsController < ApplicationController
       }
     ).call
 
-    if params[:layout] == 'false'
-      render layout: false
-    end
+    render layout: false if params[:layout] == 'false'
   end
 
   private

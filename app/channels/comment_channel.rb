@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentChannel < ApplicationCable::Channel
   def subscribed
     stream_from "comments-#{current_user.id}"
@@ -14,7 +16,7 @@ class CommentChannel < ApplicationCable::Channel
     end
     comment_params.delete('authenticity_token')
     comment_params.delete('utf8')
- 
+
     Comment.create(comment_params)
   end
 end

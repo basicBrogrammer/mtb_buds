@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateParticipations < ActiveRecord::Migration[5.2]
   def change
     create_table :participations do |t|
@@ -6,7 +8,7 @@ class CreateParticipations < ActiveRecord::Migration[5.2]
       t.integer :status, default: 0
 
       t.timestamps
-      t.index [:user_id, :ride_id], unique: true
+      t.index %i[user_id ride_id], unique: true
     end
   end
 end

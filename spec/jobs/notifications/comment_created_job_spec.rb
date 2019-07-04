@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Notifications::CommentCreatedJob, type: :job do
@@ -25,8 +27,8 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
       end
     end
 
-    it 'will not create a notification when the owner comments' do 
-      perform_enqueued_jobs  do
+    it 'will not create a notification when the owner comments' do
+      perform_enqueued_jobs do
         expect(owner.notifications.count).to eq 0
         create(:comment, ride: ride, user: owner)
 
@@ -36,7 +38,7 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
 
     it 'will not create a notification if the user has comment notifications off' do
       owner.setting.update(comment_notifications: false)
-      perform_enqueued_jobs  do
+      perform_enqueued_jobs do
         expect(owner.notifications.count).to eq 0
 
         create(:comment, ride: ride, user: other_participant)
@@ -47,9 +49,9 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
     end
   end
 
-  context 'accepted participants' do 
-    it 'will create a notification when a participant comments' do 
-      perform_enqueued_jobs  do
+  context 'accepted participants' do
+    it 'will create a notification when a participant comments' do
+      perform_enqueued_jobs do
         expect(accepted_participant.notifications.count).to eq 0
         comment = create(:comment, ride: ride, user: other_participant)
 
@@ -61,7 +63,7 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
     end
 
     it 'will create a notification when the owner comments' do
-      perform_enqueued_jobs  do
+      perform_enqueued_jobs do
         expect(accepted_participant.notifications.count).to eq 0
 
         comment = create(:comment, ride: ride, user: owner)
@@ -74,7 +76,7 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
     end
 
     it 'will not create a notification when the participant comments' do
-      perform_enqueued_jobs  do
+      perform_enqueued_jobs do
         expect(accepted_participant.notifications.count).to eq 0
 
         create(:comment, ride: ride, user: accepted_participant)
@@ -86,7 +88,7 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
     it 'will not create a notification if the user has comment notifications off' do
       accepted_participant.setting.update(comment_notifications: false)
 
-      perform_enqueued_jobs  do
+      perform_enqueued_jobs do
         expect(accepted_participant.notifications.count).to eq 0
         create(:comment, ride: ride, user: other_participant)
 
@@ -95,9 +97,9 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
     end
   end
 
-  context 'pending participants'  do
+  context 'pending participants' do
     it 'will not create a notification when another participant comments' do
-      perform_enqueued_jobs  do
+      perform_enqueued_jobs do
         expect(pending_participant.notifications.count).to eq 0
 
         create(:comment, ride: ride, user: pending_participant)
@@ -107,7 +109,7 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
     end
 
     it 'will not create a notification when the owner comments' do
-      perform_enqueued_jobs  do
+      perform_enqueued_jobs do
         expect(pending_participant.notifications.count).to eq 0
 
         create(:comment, ride: ride, user: owner)
@@ -117,9 +119,9 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
     end
   end
 
-  context 'rejected participants'  do
+  context 'rejected participants' do
     it 'will not create a notification when another participant comments' do
-      perform_enqueued_jobs  do
+      perform_enqueued_jobs do
         expect(rejected_participant.notifications.count).to eq 0
 
         create(:comment, ride: ride, user: rejected_participant)
@@ -129,7 +131,7 @@ RSpec.describe Notifications::CommentCreatedJob, type: :job do
     end
 
     it 'will not create a notification when the owner comments' do
-      perform_enqueued_jobs  do
+      perform_enqueued_jobs do
         expect(rejected_participant.notifications.count).to eq 0
 
         create(:comment, ride: ride, user: owner)

@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
 gem 'materialize-form'
 gem 'materialize-sass', '~> 1.0.0.beta'
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 1.0'
 gem 'puma', '~> 3.7'
 gem 'redis-rails'
 gem 'resque'
@@ -68,7 +68,7 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara', '~> 2.13'
+  gem 'capybara', '~> 3.18'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-rails'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Participation Notifications', :devise, :js do
   let!(:user) { FactoryBot.create(:user) }
   let!(:ride) { create(:ride, :boulder) }
@@ -8,11 +10,11 @@ feature 'Participation Notifications', :devise, :js do
   let(:my_participation) { create(:participation, :accepted, user: user) }
   let(:other_ride) { my_participation.ride }
   let!(:accpted_participation_notification) do
-    create(:notification, user: user, target: my_participation, actor: other_ride.user) 
+    create(:notification, user: user, target: my_participation, actor: other_ride.user)
   end
 
   context 'comments' do
-    before do 
+    before do
       sign_in_as user
       visit notifications_path
     end
@@ -41,7 +43,7 @@ feature 'Participation Notifications', :devise, :js do
       expect(page).to have_current_path ride_path(other_ride)
     end
 
-    def notification_title(notification) 
+    def notification_title(notification)
       "#{notification.actor.name} wants to join your ride."
     end
   end

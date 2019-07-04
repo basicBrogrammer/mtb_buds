@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RideHelper
   def ride_day_and_time(ride, user)
     result = ride.pretty_day
@@ -24,7 +26,7 @@ module RideHelper
   def rider_pending?
     !rider_accepted?
   end
-  
+
   def rider_accepted?
     @participations.pluck(:user_id).include? current_user.id
   end

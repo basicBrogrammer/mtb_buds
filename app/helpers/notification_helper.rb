@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NotificationHelper
   def notification_css_class(notification)
     read_or_not = notification.read? ? 'read' : 'unread'

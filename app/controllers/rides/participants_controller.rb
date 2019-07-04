@@ -7,19 +7,17 @@ module Rides
 
     def index
       @ride = Ride.find(params[:ride_id])
-      if current_user == @ride.user
-        @participations = @ride.participations.includes(:user)
-      else
-        @participations = @ride.participations.accepted.includes(:user)
-      end
+      @participations = if current_user == @ride.user
+                          @ride.participations.includes(:user)
+                        else
+                          @ride.participations.accepted.includes(:user)
+                        end
       render partial: 'rides/participations'
     end
 
     private
 
-    def participations
-      @participations
-    end
+    attr_reader :participations
     helper_method :participations
   end
 end

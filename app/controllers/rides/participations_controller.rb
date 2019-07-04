@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Rides
   class ParticipationsController < ApplicationController
     def create

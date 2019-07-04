@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 feature 'Participation rejecting', :devise, :js do
-  let!(:user) { FactoryBot.create(:user) }
-  let!(:owner) { FactoryBot.create(:user) }
+  let!(:user) { create(:user) }
+  let!(:owner) { create(:user) }
 
   let!(:ride) { create(:ride, user: owner, trail_id: '7019014') }
   let!(:other_ride) { create(:ride, user: owner, trail_id: '7019014') }
@@ -11,7 +13,7 @@ feature 'Participation rejecting', :devise, :js do
       sign_in_as(user)
       visit ride_path(ride)
       expect(page).to_not have_content user.name
-      expect(page).to_not have_content 'Riders'
+      expect(page).to have_content 'Riders: 1'
 
       sign_in_as owner
       visit ride_path(ride)
@@ -49,8 +51,12 @@ feature 'Participation rejecting', :devise, :js do
     end
 
     scenario 'will not see a link to reject' do
-      expect(page).to_not have_selector '.collapsible-header'
-      expect(page).to_not have_button 'Accept'
+      open_riders_collapse
+      within '.collection.participants' do
+        expect(all('.collection-item').count).to eq 1
+        expect(page).to have_content owner.name
+        expect(page).to_not have_content user.name
+      end
     end
   end
 end

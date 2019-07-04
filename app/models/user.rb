@@ -20,8 +20,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one :setting, dependent: :destroy
   has_one_attached :avatar
-  delegate :ride_notifications?, :comment_notifications?, 
-    :participation_notifications?, to: :setting
+  delegate :ride_notifications?, :comment_notifications?,
+           :participation_notifications?, to: :setting
 
   def set_default_role
     self.role ||= :vip
@@ -33,6 +33,7 @@ class User < ApplicationRecord
 
   def ip_address
     return '24.9.64.99' if current_sign_in_ip == '127.0.0.1'
+
     current_sign_in_ip.to_s # current_sign_in_ip.class == IPAddr
   end
 end

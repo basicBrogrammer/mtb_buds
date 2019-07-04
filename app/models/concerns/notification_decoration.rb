@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module NotificationDecoration
   extend ActiveSupport::Concern
 
   def comment
-    self.target
+    target
   end
 
   def ride
@@ -10,17 +12,17 @@ module NotificationDecoration
   end
 
   def title
-    case self.target_type
+    case target_type
     when 'Comment'
-      "<b>#{self.actor.name}</b> commented on your ride."
+      "<b>#{actor.name}</b> commented on your ride."
     when 'Participation'
-      if self.target.pending?
-        "<b>#{self.actor.name}</b> wants to join your ride."
-      elsif self.target.accepted?
-        "<b>#{self.actor.name}</b> added you to their ride."
+      if target.pending?
+        "<b>#{actor.name}</b> wants to join your ride."
+      elsif target.accepted?
+        "<b>#{actor.name}</b> added you to their ride."
       end
     when 'Ride'
-      "<b>#{self.actor.name}</b> just posted a ride near you."
+      "<b>#{actor.name}</b> just posted a ride near you."
     else
       'Brrraaaapppp!!!'
     end

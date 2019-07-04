@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LocationAutocompleteController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 

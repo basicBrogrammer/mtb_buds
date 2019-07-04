@@ -4,7 +4,7 @@
        = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
           .card-content
             h3.card-title Sign up
-            = devise_error_messages!
+            = render "devise/shared/error_messages", resource: resource
             .row
               = f.input :name, autofocus: true, wrapper_html: { class: 'l12 s12' }
               = f.input :email, wrapper_html: { class: 'l12 s12' }

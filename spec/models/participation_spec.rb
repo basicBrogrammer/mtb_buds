@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Participation, type: :model do
@@ -6,7 +8,7 @@ RSpec.describe Participation, type: :model do
   it 'enqueues the Notifications::ParticipationCreatedJob job' do
     assert_enqueued_jobs 0, only: Notifications::ParticipationCreatedJob
 
-    assert_enqueued_with(job: Notifications::ParticipationCreatedJob) do 
+    assert_enqueued_with(job: Notifications::ParticipationCreatedJob) do
       create(:participation, id: 1)
     end
 
@@ -18,7 +20,7 @@ RSpec.describe Participation, type: :model do
     participation = create(:participation, id: 1)
     assert_enqueued_jobs 1, only: Notifications::ParticipationCreatedJob
 
-    assert_enqueued_with(job: Notifications::ParticipationAcceptedJob) do 
+    assert_enqueued_with(job: Notifications::ParticipationAcceptedJob) do
       participation.accepted!
     end
 

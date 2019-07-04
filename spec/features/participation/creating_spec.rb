@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Participation', :devise, :js do
   let!(:user) { FactoryBot.create(:user) }
   let!(:owner) { FactoryBot.create(:user) }
@@ -23,7 +25,7 @@ feature 'Participation', :devise, :js do
       sign_in_as(owner)
       visit ride_path(ride)
       expect(page).to_not have_content user.name
-      expect(page).to_not have_content 'Riders'
+      expect(page).to have_content 'Riders: 1'
 
       sign_in_as user
       visit ride_path(ride)

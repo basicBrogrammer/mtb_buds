@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Notifications::ParticipationAcceptedJob, type: :job do
@@ -32,19 +34,19 @@ RSpec.describe Notifications::ParticipationAcceptedJob, type: :job do
     end
   end
 
-  context 'pending' do 
+  context 'pending' do
     it 'will not create any notifications' do
       call_job(pending_participation, notification_count: 0)
     end
   end
-  context 'rejected' do 
+  context 'rejected' do
     it 'will not create any notifications' do
       call_job(rejected_participation, notification_count: 0)
     end
   end
 
   def call_job(participation, notification_count: 1)
-    expect(Notification.count).to eq 0 
+    expect(Notification.count).to eq 0
 
     Notifications::ParticipationAcceptedJob.new.perform(participation)
     expect(Notification.count).to eq notification_count

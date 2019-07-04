@@ -1,28 +1,28 @@
+# frozen_string_literal: true
+
 class RidesController < ApplicationController
-  before_action :set_ride, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_ride, only: %i[show edit update destroy]
+  before_action :correct_user, only: %i[edit update destroy]
   skip_before_action :authenticate_user!, only: :index
-  rescue_from ActiveRecord::RecordNotFound do |exception|
+  rescue_from ActiveRecord::RecordNotFound do |_exception|
     redirect_to root_path, notice: I18n.t('rides.not_found')
   end
 
-  def index
-  end
+  def index; end
 
   def show
-    if current_user == @ride.user
-      @participations = @ride.participations.includes(:user)
-    else
-      @participations = @ride.participations.accepted.includes(:user)
-    end
+    @participations = if current_user == @ride.user
+                        @ride.participations.includes(:user)
+                      else
+                        @ride.participations.accepted.includes(:user)
+                      end
   end
 
   def new
     @ride = Ride.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     # TODO: servicitize controllers?
@@ -63,24 +63,25 @@ class RidesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ride
-      @ride = Ride.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ride_params
-      params.fetch(:ride).permit(:trail_id, :day, :time)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ride
+    @ride = Ride.find(params[:id])
+  end
 
-    def correct_user
-      if @ride.user != current_user
-        redirect_to root_path, alert: I18n.t('unauthorized')
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ride_params
+    params.fetch(:ride).permit(:trail_id, :day, :time)
+  end
 
-    def search_params
-      params.permit(:location)
+  def correct_user
+    if @ride.user != current_user
+      redirect_to root_path, alert: I18n.t('unauthorized')
     end
-    helper_method :search_params
+  end
+
+  def search_params
+    params.permit(:location)
+  end
+  helper_method :search_params
 end

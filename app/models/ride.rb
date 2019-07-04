@@ -4,8 +4,8 @@ class Ride < ApplicationRecord
   scope :active, -> { where('day >= ?', Date.today) }
 
   geocoded_by :location
-  after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
-  
+  after_validation :geocode, if: ->(obj) { obj.location.present? && obj.location_changed? }
+
   include DestroyNotifications
   after_create { Notifications::RideCreatedJob.perform_later(self) }
 
