@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 feature 'Comment Notifications', :devise, :js do
   let!(:user) { create(:user) }
   let!(:ride) { create(:ride, trail_id: '7019014') }
@@ -8,7 +6,7 @@ feature 'Comment Notifications', :devise, :js do
   let!(:other_users_comment_notification) { create(:notification, :comment_target) }
 
   context 'comments' do
-    before do
+    before do 
       sign_in_as user
       visit notifications_path
     end
@@ -28,7 +26,7 @@ feature 'Comment Notifications', :devise, :js do
       expect(page).to_not have_content other_users_comment_notification.comment.body
     end
 
-    def notification_title(notification)
+    def notification_title(notification) 
       "#{notification.actor.name} commented on your ride."
     end
   end

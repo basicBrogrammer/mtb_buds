@@ -1,24 +1,21 @@
-# frozen_string_literal: true
-
 class Notification < ApplicationRecord
   include NotificationDecoration
   belongs_to :actor, class_name: 'User', optional: true
   belongs_to :user
   belongs_to :target, polymorphic: true, optional: true
-  # types:
+  # types: 
   #   Comments
 
   scope :unread, -> { where(read_at: nil) }
 
   def read?
-    read_at.present?
+    self.read_at.present?
   end
 
   # TODO: background job
   def self.read!(ids = [])
     return if ids.blank?
-
-    Notification.where(id: ids).update_all(read_at: Time.zone.now)
+    Notification.where(id: ids).update_all(read_at: Time.now)
   end
 
   def self.unread_count(user)

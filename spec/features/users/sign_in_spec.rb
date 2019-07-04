@@ -1,10 +1,9 @@
-# frozen_string_literal: true
-
 # Feature: Sign in
 #   As a user
 #   I want to sign in
 #   So I can visit protected areas of the site
 feature 'Sign in', :devise, :js do
+
   # Scenario: User cannot sign in if not registered
   #   Given I do not exist as a user
   #   When I sign in with valid credentials
@@ -46,4 +45,5 @@ feature 'Sign in', :devise, :js do
     fill_out_sign_in_form(user.email, 'invalidpass')
     expect(page).to have_content I18n.t 'devise.failure.invalid', authentication_keys: 'Email'
   end
+
 end

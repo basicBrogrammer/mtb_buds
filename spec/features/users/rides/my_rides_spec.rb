@@ -1,13 +1,11 @@
-# frozen_string_literal: true
-
 feature 'My rides page', :devise, :js do
   let(:user) { create(:user) }
 
-  describe 'navigation' do
+  describe 'navigation' do 
     scenario 'visitors cannot visit' do
       visit rides_path
 
-      within 'nav' do
+      within 'nav' do 
         expect(page).to_not have_link 'My Rides'
       end
       visit my_rides_path
@@ -20,7 +18,7 @@ feature 'My rides page', :devise, :js do
       sign_in_as user
       visit root_path
 
-      within 'nav' do
+      within 'nav' do 
         find('.navbar-avatar').click
 
         within '#prof-drop' do
@@ -34,7 +32,7 @@ feature 'My rides page', :devise, :js do
 
   describe 'rides I created' do
     let!(:future_ride) { create(:ride, user: user, trail_id: '7019014', day: Date.tomorrow) }
-    let!(:past_ride) { create(:ride, user: user, trail_id: '365066', day: Date.today - 1.day) }
+    let!(:past_ride) { create(:ride, user: user, trail_id: '365066', day: Date.today - 1.days) }
 
     before do
       sign_in_as user
@@ -57,26 +55,26 @@ feature 'My rides page', :devise, :js do
   describe "rides I'm participating in" do
     let!(:future_participating_ride) do
       create(:participation, :accepted,
-             ride: create(:ride, trail_id: '7019014'),
-             user: user).ride
+        ride: create(:ride, trail_id: '7019014'),
+        user: user).ride
     end
 
     let!(:past_participating_ride) do
-      create(:participation, :accepted,
-             ride: create(:ride, trail_id: '365066', day: Date.today - 1.day),
-             user: user).ride
+       create(:participation, :accepted,
+         ride: create(:ride, trail_id: '365066', day: Date.today - 1.day),
+         user: user).ride
     end
 
     let!(:pending_participating_ride) do
-      create(:participation, :pending,
-             ride: create(:ride, trail_id: '2421789'),
-             user: user).ride
+       create(:participation, :pending,
+         ride: create(:ride, trail_id: '2421789'),
+         user: user).ride
     end
 
     let!(:rejected_participating_ride) do
-      create(:participation, :rejected,
-             ride: create(:ride, trail_id: '342104'),
-             user: user).ride
+       create(:participation, :rejected,
+         ride: create(:ride, trail_id: '342104'),
+         user: user).ride
     end
 
     before do
@@ -128,7 +126,7 @@ feature 'My rides page', :devise, :js do
   describe 'other peoples participating rides' do
     let!(:others_participating_ride) do
       create(:participation, :accepted,
-             ride: create(:ride, trail_id: '7019014')).ride
+        ride: create(:ride, trail_id: '7019014')).ride
     end
     before do
       sign_in_as user

@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 describe User do
   subject { create(:user, email: 'user@example.com') }
 
   it { should respond_to(:email) }
 
-  it '#email returns a string' do
+  it "#email returns a string" do
     expect(subject.email).to match 'user@example.com'
   end
 
@@ -26,7 +24,7 @@ describe User do
     let(:ride) { create(:ride) }
     let(:old_ride) { create(:ride, day: 3.days.before) }
 
-    before do
+    before do 
       create(:participation, user: subject, ride: ride)
       create(:participation, user: subject, ride: old_ride)
     end
@@ -40,9 +38,9 @@ describe User do
   describe '#notifications' do
     let(:user) { create(:user) }
     let(:notifications) { create_list(:notification, 10, :comment_target, user: user) }
-    before do
+    before do 
       read_notifications = notifications.select.with_index do |_, index|
-        index.even?
+        index % 2 == 0
       end
 
       Notification.read!(read_notifications.map(&:id))
@@ -61,11 +59,11 @@ describe User do
     end
   end
 
-  describe '.geocode' do
+  describe '.geocode' do 
     let(:user) { create(:user) }
-    let(:expected_ip) { '24.9.64.99' }
-    let(:another_ip) { '198.85.228.129' }
-    it 'will update the users latitude and longitude after sign in ip changes' do
+    let(:expected_ip) { '24.9.64.99'}
+    let(:another_ip) { '198.85.228.129'}
+    it 'will update the users latitude and longitude after sign in ip changes' do 
       expect(user.current_sign_in_ip).to be_nil
       expect(user.ip_address).to be_blank
       expect(user.latitude).to be_nil

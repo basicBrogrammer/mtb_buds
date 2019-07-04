@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 class NotificationsMailer < ApplicationMailer
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -11,10 +10,10 @@ class NotificationsMailer < ApplicationMailer
     @notifications_by_type = @user.notifications.unread.group_by do |note|
       [note.target_type, note.target.try(:status)]
     end
-    mail to: @user.email, subject: 'Bi-daily MTBGrouRides Check-in'
+    mail to: @user.email, subject: "Bi-daily MTBGrouRides Check-in"
   end
 
-  private
+  private 
 
   def type_text(type, status)
     case type
@@ -24,7 +23,7 @@ class NotificationsMailer < ApplicationMailer
       elsif status == 'pending'
         'interested riders'
       end
-    else
+    else 
       type.downcase.pluralize
     end
   end

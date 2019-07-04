@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Feature: User delete
 #   As a user
 #   I want to delete my user profile
@@ -18,4 +16,5 @@ feature 'User delete', :devise, :js do
     page.driver.browser.switch_to.alert.accept
     expect(page).to have_content I18n.t 'devise.registrations.destroyed'
   end
+
 end

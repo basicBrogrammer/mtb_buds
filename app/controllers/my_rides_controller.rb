@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class MyRidesController < ApplicationController
   def index
     @my_rides = current_user.rides.active
@@ -9,6 +7,6 @@ class MyRidesController < ApplicationController
   private
 
   def ids_for_participating_rides
-    current_user.participations.where(status: %i[pending accepted]).pluck(:ride_id)
+    current_user.participations.where(status: [:pending, :accepted]).pluck(:ride_id)
   end
 end

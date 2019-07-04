@@ -12,9 +12,12 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-default: &default
+default: &default 
   adapter: postgresql
   encoding: unicode
+  host: localhost # might have to change once dockerized
+  username: postgres
+  password: 
   pool: 5
 
 development:

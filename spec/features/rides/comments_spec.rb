@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 feature 'Ride comments', :devise, :js do
   let!(:user) { FactoryBot.create(:user) }
   let!(:ride) { create(:ride, trail_id: '7019014') }
@@ -55,7 +53,7 @@ feature 'Ride comments', :devise, :js do
     end
   end
 
-  context 'non-participant' do
+  context 'non-participant' do 
     scenario 'cannot see comments' do
       sign_in_as(user)
       visit ride_path(ride)

@@ -1,20 +1,18 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
   factory :participation do
     user { create(:user) }
     ride { create(:ride) }
 
     trait :pending do
-      status { 'pending' }
+      status 'pending'
     end
 
     trait :accepted do
-      status { 'accepted' }
+      status 'accepted'
     end
 
     trait :rejected do
-      status { 'rejected' }
+      status 'rejected'
     end
   end
 end

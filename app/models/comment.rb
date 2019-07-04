@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Comment < ApplicationRecord
   belongs_to :ride
   belongs_to :user

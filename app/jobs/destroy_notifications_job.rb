@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class DestroyNotificationsJob < ApplicationJob
   queue_as :default
 

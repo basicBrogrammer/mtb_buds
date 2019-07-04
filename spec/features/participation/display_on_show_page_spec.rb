@@ -1,15 +1,13 @@
-# frozen_string_literal: true
-
 feature 'Participation show page', :devise, :js do
   let(:user) { FactoryBot.create(:user) }
   let(:owner) { FactoryBot.create(:user) }
 
   let!(:ride) { create(:ride, user: owner, trail_id: '7019014') }
   let!(:other_ride) { create(:ride, user: owner, trail_id: '7019014') }
-  let!(:pending_participation) { create(:participation, :pending, ride: ride) }
-  let!(:accepted_participation) { create(:participation, :accepted, ride: ride) }
-  let!(:rejected_participation) { create(:participation, :rejected, ride: ride) }
-  let!(:other_participation) { create(:participation, :accepted) }
+  let!(:pending_participation) { create(:participation, :pending, ride: ride)}
+  let!(:accepted_participation) { create(:participation, :accepted, ride: ride)}
+  let!(:rejected_participation) { create(:participation, :rejected, ride: ride)}
+  let!(:other_participation) { create(:participation, :accepted)}
 
   context 'owner' do
     before do
@@ -99,6 +97,7 @@ feature 'Participation show page', :devise, :js do
         expect(page).to_not have_content other_participation.user.name
       end
     end
+
   end
 
   context 'ride time visibility' do

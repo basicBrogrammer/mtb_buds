@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 feature 'Participation accepting', :devise, :js do
   let!(:user) { FactoryBot.create(:user) }
   let!(:owner) { FactoryBot.create(:user) }
@@ -13,7 +11,7 @@ feature 'Participation accepting', :devise, :js do
       sign_in_as(user)
       visit ride_path(ride)
       expect(page).to_not have_content user.name
-      expect(page).to have_content 'Riders: 1'
+      expect(page).to_not have_content 'Riders'
 
       sign_out
       sign_in_as owner

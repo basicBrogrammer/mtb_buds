@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Feature: Rides Index page
 #   As a user
 #   I want to see a list of rides

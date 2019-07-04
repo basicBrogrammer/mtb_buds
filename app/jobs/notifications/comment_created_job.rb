@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Notifications
   class CommentCreatedJob < ApplicationJob
     queue_as :default
@@ -9,7 +7,7 @@ module Notifications
       # Do something later
       if ride.user.comment_notifications? && ride.user != comment.user
         Notification.create(
-          actor: comment.user,
+          actor: comment.user, 
           target: comment,
           user: ride.user
         )
@@ -17,13 +15,13 @@ module Notifications
 
       ride.participations.accepted.each do |participation|
         participant = participation.user
-        next unless participant.comment_notifications? && participant != comment.user
-
-        Notification.create(
-          actor: comment.user,
-          target: comment,
-          user: participant
-        )
+        if participant.comment_notifications? && participant != comment.user
+          Notification.create(
+            actor: comment.user, 
+            target: comment,
+            user: participant
+          )
+        end
       end
     end
   end

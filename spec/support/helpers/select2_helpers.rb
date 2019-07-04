@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Features
   module Select2Helpers
     def select2(choice, from:)

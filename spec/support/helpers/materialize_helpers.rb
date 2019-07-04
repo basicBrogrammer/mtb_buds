@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Features
   module MaterializeHelpers
     def select_date(selector, date:)
@@ -10,7 +8,7 @@ module Features
       end
 
       within '.dropdown-content' do
-        find('li', text: date.strftime('%B')).click
+        find('li', text: date.strftime("%B")).click
       end
 
       find("button[data-day='#{date.day}']").click

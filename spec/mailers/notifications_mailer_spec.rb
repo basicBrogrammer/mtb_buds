@@ -41,7 +41,7 @@ RSpec.describe NotificationsMailer, type: :mailer do
     end
 
     context 'with only comments' do
-      before do
+      before do 
         perform_enqueued_jobs do
           # create notifications
           comment

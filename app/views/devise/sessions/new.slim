@@ -4,20 +4,20 @@
       = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
         .card-content
           h3.card-title Sign in
-          = render "devise/shared/error_messages", resource: resource
+          = devise_error_messages!
           .row
             = f.input :email, :autofocus => true, wrapper_html: { class: 'l12 s12'}
 
             = f.input :password, wrapper_html: { class: 'l12 s12'}
 
           .card-action
-            .row
+            .row 
               .col.l6.s12
                 = f.submit 'Sign in', class: 'btn', style: 'width:100%'
               - if devise_mapping.rememberable?
                 .col.l6.s12
                   = f.input :remember_me, as: :boolean
-            .row
+            .row 
               - if devise_mapping.recoverable?
                 .col.l6.s12
                   = link_to "Forgot password?", new_password_path(resource_name)

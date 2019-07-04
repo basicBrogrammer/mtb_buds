@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
 feature 'User settings', :devise, :js do
   let!(:user) { FactoryBot.create(:user) }
 
   context 'settings page' do
-    before do
+    before do 
       sign_in_as user
       visit edit_user_registration_path
     end
@@ -14,7 +12,7 @@ feature 'User settings', :devise, :js do
       expect(user.setting.participation_notifications).to eq true
 
       find('.collapsible-header', text: 'Notification Settings').click
-      within '.edit_setting' do
+      within '.edit_setting' do 
         find('.setting_comment_notifications .lever').click
         click_on 'Update'
       end
@@ -25,7 +23,7 @@ feature 'User settings', :devise, :js do
       expect(user.setting.participation_notifications).to eq true
 
       find('.collapsible-header', text: 'Notification Settings').click
-      within '.edit_setting' do
+      within '.edit_setting' do 
         find('.setting_participation_notifications .lever').click
         click_on 'Update'
       end

@@ -1,4 +1,0 @@
-GET http://localhost:5000/api/rides HTTP/1.1
-Content-Type: application/json
-Host: localhost:5000
-Authorization: Bearer QEKNaErAPdYObgxKpwkwlVNFDf1xER4qylITRJ_EWlQ

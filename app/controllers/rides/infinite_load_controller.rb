@@ -7,14 +7,14 @@ module Rides
 
     def index
       store_location_for(:user, rides_path)
-      @rides = if search_params[:location]
-                 Ride.active.near(search_params[:location]).page(params[:page])
-               else
-                 Ride.active.all.page(params[:page])
-               end
+      if search_params[:location]
+        @rides = Ride.active.near(search_params[:location]).page(params[:page])
+      else
+        @rides = Ride.active.all.page(params[:page])
+      end
     end
 
-    private
+    private 
 
     def search_params
       params.permit(:location)
