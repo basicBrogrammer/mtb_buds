@@ -36,3 +36,10 @@ document.addEventListener('turbolinks:load', function() {
   M.updateTextFields(); // reinitialize form label
   Waves.displayEffect(); // reinitialize wave effect on button
 });
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/service-worker.js', { scope: './' }).then(function(reg) {
+    console.log('[Companion]', 'Service worker registered!');
+    console.log(reg);
+  });
+}

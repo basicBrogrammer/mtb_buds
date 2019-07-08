@@ -46,4 +46,6 @@ Rails.application.routes.draw do
   resources :trails, only: :index
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
+  get '/service-worker.js' => 'service_worker#service_worker'
+  get '/manifest.json' => 'service_worker#manifest'
 end

@@ -19,7 +19,7 @@ export default class extends Controller {
   select2mount() {
     $(this.selectTarget).select2(this._select2Options);
 
-    $(this.selectTarget).on('select2:select', e => {
+    $(this.selectTarget).on('select2:select', (e) => {
       this._onSelect(e.target.value);
     });
   }
@@ -34,7 +34,7 @@ export default class extends Controller {
 
     // make sure the HTML itself has those elements selected,
     // since the HTML is what is saved in the turbolinks snapshot
-    values.forEach(val => {
+    values.forEach((val) => {
       $(this.selectTarget)
         .find(`option[value="${val}"]`)
         .attr('selected', 'selected');

@@ -2,22 +2,25 @@ doctype html
 html
   head
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Mountain biking community to help fellow riders meet up on the trails.'}"
     link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /
+    link rel='manifest' href='/manifest.json'
+    meta name="theme-color" content="#D32F2F"
+
     title
       = content_for?(:title) ? yield(:title) : 'MTB Group Rides '
-    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Mountain biking community to help fellow riders meet up on the trails.'}"
     = yield :head
 
     = favicon_link_tag 'mtb-buds-favicon.png'
-    == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => 'reload'
 
+    == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => 'reload'
     == javascript_pack_tag 'application'
     == javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
 
     == csrf_meta_tags
+
     /! Global site tag (gtag.js) - Google Analytics
     script async="" src="https://www.googletagmanager.com/gtag/js?id=#{ENV['google_analytics']}"
-
 
   body
     = render 'shared/google_analytics'
