@@ -4,7 +4,7 @@ div{ data-controller='on-screen-filter' }
     / TODO: mobile should be vertical
     .row.trail
       .col.s12.l12
-        .card.horizontal
+        .card class="#{mobile? ? '' : 'horizontal'}"
           .card-image = image_tag trail['imgMedium']
           .card-stacked
             .card-content
