@@ -10,9 +10,7 @@ html
 
     = favicon_link_tag 'mtb-buds-favicon.png'
     == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => 'reload'
-
-    == javascript_pack_tag 'application'
-    == javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+    == javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
     == csrf_meta_tags
     /! Global site tag (gtag.js) - Google Analytics

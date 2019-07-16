@@ -1,22 +1,22 @@
 - if mobile?
-  ul.collection--comments 
+  ul.collection--comments
     li.collection-item.valign-wrapper
       = link_to ride_path(@ride) do
         i.material-icons.secondary-color-text arrow_back
       span.title Comments
 
-.card.card--comments.grey.lighten-4 data-controller='comment'
-  .card-content data-target='comment.scroll'
-    ul.comments id="comment-box-#{@ride.id}"
+.card.card--comments.grey.lighten-4 data-controller='comments' data-comments-ride-id="#{@ride.id}"
+  .card-content data-target='comments.scroll'
+    ul.comments data-target='comments.container'
       = render @comments
 
   .card-action
-    .row.comments__new 
-      = form_tag ride_comments_path(@ride), data: { action: 'comment#submit' } do
+    .row.comments__new
+      = form_tag ride_comments_path(@ride), data: { action: 'comments#submit' } do
         .col.s11.m11
           = hidden_field_tag 'user_id', current_user.id
           = hidden_field_tag 'ride_id', @ride.id
-          = text_field_tag 'body', nil, placeholder: 'Comment...', data: { target: 'comment.input' }
+          = text_field_tag 'body', nil, placeholder: 'Comment...', data: { target: 'comments.input' }
         .col.s1.m1
-          = button_tag(type: "submit", class: 'comments__send') do 
+          = button_tag(type: "submit", class: 'comments__send') do
             i.material-icons send

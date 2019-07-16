@@ -19,6 +19,9 @@ module MtbBuds
                        controller_specs: false,
                        request_specs: false
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
+      g.stylesheets false
+      g.javascripts     false
+      g.channel assets: false
     end
 
     # Initialize configuration defaults for originally generated Rails version.

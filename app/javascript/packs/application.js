@@ -7,8 +7,8 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import { Application } from 'stimulus';
 import { definitionsFromContext } from 'stimulus/webpack-helpers';
 import 'select2';
@@ -24,6 +24,12 @@ import GoogleAnalytics from './google_analytics';
 new GoogleAnalytics.load();
 
 require('materialize-css');
+
+import Rails from '@rails/ujs';
+Rails.start();
+// Turbolinks
+var Turbolinks = require('turbolinks');
+Turbolinks.start();
 
 document.addEventListener('turbolinks:load', function() {
   $('.dropdown-trigger').dropdown({

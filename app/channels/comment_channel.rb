@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class CommentChannel < ApplicationCable::Channel
-  def subscribed
-    stream_from "comments-#{current_user.id}"
+  def follow(data)
+    stop_all_streams
+    stream_from "CommentsChannel:#{data['ride_id']}"
   end
 
   def unsubscribed
     stop_all_streams
-    # Any cleanup needed when channel is unsubscribed
   end
 
   def speak(data)
