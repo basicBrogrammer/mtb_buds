@@ -10,6 +10,7 @@ $secondary-color: color("red", "darken-2") !default;
 @import "buttons";
 @import "flexbox";
 
+@import 'sidenav';
 @import "comments";
 @import "mobile_nav";
 @import "navbar";

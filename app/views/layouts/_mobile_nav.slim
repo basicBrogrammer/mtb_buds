@@ -2,33 +2,33 @@ nav.mobile-bottom-nav
   - if user_signed_in?
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
-        = link_to root_path, class: nav_active?(root_path) do 
+        = link_to root_path, class: nav_active?(root_path) do
           i.material-icons home
 
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
-        = link_to new_ride_path, class: nav_active?(new_ride_path) do 
+        = link_to new_ride_path, class: nav_active?(new_ride_path) do
           i.material-icons add_circle
 
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
-        = link_to my_rides_path, class: nav_active?(my_rides_path) do 
+        = link_to my_rides_path, class: nav_active?(my_rides_path) do
           i.material-icons directions_bike
 
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
-        = link_to notifications_path, 
+        = link_to notifications_path,
           class: nav_active?(notifications_path),
-          style: 'position:relative;' do 
+          style: 'position:relative;' do
           i.material-icons notifications
           - unless Notification.unread_count(current_user).zero?
               span.new-notification
 
     .mobile-bottom-nav__item data-controller='materialize-sidenav'
       .mobile-bottom-nav__item-content
-        = link_to '#', data: { action: 'materialize-sidenav#open' }  do 
+        = link_to '#', data: { action: 'materialize-sidenav#open' }  do
           i.material-icons apps
-  - else 
+  - else
     .mobile-bottom-nav__item
       .mobile-bottom-nav__item-content
         = link_to 'Sign in', new_user_session_path
@@ -41,3 +41,11 @@ ul.sidenav#mobile-settings
   li= link_to 'Become a Patron!', 'https://www.patreon.com/bePatron?u=7766945', target: :blank, class: 'dropdown-item'
   li.divider
   li= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+
+  .card.pwa-card data-controller='pwa'
+    .card-content.row
+      .col.s3
+        = image_tag 'mtb-buds-favicon.png', size: '40x40'
+      .col.s9
+        p Get our free app. It won't take up space on your phone.
+        button.btn-install data-action='pwa#install' Install

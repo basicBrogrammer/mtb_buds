@@ -1,0 +1,14 @@
+.pwa-card {
+  @media all and (display-mode: standalone) {
+    display: none;
+  }
+
+  position: absolute;
+  bottom: 8em;
+  background-color: $primary-color;
+  color: white;
+  .btn-install {
+    @extend .btn-small;
+    float: right;
+  }
+}

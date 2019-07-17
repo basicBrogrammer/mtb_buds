@@ -13,6 +13,8 @@ import { Application } from 'stimulus';
 import { definitionsFromContext } from 'stimulus/webpack-helpers';
 import 'select2';
 import $ from 'jquery';
+import './rails';
+
 window.jQuery = $;
 window.$ = $;
 
@@ -24,12 +26,6 @@ import GoogleAnalytics from './google_analytics';
 new GoogleAnalytics.load();
 
 require('materialize-css');
-
-import Rails from '@rails/ujs';
-Rails.start();
-// Turbolinks
-var Turbolinks = require('turbolinks');
-Turbolinks.start();
 
 document.addEventListener('turbolinks:load', function() {
   $('.dropdown-trigger').dropdown({
@@ -44,9 +40,16 @@ document.addEventListener('turbolinks:load', function() {
   Waves.displayEffect(); // reinitialize wave effect on button
 });
 
+// TODO: split out PWA stuff
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/service-worker.js', { scope: './' }).then(function(reg) {
     console.log('[Companion]', 'Service worker registered!');
     console.log(reg);
   });
 }
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  window.deferredPrompt = e;
+  console.log('Before install prompt triggerred');
+});
