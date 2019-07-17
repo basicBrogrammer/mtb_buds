@@ -42,10 +42,11 @@ ul.sidenav#mobile-settings
   li.divider
   li= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
 
-  .card.pwa-card data-controller='pwa'
-    .card-content.row
-      .col.s3
-        = image_tag 'mtb-buds-favicon.png', size: '40x40'
-      .col.s9
-        p Get our free app. It won't take up space on your phone.
-        button.btn-install data-action='pwa#install' Install
+  - if browser.chrome?
+    .card.pwa-card data-controller='pwa'
+      .card-content.row
+        .col.s3
+          = image_tag 'mtb-buds-favicon.png', size: '40x40'
+        .col.s9
+          p Get our free app. It won't take up space on your phone.
+          button.btn-install data-action='pwa#install' Install
