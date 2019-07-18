@@ -47,7 +47,8 @@ class UserDashboard < Administrate::BaseDashboard
     invited_by
     id
     email
-    encrypted_password
+    last_sign_in_at
+    created_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
