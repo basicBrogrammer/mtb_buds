@@ -7,7 +7,7 @@
 
 mailers_unread_notifications:
   cron: "0 16,22 * * *"
-  class: "Mailers::UnreadNotificationsJob"
+  class: "Mailers::UnreadNotificationsWorker"
   queue: mailers
   args:
   description: "This job alerts users of unread messages"

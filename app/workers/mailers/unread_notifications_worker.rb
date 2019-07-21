@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module Mailers
-  class UnreadNotificationsJob < ApplicationJob
-    queue_as :default
+  class UnreadNotificationsWorker
+    include Sidekiq::Worker
+    sidekiq_options queue: 'low'
 
     def perform
       new_emails = 0
