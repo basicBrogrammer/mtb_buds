@@ -5,7 +5,8 @@ class Comment < ApplicationRecord
   belongs_to :user
 
   include DestroyNotifications
-  # TODO: change to perform_later
-  after_create_commit { CommentBroadcastJob.perform_now(self, ride) }
-  after_create { Notifications::CommentCreatedJob.perform_later(self) }
+  after_create_commit do
+    CommentBroadcastJob.perform_later(self, ride)
+    Notifications::CommentCreatedJob.perform_later(self)
+  end
 end

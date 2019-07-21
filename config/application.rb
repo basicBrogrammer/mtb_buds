@@ -27,7 +27,7 @@ module MtbBuds
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.cache_store = :redis_store, ENV.fetch('REDIS_URL', 'redis://localhost:6379/0/cache'), { expires_in: 14.days }
-    config.active_job.queue_adapter = :resque
+    config.active_job.queue_adapter = :sidekiq
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
-# require 'resque/server'
+require 'sidekiq/web'
+require 'sidekiq/cron/web'
+
 Rails.application.routes.draw do
   namespace :admin do
     resources :users
     root to: 'users#index'
-    # authenticate :user do
-    # mount Resque::Server, at: '/jobs'
-    # end
+  end
+  authenticate :user, ->(u) { u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   unauthenticated do

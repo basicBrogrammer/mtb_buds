@@ -1,3 +1,2 @@
 web: bundle exec puma -C config/puma.rb
-worker: env TERM_CHILD=1 QUEUE=* bundle exec rake resque:work
-cron: bundle exec rake resque:scheduler
+worker: bundle exec sidekiq -t 30 -c 5
