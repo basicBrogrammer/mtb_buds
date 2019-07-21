@@ -1,7 +1,4 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
-
-RSpec.describe CommentBroadcastJob, type: :job do
+RSpec.describe CommentBroadcastWorker, type: :worker do
   pending "add some examples to (or delete) #{__FILE__}"
 end

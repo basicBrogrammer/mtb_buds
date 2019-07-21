@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
   belongs_to :user
 
   after_create_commit do
-    CommentBroadcastJob.perform_later(self, ride)
+    CommentBroadcastWorker.perform_async(id, ride_id)
     Notifications::CommentCreatedJob.perform_later(self)
   end
 end
