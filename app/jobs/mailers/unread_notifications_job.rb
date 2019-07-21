@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 module Mailers
-  class UnreadNotificationsJob
-    def self.perform
+  class UnreadNotificationsJob < ApplicationJob
+    queue_as :default
+
+    def perform
       new_emails = 0
       User.find_each(batch_size: 500) do |user|
         if user.notifications.unread.any?
