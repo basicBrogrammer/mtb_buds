@@ -42,7 +42,7 @@ RSpec.describe NotificationsMailer, type: :mailer do
 
     context 'with only comments' do
       before do
-        perform_enqueued_jobs do
+        Sidekiq::Testing.inline! do
           # create notifications
           comment
         end
@@ -63,7 +63,7 @@ RSpec.describe NotificationsMailer, type: :mailer do
 
     context 'with only interested riders' do
       before do
-        perform_enqueued_jobs do
+        Sidekiq::Testing.inline! do
           # create notifications
           pending_participation
         end
@@ -84,7 +84,7 @@ RSpec.describe NotificationsMailer, type: :mailer do
 
     context 'with only accepted participation' do
       before do
-        perform_enqueued_jobs do
+        Sidekiq::Testing.inline! do
           # create notifications
           accepted_participation.accepted!
         end

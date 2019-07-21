@@ -3,28 +3,24 @@
 require 'rails_helper'
 
 RSpec.describe Participation, type: :model do
-  include ActiveJob::TestHelper
   it_behaves_like 'on_destroy_delete_notifications'
 
   it 'enqueues the Notifications::ParticipationCreatedJob job' do
-    assert_enqueued_jobs 0, only: Notifications::ParticipationCreatedJob
+    expect(Notifications::ParticipationCreatedWorker.jobs.size).to eq 0
 
-    assert_enqueued_with(job: Notifications::ParticipationCreatedJob) do
-      create(:participation, id: 1)
-    end
+    expect { create(:participation, id: 1) }.to change(Notifications::ParticipationCreatedWorker.jobs, :size).by(1)
 
-    assert_enqueued_jobs 1, only: Notifications::ParticipationCreatedJob
+    expect(Notifications::ParticipationCreatedWorker.jobs.size).to eq 1
   end
 
   it 'enqueues the Notifications::ParticipationCreatedJob job after being updated' do
-    assert_enqueued_jobs 0, only: Notifications::ParticipationCreatedJob
+    expect(Notifications::ParticipationCreatedWorker.jobs.size).to eq 0
     participation = create(:participation, id: 1)
-    assert_enqueued_jobs 1, only: Notifications::ParticipationCreatedJob
+    expect(Notifications::ParticipationCreatedWorker.jobs.size).to eq 1
 
-    assert_enqueued_with(job: Notifications::ParticipationAcceptedJob) do
-      participation.accepted!
-    end
+    expect(Notifications::ParticipationAcceptedWorker.jobs.size).to eq 0
+    expect { participation.accepted! }.to change(Notifications::ParticipationCreatedWorker.jobs, :size).by(0)
 
-    assert_enqueued_jobs 1, only: Notifications::ParticipationAcceptedJob
+    expect(Notifications::ParticipationAcceptedWorker.jobs.size).to eq 1
   end
 end

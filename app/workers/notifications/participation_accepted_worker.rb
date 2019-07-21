@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 module Notifications
-  class ParticipationAcceptedJob < ApplicationJob
-    queue_as :default
+  class ParticipationAcceptedWorker
+    include Sidekiq::Worker
 
-    def perform(participation)
+    def perform(participation_id)
+      participation = Participation.find participation_id
       if participation.accepted? && participation.user.participation_notifications?
         ride = participation.ride
         Notification.create(
