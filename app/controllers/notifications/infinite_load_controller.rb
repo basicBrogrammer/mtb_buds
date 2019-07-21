@@ -10,7 +10,7 @@ module Notifications
       @notifications = current_user.notifications.includes(:actor).page(params[:page])
       notification_ids = @notifications.pluck(:id)
       # TODO: move marking notifications to on click
-      Notifications::MarkAsReadJob.perform_later(notification_ids)
+      Notifications::MarkAsReadWorker.perform_async(notification_ids)
     end
   end
 end

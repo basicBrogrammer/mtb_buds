@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Notifications::MarkAsReadJob, type: :job do
+RSpec.describe Notifications::MarkAsReadWorker, type: :worker do
   let(:user) { create(:user) }
   let!(:users_unread_notifications) do
     create_list(:notification, 3, :comment_target, user: user)
@@ -20,7 +20,7 @@ RSpec.describe Notifications::MarkAsReadJob, type: :job do
     expect(user.notifications.count).to eq 6
     expect(Notification.unread_count(user)).to eq 3
 
-    call_job user.notifications
+    call_worker user.notifications
 
     expect(user.notifications.count).to eq 6
     expect(Notification.unread_count(user)).to eq 0
@@ -37,7 +37,7 @@ RSpec.describe Notifications::MarkAsReadJob, type: :job do
       expect(note.read_at).to be > Time.zone.now.beginning_of_day - 2.days
     end
 
-    call_job user.notifications
+    call_worker user.notifications
 
     users_read_notifications.each do |note|
       note.reload
@@ -50,14 +50,14 @@ RSpec.describe Notifications::MarkAsReadJob, type: :job do
       expect(note.read?).to eq false
     end
 
-    call_job user.notifications
+    call_worker user.notifications
 
     other_users_notifications.each do |note|
       note.reload
       expect(note.read?).to eq false
     end
 
-    call_job Notification.all
+    call_worker Notification.all
 
     other_users_notifications.each do |note|
       note.reload
@@ -65,8 +65,8 @@ RSpec.describe Notifications::MarkAsReadJob, type: :job do
     end
   end
 
-  def call_job(notifications)
+  def call_worker(notifications)
     ids = notifications.pluck(:id)
-    Notifications::MarkAsReadJob.new.perform(ids)
+    Notifications::MarkAsReadWorker.new.perform(ids)
   end
 end

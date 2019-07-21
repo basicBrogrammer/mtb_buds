@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Notifications
-  class MarkAsReadJob < ApplicationJob
-    queue_as :default
+  class MarkAsReadWorker
+    include Sidekiq::Worker
 
     def perform(notification_ids)
       # guard is only necessary if outside Notification::InfiniteLoadController
