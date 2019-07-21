@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-
-RSpec.describe Notifications::ParticipationCreatedJob, type: :job do
+RSpec.describe Notifications::ParticipationCreatedWorker, type: :worker do
   let(:owner) { create(:user) }
   let(:ride) { create(:ride, user: owner) }
   let!(:participation) { create(:participation, :pending, ride: ride) }
@@ -11,7 +10,7 @@ RSpec.describe Notifications::ParticipationCreatedJob, type: :job do
   it 'will notify the owner when someone wants to join' do
     expect(owner.notifications.count).to eq 0
 
-    Notifications::ParticipationCreatedJob.new.perform(participation)
+    Notifications::ParticipationCreatedWorker.new.perform(participation.id)
 
     expect(owner.notifications.count).to eq 1
   end
@@ -20,7 +19,7 @@ RSpec.describe Notifications::ParticipationCreatedJob, type: :job do
     owner.setting.update(participation_notifications: false)
     expect(owner.notifications.count).to eq 0
 
-    Notifications::ParticipationCreatedJob.new.perform(participation)
+    Notifications::ParticipationCreatedWorker.new.perform(participation.id)
 
     expect(owner.notifications.count).to eq 0
   end
@@ -28,7 +27,7 @@ RSpec.describe Notifications::ParticipationCreatedJob, type: :job do
   it 'will not notify partipants of a ride when someone wants to join' do
     expect(Notification.count).to eq 0
 
-    Notifications::ParticipationCreatedJob.new.perform(participation)
+    Notifications::ParticipationCreatedWorker.new.perform(participation.id)
     expect(Notification.count).to eq 1
 
     expect(owner.notifications.count).to eq 1

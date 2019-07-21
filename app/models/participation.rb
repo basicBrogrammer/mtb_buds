@@ -7,6 +7,6 @@ class Participation < ApplicationRecord
   belongs_to :user
   belongs_to :ride
 
-  after_create { Notifications::ParticipationCreatedJob.perform_later(self) }
+  after_create { Notifications::ParticipationCreatedWorker.perform_async(id) }
   after_update { Notifications::ParticipationAcceptedJob.perform_later(self) }
 end

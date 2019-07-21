@@ -19,7 +19,7 @@ RSpec.describe NotificationsMailer, type: :mailer do
 
     context 'with all types of comments' do
       before do
-        perform_enqueued_jobs do
+        Sidekiq::Testing.inline! do
           # create notifications
           comment
           pending_participation
