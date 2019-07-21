@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Participation, type: :model do
   include ActiveJob::TestHelper
+  it_behaves_like 'on_destroy_delete_notifications'
 
   it 'enqueues the Notifications::ParticipationCreatedJob job' do
     assert_enqueued_jobs 0, only: Notifications::ParticipationCreatedJob

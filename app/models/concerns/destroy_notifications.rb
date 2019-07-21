@@ -9,6 +9,6 @@ module DestroyNotifications
   private
 
   def destory_notifications
-    DestroyNotificationsJob.perform_later(target: id, target_type: model_name.human)
+    DestroyNotificationsWorker.perform_async(id, model_name.human)
   end
 end
