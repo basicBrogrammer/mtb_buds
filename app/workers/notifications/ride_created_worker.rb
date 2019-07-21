@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 module Notifications
-  class RideCreatedJob < ApplicationJob
-    queue_as :default
+  class RideCreatedWorker
+    include Sidekiq::Worker
 
-    def perform(ride)
+    def perform(ride_id)
+      ride = Ride.find ride_id
       User.near(ride.location, 150).each do |user|
         next if user == ride.user || !user.ride_notifications?
 

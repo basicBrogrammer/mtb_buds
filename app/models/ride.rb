@@ -8,7 +8,7 @@ class Ride < ApplicationRecord
   geocoded_by :location
   after_validation :geocode, if: ->(obj) { obj.location.present? && obj.location_changed? }
 
-  after_create { Notifications::RideCreatedJob.perform_later(self) }
+  after_create { Notifications::RideCreatedWorker.perform_async(id) }
 
   belongs_to :user
   # TODO: add participations_counter_cache

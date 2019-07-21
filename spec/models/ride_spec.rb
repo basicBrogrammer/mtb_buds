@@ -11,4 +11,8 @@ RSpec.describe Ride, type: :model do
   it 'has an active scope of rides today or later' do
     expect(Ride.active).to contain_exactly ride
   end
+
+  it 'creates enqueues Notifications::RideCreatedWorker on create' do
+    expect { create(:ride) }.to change(Notifications::RideCreatedWorker.jobs, :size).by 1
+  end
 end
