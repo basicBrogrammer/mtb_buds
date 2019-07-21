@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 module Notifications
-  class CommentCreatedJob < ApplicationJob
-    queue_as :default
+  class CommentCreatedWorker
+    include Sidekiq::Worker
 
-    def perform(comment)
+    def perform(id)
+      comment = Comment.find(id)
       ride = comment.ride
       # Do something later
       if ride.user.comment_notifications? && ride.user != comment.user

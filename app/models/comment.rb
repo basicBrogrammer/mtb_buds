@@ -8,6 +8,6 @@ class Comment < ApplicationRecord
 
   after_create_commit do
     CommentBroadcastWorker.perform_async(id, ride_id)
-    Notifications::CommentCreatedJob.perform_later(self)
+    Notifications::CommentCreatedWorker.perform_async(id)
   end
 end
