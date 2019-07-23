@@ -32,6 +32,7 @@ export default class extends Controller {
 
   disconnect() {
     this.commentsChannel.perform('unsubscribed');
+    this.commentsChannel.consumer.subscriptions.forget(this.commentsChannel);
   }
   listen() {
     if (this.commentsChannel) {
