@@ -47,8 +47,4 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   # https://github.com/mperham/sidekiq/wiki/Testing
   # config.active_job.queue_adapter = :sidekiq
-  # require 'sidekiq/testing'
-  # Sidekiq::Testing.fake! # fake is the default mode
-  # Sidekiq::Testing.inline!
-  # Sidekiq::Testing.disable!
 end

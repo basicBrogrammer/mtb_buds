@@ -1,7 +1,0 @@
-- if @notifications&.any?
-    - @notifications.each do |notification|
-      .infinite-item= render 'notification_body', notification: notification
-
-- else 
-  h4.center-align Currently, there are no notifications listed.
-  h5.center-align Check back later! 

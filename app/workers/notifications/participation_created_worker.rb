@@ -3,6 +3,7 @@
 module Notifications
   class ParticipationCreatedWorker
     include Sidekiq::Worker
+    sidekiq_options queue: 'low'
 
     def perform(participation_id)
       participation = Participation.find participation_id

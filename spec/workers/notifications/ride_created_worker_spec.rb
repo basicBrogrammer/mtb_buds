@@ -50,8 +50,6 @@ RSpec.describe Notifications::RideCreatedWorker, type: :worker do
   end
 
   def create_ride_and_worker
-    Sidekiq::Testing.inline! do
-      ride
-    end
+    ride
   end
 end

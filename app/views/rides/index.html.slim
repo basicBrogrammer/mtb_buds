@@ -4,20 +4,20 @@
 .row
   .main-page-grid
     div data-controller='rides-filter' data-rides-filter-url='/location_autocomplete'
-      = form_tag rides_path, method: :get, data: { target: 'rides-filter.form' } do 
+      = form_tag rides_path, method: :get, data: { target: 'rides-filter.form' } do
         .input-field.location-filter
-          = select_tag :location, 
-            options_for_select([search_params[:location]], search_params[:location]), 
-            data: { target: 'rides-filter.select', 
+          = select_tag :location,
+            options_for_select([search_params[:location]], search_params[:location]),
+            data: { target: 'rides-filter.select',
             placeholder: 'Filter rides by location...' }
 
 
 div{
-  data-controller="infinite-scroll"
-  data-infinite-scroll-url="/rides/infinite_load"
-  data-infinite-scroll-search-params=search_params.to_json }
+  data-controller="pagination-cable"
+  data-pagination-cable-channel='RidesChannel'
+  data-pagination-cable-params={page: params[:page] || 1, location: params[:location]}.to_json }
 
-  .rides data-target='infinite-scroll.items'
-  .row data-target='infinite-scroll.spinner'
+  .rides data-target='pagination-cable.container'
+  .row data-target='pagination-cable.spinner'
     .main-page-grid
       = render 'shared/preloader'

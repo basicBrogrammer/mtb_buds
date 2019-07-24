@@ -3,8 +3,10 @@
 feature 'Visitors and Users can search rides', :devise, :js do
   let!(:boulder_ride) { create(:ride, :boulder) }
   let!(:moab_ride) { create(:ride, :moab) }
+  let(:user) { create(:user) }
 
   scenario 'by location' do
+    sign_in_as(user)
     visit rides_path
     expect(page).to have_content boulder_ride.name
     expect(page).to have_content moab_ride.name

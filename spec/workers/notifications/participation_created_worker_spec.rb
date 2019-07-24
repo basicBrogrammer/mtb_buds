@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-RSpec.describe Notifications::ParticipationCreatedWorker, type: :worker do
+RSpec.describe Notifications::ParticipationCreatedWorker, :sidekiq_fake, type: :worker do
   let(:owner) { create(:user) }
   let(:ride) { create(:ride, user: owner) }
   let!(:participation) { create(:participation, :pending, ride: ride) }
