@@ -3,7 +3,6 @@
 module Notifications
   class CommentCreatedWorker
     include Sidekiq::Worker
-    sidekiq_options queue: 'low'
 
     def perform(id)
       comment = Comment.find(id)

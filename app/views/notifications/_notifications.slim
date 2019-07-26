@@ -1,9 +1,0 @@
-- if notifications&.any?
-  - notifications.each do |notification|
-    = render 'notification_body', notification: notification
-  div
-    .center-align= paginate notifications, params: {controller: 'notifications', action: 'index'}
-
-- else
-  h4.center-align Currently, there are no notifications listed.
-  h5.center-align Check back later!

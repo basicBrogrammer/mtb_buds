@@ -20,8 +20,7 @@ html
     == csrf_meta_tags
 
     /! Global site tag (gtag.js) - Google Analytics
-    - if Rails.env.production?
-      script async="" src="https://www.googletagmanager.com/gtag/js?id=#{ENV['google_analytics']}"
+    script async="" src="https://www.googletagmanager.com/gtag/js?id=#{ENV['google_analytics']}"
 
   body
     = render 'shared/google_analytics'

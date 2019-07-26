@@ -12,7 +12,7 @@ RSpec.describe Ride, type: :model do
     expect(Ride.active).to contain_exactly ride
   end
 
-  it 'creates enqueues Notifications::RideCreatedWorker on create', :sidekiq_fake do
+  it 'creates enqueues Notifications::RideCreatedWorker on create' do
     expect { create(:ride) }.to change(Notifications::RideCreatedWorker.jobs, :size).by 1
   end
 end

@@ -19,10 +19,12 @@ RSpec.describe NotificationsMailer, type: :mailer do
 
     context 'with all types of comments' do
       before do
-        # create notifications
-        comment
-        pending_participation
-        accepted_participation.accepted!
+        Sidekiq::Testing.inline! do
+          # create notifications
+          comment
+          pending_participation
+          accepted_participation.accepted!
+        end
       end
 
       it 'renders the body' do
@@ -40,8 +42,10 @@ RSpec.describe NotificationsMailer, type: :mailer do
 
     context 'with only comments' do
       before do
-        # create notifications
-        comment
+        Sidekiq::Testing.inline! do
+          # create notifications
+          comment
+        end
       end
 
       it 'renders the body' do
@@ -59,8 +63,10 @@ RSpec.describe NotificationsMailer, type: :mailer do
 
     context 'with only interested riders' do
       before do
-        # create notifications
-        pending_participation
+        Sidekiq::Testing.inline! do
+          # create notifications
+          pending_participation
+        end
       end
 
       it 'renders the body' do
@@ -78,8 +84,10 @@ RSpec.describe NotificationsMailer, type: :mailer do
 
     context 'with only accepted participation' do
       before do
-        # create notifications
-        accepted_participation.accepted!
+        Sidekiq::Testing.inline! do
+          # create notifications
+          accepted_participation.accepted!
+        end
       end
 
       it 'renders the body' do

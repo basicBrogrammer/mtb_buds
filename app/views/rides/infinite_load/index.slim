@@ -1,12 +1,10 @@
-- if rides.any?
-  - rides.each do |ride|
+- if @rides.any?
+  - @rides.each do |ride|
     = render 'rides/ride', ride: ride
       .card-action
         = link_to 'Interested', ride_path(ride)
-  div
-    .center-align= paginate rides, params: {controller: 'rides', action: 'index'}
-- else
+- else 
   .row
     .main-page-grid.center-align
       h4 Currently, there are no rides listed.
-      h5  Check back later!
+      h5  Check back later! 

@@ -3,7 +3,6 @@
 module Notifications
   class MarkAsReadWorker
     include Sidekiq::Worker
-    sidekiq_options queue: 'low'
 
     def perform(notification_ids)
       # guard is only necessary if outside Notification::InfiniteLoadController

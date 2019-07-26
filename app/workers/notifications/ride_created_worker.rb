@@ -3,7 +3,6 @@
 module Notifications
   class RideCreatedWorker
     include Sidekiq::Worker
-    sidekiq_options queue: 'low'
 
     def perform(ride_id)
       ride = Ride.find ride_id

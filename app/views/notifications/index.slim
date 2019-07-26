@@ -2,10 +2,8 @@
   meta name="turbolinks-cache-control" content="no-cache"
 
 div{
-  data-controller="pagination-cable"
-  data-pagination-cable-channel='NotificationsChannel'
-  data-pagination-cable-params={page: params[:page] || 1 }.to_json }
-
+  data-controller="infinite-scroll"
+  data-infinite-scroll-url="/notifications/infinite_load" }
 
   .row
     .main-page-grid
@@ -13,7 +11,7 @@ div{
         li.collection-item
           span.title Notifications
 
-        .notifications data-target='pagination-cable.container'
-        .row data-target='pagination-cable.spinner'
+        .notifications data-target='infinite-scroll.items'
+        .row data-target='infinite-scroll.spinner'
           .main-page-grid
             = render 'shared/preloader'

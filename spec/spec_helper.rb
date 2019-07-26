@@ -17,7 +17,6 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'sidekiq/testing'
 RSpec.configure do |config|
-  Sidekiq::Testing.inline!
   config.before(:each) do
     Sidekiq::Worker.clear_all
   end
@@ -98,9 +97,4 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
-  config.around(:each, :sidekiq_fake) do |example|
-    Sidekiq::Testing.fake!
-    example.run
-    Sidekiq::Testing.inline!
-  end
 end
