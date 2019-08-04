@@ -9,7 +9,6 @@ Geocoder.configure(
   use_https: false,           # use HTTPS for lookup requests? (if supported)
   # http_proxy: nil,            # HTTP proxy server (user:pass@host:port)
   # https_proxy: nil,           # HTTPS proxy server (user:pass@host:port)
-  api_key: ENV['google_maps'], # API key for geocoding service
   cache: Redis.new, # cache object (must respond to #[], #[]=, and #del)
   cache_prefix: 'geocoder:', # prefix (string) to use for all cache keys
 
@@ -19,6 +18,12 @@ Geocoder.configure(
   # always_raise: [],
 
   # Calculation options
-  units: :mi # :km for kilometers or :mi for miles
+  units: :mi, # :km for kilometers or :mi for miles
   # distances: :linear          # :spherical or :linear
+  google: {
+    api_key: ENV['google_maps'] # API key for geocoding service
+  },
+  ipinfo_io: {
+    api_key: ENV['ipinfo']
+  }
 )
