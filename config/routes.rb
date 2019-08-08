@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   root to: 'rides#index'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :users, except: %i[new edit] do
     resources :settings, only: :update, controller: 'users/settings'

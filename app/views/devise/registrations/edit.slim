@@ -1,6 +1,6 @@
 .row
   .main-page-grid data-controller='collapsible'
-    ul.collapsible data-target='collapsible.collapseTrigger' 
+    ul.collapsible data-target='collapsible.collapseTrigger'
       li
         .collapsible-header
           i.material-icons notifications
@@ -19,6 +19,6 @@
           i.material-icons delete_sweep
           | Delete Account
         .collapsible-body
-          h3.card-title Cancel Account
+          h5.card-title Cancel Account
           p Unhappy? We'll be sad to see you go.
           = button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn'
