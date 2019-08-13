@@ -23,7 +23,9 @@ const context = require.context('controllers', true, /.js$/);
 application.load(definitionsFromContext(context));
 
 import GoogleAnalytics from './google_analytics';
-new GoogleAnalytics.load();
+if (process.env.NODE_ENV === 'production') {
+  new GoogleAnalytics.load();
+}
 
 require('materialize-css');
 

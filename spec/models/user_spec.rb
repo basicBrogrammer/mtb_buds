@@ -63,29 +63,18 @@ describe User do
 
   describe '.geocode' do
     let(:user) { create(:user) }
-    let(:expected_ip) { '24.9.64.99' }
-    let(:another_ip) { '198.85.228.129' }
-    it 'will update the users latitude and longitude after sign in ip changes' do
-      expect(user.current_sign_in_ip).to be_nil
-      expect(user.ip_address).to be_blank
-      expect(user.latitude).to be_nil
-      expect(user.longitude).to be_nil
+    it 'will update the users latitude and longitude after location changes' do
+      expect(user.location).to eq 'Asheville, NC, USA'
+      expect(user.latitude).to eq 35.5950581
+      expect(user.longitude).to eq -82.5514869
 
-      user.update(current_sign_in_ip: expected_ip)
-      expected_lat, expected_lon = Geocoder.search(expected_ip).first.data['loc'].split(',')
+      user.update(location: 'Fort Collins, CO')
+      expect(user.latitude).to eq 40.5852602
+      expect(user.longitude).to eq -105.084423
 
-      expect(user.current_sign_in_ip).to eq IPAddr.new(expected_ip)
-      expect(user.ip_address).to eq expected_ip
-      expect(user.latitude).to eq expected_lat.to_f
-      expect(user.longitude).to eq expected_lon.to_f
-
-      user.update(current_sign_in_ip: another_ip)
-      expected_lat, expected_lon = Geocoder.search(another_ip).first.data['loc'].split(',')
-
-      expect(user.current_sign_in_ip).to eq IPAddr.new(another_ip)
-      expect(user.ip_address).to eq another_ip
-      expect(user.latitude).to eq expected_lat.to_f
-      expect(user.longitude).to eq expected_lon.to_f
+      user.update(location: 'Breckenridge, CO')
+      expect(user.latitude).to eq 39.4816537
+      expect(user.longitude).to eq -106.0383518
     end
   end
 end

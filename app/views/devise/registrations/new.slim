@@ -5,10 +5,13 @@
           .card-content
             h3.card-title Sign up
             = render "devise/shared/error_messages", resource: resource
-            .row
+            .row data-controller='select2-location' data-select2-location-url='/location_autocomplete'
               = f.input :name, autofocus: true, wrapper_html: { class: 'l12 s12' }
               = f.input :email, wrapper_html: { class: 'l12 s12' }
+              = f.input :location, collection: [], required: true, label: false, wrapper_html: { class: 'm12 s12'},
+                hint: 'Your location will be used to notify you of nearby rides. This manually set to honor your privacy.',
+                input_html: { data: { target: 'select2-location.select', placeholder: 'City, State'}, aria: { describedby:'locationHelpBlock' }}
               = f.input :password, wrapper_html: { class: 'l12 s12' }
-              = f.input :password_confirmation, wrapper_html: { class: 'l12 s12' }
+              = f.input :password_confirmation, required: true, wrapper_html: { class: 'l12 s12' }
           .card-action
             = f.submit 'Sign up', class: 'btn'

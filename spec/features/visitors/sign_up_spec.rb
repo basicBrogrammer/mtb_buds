@@ -4,12 +4,12 @@
 #   As a visitor
 #   I want to sign up
 #   So I can visit protected areas of the site
-feature 'Sign Up', :devise do
+feature 'Sign Up', :devise, :js do
   # Scenario: Visitor can sign up with valid email address and password
   #   Given I am not signed in
   #   When I sign up with a valid email address and password
   #   Then I see a successful sign up message
-  scenario 'visitor can sign up with valid email address and password', :js do
+  scenario 'visitor can sign up with valid email address and password' do
     sign_up_with('test@example.com', 'please1234', 'please1234')
     txts = [I18n.t('devise.registrations.signed_up'), I18n.t('devise.registrations.signed_up_but_unconfirmed')]
     expect(page).to have_content(/.*#{txts[0]}.*|.*#{txts[1]}.*/)
@@ -36,6 +36,11 @@ feature 'Sign Up', :devise do
   scenario 'visitor cannot sign up without name' do
     sign_up_with('test@example.com', '', '', name: '')
     expect(page).to have_content "Name can't be blank"
+  end
+
+  scenario 'visitor cannot sign up without location' do
+    sign_up_with('test@example.com', '', '', location: nil)
+    expect(page).to have_content "Location can't be blank"
   end
 
   # Scenario: Visitor cannot sign up with a short password

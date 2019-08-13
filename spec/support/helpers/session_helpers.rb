@@ -9,10 +9,13 @@ module Features
       base.after(:each) { Warden.test_reset! }
     end
 
-    def sign_up_with(email, password, confirmation, name: Faker::Movies::StarWars.unique.character)
+    def sign_up_with(email, password, confirmation, location: 'Asheville, NC, USA', name: Faker::Movies::StarWars.unique.character)
       visit new_user_registration_path
       fill_in 'Name', with: name
       fill_in 'Email', with: email
+      if location.present?
+        select2_search location.slice(0, 4), choice: location, from: '.user_location'
+      end
       fill_in 'Password', with: password
       fill_in 'Password confirmation', with: confirmation
       click_button 'Sign up'

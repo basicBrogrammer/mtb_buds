@@ -18,7 +18,7 @@ class Ride < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :day, :time, :trail_id, presence: true
-  before_create :save_mtb_projec_data
+  before_create :save_mtb_project_data
 
   def trail
     @trail ||= MtbProjectRequest.new(
@@ -45,7 +45,7 @@ class Ride < ApplicationRecord
 
   private
 
-  def save_mtb_projec_data
+  def save_mtb_project_data
     assign_attributes(
       longitude: trail['longitude'],
       latitude: trail['latitude'],

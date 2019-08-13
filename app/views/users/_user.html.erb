@@ -2,8 +2,8 @@
   <%= link_to user.email, user %>
 </td>
 <td>
-  <%= form_for(user) do |f| %>
-    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+  <%= simple_form_for(user) do |f| %>
+    <%= f.input :role, as: :select, collection: User.roles.keys %>
     <%= f.submit 'Change Role', :class => 'button-xs' %>
   <% end %>
 </td>

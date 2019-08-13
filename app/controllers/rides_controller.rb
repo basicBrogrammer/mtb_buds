@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class RidesController < ApplicationController
+  before_action :check_location
+
+
   before_action :set_ride, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
   skip_before_action :authenticate_user!, only: :index

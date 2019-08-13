@@ -1,19 +1,22 @@
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
+div data-controller='select2-location' data-select2-location-url='/location_autocomplete'
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
 
-  = f.input :name, :autofocus => true, wrapper_html: { class: 'l12 s12' }
-  = f.input :email, type: :email, wrapper_html: { class: 'l12 s12' }
-  = f.input :avatar, wrapper_html: { class: 'l12 s12' }
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div Currently waiting confirmation for: = resource.unconfirmed_email
-  .section
-    fieldset
-      p Leave these fields blank if you don't want to change your password.
-      = f.input :password, :autocomplete => 'off', wrapper_html: { class: 'l12 s12' }
-      = f.input :password_confirmation, wrapper_html: { class: 'l12 s12' }
+    = f.input :name, :autofocus => true, wrapper_html: { class: 'l12 s12' }
+    = f.input :email, type: :email, wrapper_html: { class: 'l12 s12' }
+    = f.input :location, collection: [resource.location], required: true, label: false, wrapper_html: { class: 'm12 s12'},
+      input_html: { data: { target: 'select2-location.select', placeholder: 'City, State'}, aria: { describedby:'locationHelpBlock' }}
+    = f.input :avatar, wrapper_html: { class: 'l12 s12' }
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      div Currently waiting confirmation for: = resource.unconfirmed_email
+    .section
+      fieldset
+        p Leave these fields blank if you don't want to change your password.
+        = f.input :password, :autocomplete => 'off', wrapper_html: { class: 'l12 s12' }
+        = f.input :password_confirmation, wrapper_html: { class: 'l12 s12' }
 
-  .section
-    fieldset
-      p You must enter your current password to make changes.
-      = f.input :current_password, wrapper_html: { class: 'l12 s12' }
-  = f.submit 'Update', class: 'btn'
+    .section
+      fieldset
+        p You must enter your current password to make changes.
+        = f.input :current_password, wrapper_html: { class: 'l12 s12' }
+    = f.submit 'Update', class: 'btn'
