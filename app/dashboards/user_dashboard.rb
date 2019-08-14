@@ -19,10 +19,10 @@ class UserDashboard < Administrate::BaseDashboard
     remember_created_at: Field::DateTime,
     sign_in_count: Field::Number,
     current_sign_in_at: Field::DateTime,
-    last_sign_in_at: Field::DateTime,
+    last_sign_in_at: Field::DateTime.with_options(format: '%b %-d %Y'),
     current_sign_in_ip: Field::String.with_options(searchable: false),
     last_sign_in_ip: Field::String.with_options(searchable: false),
-    created_at: Field::DateTime,
+    created_at: Field::DateTime.with_options(format: '%b %-d %Y'),
     updated_at: Field::DateTime,
     name: Field::String,
     confirmation_token: Field::String,
@@ -35,7 +35,9 @@ class UserDashboard < Administrate::BaseDashboard
     invitation_sent_at: Field::DateTime,
     invitation_accepted_at: Field::DateTime,
     invitation_limit: Field::Number,
-    invitations_count: Field::Number
+    invitations_count: Field::Number,
+    location: Field::String,
+    rides: Field::HasMany
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -44,9 +46,10 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    invited_by
     id
     email
+    location
+    rides
     last_sign_in_at
     created_at
   ].freeze
@@ -114,7 +117,7 @@ class UserDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
-  # end
+  def display_resource(user)
+    "#{user.name} (#{user.id})"
+  end
 end

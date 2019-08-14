@@ -6,6 +6,7 @@ require 'sidekiq/cron/web'
 Rails.application.routes.draw do
   namespace :admin do
     resources :users
+    resources :rides
     root to: 'users#index'
   end
   authenticate :user, ->(u) { u.admin? } do
