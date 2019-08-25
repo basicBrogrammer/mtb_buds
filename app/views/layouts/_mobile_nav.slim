@@ -39,7 +39,7 @@ nav.mobile-bottom-nav
 ul.sidenav#mobile-settings
   li= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item'
   li= link_to 'Become a Patron!', 'https://www.patreon.com/bePatron?u=7766945', target: :blank, class: 'dropdown-item'
-  - if current_user.admin?
+  - if current_user&.admin?
     li= link_to 'Admin', admin_root_path, class: 'dropdown-item'
   li.divider
   li= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
