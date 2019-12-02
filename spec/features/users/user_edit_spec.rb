@@ -32,7 +32,7 @@ feature 'User edit', :devise do
     visit edit_user_registration_path(user)
     find('.collapsible-header', text: 'User Settings').click
 
-    select2_search location.slice(0, 5), choice: location, from: '.user_location'
+    select2_search location.slice(0, 7), choice: location, from: '.user_location'
     fill_in 'Current password', with: user.password
     click_button 'Update'
 

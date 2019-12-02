@@ -8,6 +8,7 @@ class User < ApplicationRecord
   enum role: %i[user vip admin]
 
   validates :name, :location, :email, presence: true
+  validates :location, length: { minimum: 3 }
   geocoded_by :location
 
   after_initialize :set_default_role, if: :new_record?

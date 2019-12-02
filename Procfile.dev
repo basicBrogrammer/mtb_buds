@@ -1,5 +1,5 @@
 web: bundle exec rails s -b 0.0.0.0
-#worker: bundle exec sidekiq -C config/sidekiq.yml
+worker: bundle exec sidekiq -C config/sidekiq.yml
 # cron: bundle exec rake resque:scheduler
 frontend: ./bin/webpack-dev-server
 #mailcatcher: ruby -rbundler/setup -e "Bundler.clean_exec('mailcatcher', '--foreground')"
